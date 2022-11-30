@@ -28,3 +28,5 @@ myNamespace::b
 </pre>
 </code>
 <p>The functionality of namespaces is especially useful in the case that there is a possibility that a global object or function uses the same identifier as another one, causing redefinition errors.</p>
+
+<h2>Vector</h2>
