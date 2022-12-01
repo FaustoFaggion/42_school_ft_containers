@@ -11,7 +11,8 @@ SRC			=	main.cpp\
 OBJ			=	$(SRC:%.cpp=$(PATH_OBJ)%.o)
 
 HEADER		=	vector.hpp\
-
+				vector.tpp\
+				
 all:	$(NAME)
 
 $(PATH_OBJ)%.o:	%.cpp $(HEADER)
@@ -28,8 +29,7 @@ clean:
 fclean:	clean
 	rm -rf $(NAME)
 
-re:	fclean
-	$(NAME)
+re:	fclean all
 
 run:	$(NAME)
 	./$(NAME)
