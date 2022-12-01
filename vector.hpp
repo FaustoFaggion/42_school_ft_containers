@@ -15,7 +15,7 @@ namespace ft
 		typedef	T				value_type;
 		
 		private:
-			std::allocator<T>	alloc;
+			Alloc							alloc;
 			size_t						_size;
 			size_t						_max_size;
 			size_t						_capacity;
@@ -23,26 +23,53 @@ namespace ft
 
 
 		public:
-			vector(const allocator_type& alloc = allocator_type()) {
+			explicit vector(const allocator_type& alloc = allocator_type()) {
 				this->_data = alloc.allocate(0);
 				this->_size = 0;
 				this->_max_size = 0;
 				this->_capacity = 0;
 			}
+
+			size_t	size() {
+				return (this->_size);
+			}
+
+			size_t	max_size() {
+				return (this->_max_size);
+			}
+
+			size_t	capacity() {
+				return (this->_capacity);
+			}
+
 			void	resize(size_type n, value_type val = value_type()) {
 				T	*temp;
 
+				std::cout << "case0: "<< std::endl;
 				temp = alloc.allocate(n);
 				for (int i = 0; i < n; i++) {
-					if (this->_data[i])
+					if (this->_data[i]){
 						temp[i] = this->_data[i];
-					else
+						std::cout << "case1: " << temp[i] << std::endl;
+					}
+					else {
 						temp[i] = val;
+						std::cout << "case2: " << temp[i] << std::endl;
+					}
 				}
 				alloc.deallocate(this->_data, this->_data.capacity());
 				this->_data = temp;
+				this->_size = n;
 			}
 
+			void	push_back(const value_type& val) {
+				if (this->_capacity >= this->_size) {
+					std::cout << "fffffffffff";
+				}
+				else {
+					this->_data[this->_size] = val;
+				}
+			}
 	};
 
 	template <typename T, class Alloc>

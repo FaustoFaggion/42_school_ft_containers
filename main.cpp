@@ -11,7 +11,7 @@ int	main(void) {
 	std::cout << "\n--------Standart Constructor--------\n" << std::endl;
 
 	std::vector<int> orig;
-	std::vector<int> ft_vector;
+	ft::vector<int> ft_vector;
 
 	std::cout << "\n----Iterators----\n" << std::endl;
 	
@@ -31,18 +31,18 @@ int	main(void) {
 	std::cout << "max_size: " << orig.max_size() << std::endl;
 	std::cout << "capacity: " << orig.capacity() << std::endl;
 	std::cout << "empty: " << orig.empty() << std::endl;
-	orig.resize(2);
-	std::cout << "resize(2):" << std::endl;
+//	orig.resize(2);
+//	std::cout << "resize(2):" << std::endl;
 	std::cout << "	capacity: " << orig.capacity() << " size: " << orig.size() << " empty: " << orig.empty() << std::endl;
 //	std::cout << "reserve: " << orig.reserve() << std::endl;
 
 	std::cout << "ft size: " << ft_vector.size() << std::endl;
 	std::cout << "ft max_size: " << ft_vector.max_size() << std::endl;
 	std::cout << "ft capacity: " << ft_vector.capacity() << std::endl;
-	std::cout << "ft empty: " << ft_vector.empty() << std::endl;
-	ft_vector.resize(2);
-	std::cout << "ft resize(2):" << std::endl;
-	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << " empty: " << ft_vector.empty() << std::endl;
+//	std::cout << "ft empty: " << ft_vector.empty() << std::endl;
+//	ft_vector.resize(2);
+//	std::cout << "ft resize(2):" << std::endl;
+	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << std::endl;
 //	std::cout << "reserve: " << ft_vector.reserve() << std::endl;
 
 	std::cout << "\n----element access----\n" << std::endl;
@@ -60,8 +60,10 @@ int	main(void) {
 	std::cout << "\n----modifiers----\n" << std::endl;
 
 //	std::cout << "assign: " << orig.assign() << std::endl;
-	orig.push_back(10);
-	std::cout << "push_back(10): " << orig[0] << std::endl;
+//	orig.push_back(10);
+//	std::cout << "push_back(10) vector[2]: " << orig[2] << " capacity: " << orig.capacity() << std::endl;
+//	orig.push_back(11);
+//	std::cout << "push_back(11) vector[3]: " << orig[3] << " capacity: " << orig.capacity() << std::endl;
 //	std::cout << "pop_back: " << orig.pop_back() << std::endl;
 //	std::cout << "insert: " << orig.insert() << std::endl;
 //	std::cout << "erase: " << orig.erase() << std::endl;
@@ -69,8 +71,10 @@ int	main(void) {
 //	std::cout << "clear: " << orig.clear() << std::endl;
 
 //	std::cout << "ft assign: " << ft_vector.assign() << std::endl;
-//ft_vector.push_back(10);
-//	std::cout << "ft push_back(10): " << ft_vector[0] << std::endl;
+//	ft_vector.push_back(10);
+//	std::cout << "ft push_back(10) vector[2]: " << ft_vector[2] << " capacity: " << ft_vector.capacity() << std::endl;
+//	ft_vector.push_back(11);
+//	std::cout << "ft push_back(11) vector[3]: " << ft_vector[3] << " capacity: " << ft_vector.capacity() << std::endl;
 //	std::cout << "ft pop_back: " << ft_vector.pop_back() << std::endl;
 //	std::cout << "ft insert: " << ft_vector.insert() << std::endl;
 //	std::cout << "ft erase: " << ft_vector.erase() << std::endl;
