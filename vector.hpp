@@ -6,24 +6,25 @@
 #include <cstring>
 
 namespace ft
-{
+{ass Alloc = 
 	template<typename T, class Alloc = std::allocator<T>>
 	class vector {
 
-		typedef	Alloc		allocator_type;
-		typedef size_t	size_type;
-		typedef	T				value_type;
-		
-		private:
-			Alloc							alloc;
-			size_t						_size;
-			size_t						_max_size;
-			size_t						_capacity;
-			T									*_data;
+		typedef T										value_type;
+		typedef Alloc									allocator_type;
+		typedef typename allocator_type::pointer		pointer;
+		typedef typename allocator_type::const_pointer	const_pointer;
+		typedef size_t									size_type;
 
+		private:
+			allocator_type		_alloc;
+			size_type			_size;
+			size_type			_max_size;
+			size_type			_capacity;
+			pointer				_data;
 
 		public:
-			explicit vector(const allocator_type& alloc = allocator_type()) {
+			explicit vector(const allocator_type& alloc = allocator_type()) : _alloc(alloc) {
 				this->_data = alloc.allocate(0);
 				this->_size = 0;
 				this->_max_size = 0;
@@ -45,7 +46,6 @@ namespace ft
 			void	resize(size_type n, value_type val = value_type()) {
 				T	*temp;
 
-				std::cout << "case0: "<< std::endl;
 				temp = alloc.allocate(n);
 				for (int i = 0; i < n; i++) {
 					if (this->_data[i]){
