@@ -28,6 +28,7 @@ namespace ft
 
 		public:
 			explicit vector(const allocator_type& alloc = allocator_type());
+			~vector();
 
 			size_t	size();
 			size_t	max_size();
@@ -52,6 +53,14 @@ namespace ft
 		this->_data = _alloc.allocate(this->_size);
 		this->_max_size = _alloc.max_size();
 		this->_capacity = 0;
+	}
+
+	template<typename T, class Alloc>
+	vector<T, Alloc>::~vector() {
+		for (size_type i = 0; i < this->_size; i++) {
+				this->_alloc.destroy(this->_data + i);
+			}
+		_alloc.deallocate(this->_data, this->_capacity);
 	}
 
 	template<typename T, class Alloc>
@@ -83,8 +92,8 @@ namespace ft
 		if (n < this->_size) {
 			for (size_type i = n; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
-				this->_size = n;
 			}
+			this->_size = n;
 		}
 		else if (n > this->_size) {
 			T	*temp;

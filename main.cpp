@@ -2,115 +2,142 @@
 #include <vector>
 
 int	main(void) {
-
-	int a = int(2);
-	std::cout << a << std::endl;
 	
-	std::cout << "\n------------VECTOR------------\n" << std::endl;
+	std::cout << "\n------------------VECTOR------------------\n" << std::endl;
 	
-	std::cout << "\n--------Standart Constructor--------\n" << std::endl;
+	std::cout << "\n------------Constructor------------\n" << std::endl;
 
-	std::vector<int> orig;
-	ft::vector<int> ft_vector;
+	std::vector<int> int_orig;
+	ft::vector<int> int_vector;
+	std::vector<int> class_orig;
+	ft::vector<int> class_vector;
 
-	std::cout << "\n----Iterators----\n" << std::endl;
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 	
-//	std::cout << "begin: " << orig.begin() << std::endl;
-//	std::cout << "end: " << orig.end() << std::endl;
-//	std::cout << "rbegin: " << orig.rbegin() << std::endl;
-//	std::cout << "rend: " << orig.rend() << std::endl;
-
-//	std::cout << "ft begin: " << ft_vector.begin() << std::endl;
-//	std::cout << "ft end: " << ft_vector.end() << std::endl;
-//	std::cout << "ft rbegin: " << ft_vector.rbegin() << std::endl;
-//	std::cout << "ft rend: " << ft_vector.rend() << std::endl;
-
-	std::cout << "\n----capacity----\n" << std::endl;
+	std::cout << "\n-------------Iterators-------------\n" << std::endl;
 	
-	std::cout << "size: " << orig.size() << std::endl;
-	std::cout << "max_size: " << orig.max_size() << std::endl;
-	std::cout << "capacity: " << orig.capacity() << std::endl;
-	std::cout << "empty: " << orig.empty() << std::endl;
-	orig.resize(2);
-	std::cout << "resize(2):" << std::endl;
-	std::cout << "	capacity: " << orig.capacity() << " size: " << orig.size() << " empty: " << orig.empty() << std::endl;
-	orig.resize(3);
-	std::cout << "resize(3):" << std::endl;
-	std::cout << "	capacity: " << orig.capacity() << " size: " << orig.size() << " empty: " << orig.empty() << std::endl;
-	orig.resize(4);
-	std::cout << "resize(4):" << std::endl;
-	std::cout << "	capacity: " << orig.capacity() << " size: " << orig.size() << " empty: " << orig.empty() << std::endl;
-	orig.resize(5);
-	std::cout << "resize(5):" << std::endl;
-	std::cout << "	capacity: " << orig.capacity() << " size: " << orig.size() << " empty: " << orig.empty() << std::endl;
-	std::cout << "------" << std::endl;
-	std::cout << "ft size: " << ft_vector.size() << std::endl;
-	std::cout << "ft max_size: " << ft_vector.max_size() << std::endl;
-	std::cout << "ft capacity: " << ft_vector.capacity() << std::endl;
-	std::cout << "ft empty: " << ft_vector.empty() << std::endl;
-	ft_vector.resize(2);
-	std::cout << "ft resize(2):" << std::endl;
-	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << " empty: " << ft_vector.empty() << std::endl;
-	ft_vector.resize(3);
-	std::cout << "ft resize(3):" << std::endl;
-	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << " empty: " << ft_vector.empty() << std::endl;
-	ft_vector.resize(4);
-	std::cout << "ft resize(4):" << std::endl;
-	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << " empty: " << ft_vector.empty() << std::endl;
-	ft_vector.resize(5);
-	std::cout << "ft resize(5):" << std::endl;
-	std::cout << "	capacity: " << ft_vector.capacity() << " size: " << ft_vector.size() << " empty: " << ft_vector.empty() << std::endl;
-//	std::cout << "reserve: " << ft_vector.reserve() << std::endl;
+//	std::cout << "begin: " << int_orig.begin() << std::endl;
+//	std::cout << "end: " << int_orig.end() << std::endl;
+//	std::cout << "rbegin: " << int_orig.rbegin() << std::endl;
+//	std::cout << "rend: " << int_orig.rend() << std::endl;
 
-	std::cout << "\n----element access----\n" << std::endl;
+//	std::cout << "int begin: " << int_vector.begin() << std::endl;
+//	std::cout << "int end: " << int_vector.end() << std::endl;
+//	std::cout << "int rbegin: " << int_vector.rbegin() << std::endl;
+//	std::cout << "int rend: " << int_vector.rend() << std::endl;
 
-//	std::cout << "operator[]: " << orig[0] << std::endl;
-//	std::cout << "at: " << orig.at(1) << std::endl;
-//	std::cout << "front: " << orig.front() << std::endl;
-//	std::cout << "back: " << orig.back() << std::endl;
-
-//	std::cout << "ft operator[]: " << ft_vector[0] << std::endl;
-//	std::cout << "ft at: " << ft_vector.at(1) << std::endl;
-//	std::cout << "ft front: " << ft_vector.front() << std::endl;
-//	std::cout << "ft back: " << ft_vector.back() << std::endl;
-
-	std::cout << "\n----modifiers----\n" << std::endl;
-
-//	std::cout << "assign: " << orig.assign() << std::endl;
-//	orig.push_back(10);
-//	std::cout << "push_back(10) vector[2]: " << orig[2] << " capacity: " << orig.capacity() << std::endl;
-//	orig.push_back(11);
-//	std::cout << "push_back(11) vector[3]: " << orig[3] << " capacity: " << orig.capacity() << std::endl;
-//	std::cout << "pop_back: " << orig.pop_back() << std::endl;
-//	std::cout << "insert: " << orig.insert() << std::endl;
-//	std::cout << "erase: " << orig.erase() << std::endl;
-//	std::cout << "swap: " << orig.swap() << std::endl;
-//	std::cout << "clear: " << orig.clear() << std::endl;
-
-//	std::cout << "ft assign: " << ft_vector.assign() << std::endl;
-//	ft_vector.push_back(10);
-//	std::cout << "ft push_back(10) vector[2]: " << ft_vector[2] << " capacity: " << ft_vector.capacity() << std::endl;
-//	ft_vector.push_back(11);
-//	std::cout << "ft push_back(11) vector[3]: " << ft_vector[3] << " capacity: " << ft_vector.capacity() << std::endl;
-//	std::cout << "ft pop_back: " << ft_vector.pop_back() << std::endl;
-//	std::cout << "ft insert: " << ft_vector.insert() << std::endl;
-//	std::cout << "ft erase: " << ft_vector.erase() << std::endl;
-//	std::cout << "ft swap: " << ft_vector.swap() << std::endl;
-//	std::cout << "ft clear: " << ft_vector.clear() << std::endl;
-
-	std::cout << "\n----Allocator----\n" << std::endl;
+	std::cout << "\n-------------capacity--------------\n" << std::endl;
 	
-//	std::cout << "get_allocator: " << orig.get_allocator() << std::endl;
+	std::cout << "------resize------\n" << std::endl;
+	std::cout << "\n--size(2)--" << std::endl;
+	int_orig.resize(2);
+	int_vector.resize(2);
+	class_orig.resize(2);
+	class_vector.resize(2);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	std::cout << "\n--size(3)--" << std::endl;
+	int_orig.resize(3);
+	int_vector.resize(3);
+	class_orig.resize(3);
+	class_vector.resize(3);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	std::cout << "\n--size(4)--" << std::endl;
+	int_orig.resize(4);
+	int_vector.resize(4);
+	class_orig.resize(4);
+	class_vector.resize(4);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	std::cout << "\n--size(5)--" << std::endl;
+	int_orig.resize(5);
+	int_vector.resize(5);
+	class_orig.resize(5);
+	class_vector.resize(5);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	std::cout << "\n--size(1)--" << std::endl;
+	int_orig.resize(1);
+	int_vector.resize(1);
+	class_orig.resize(1);
+	class_vector.resize(1);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	std::cout << "\n--size(0)--" << std::endl;
+	int_orig.resize(0);
+	int_vector.resize(0);
+	class_orig.resize(0);
+	class_vector.resize(0);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+//	std::cout << "reserve: " << int_vector.reserve() << std::endl;
+
+	std::cout << "\n------------element access-------------\n" << std::endl;
+
+//	std::cout << "operator[]: " << int_orig[0] << std::endl;
+//	std::cout << "at: " << int_orig.at(1) << std::endl;
+//	std::cout << "front: " << int_orig.front() << std::endl;
+//	std::cout << "back: " << int_orig.back() << std::endl;
+
+//	std::cout << "int operator[]: " << int_vector[0] << std::endl;
+//	std::cout << "int at: " << int_vector.at(1) << std::endl;
+//	std::cout << "int front: " << int_vector.front() << std::endl;
+//	std::cout << "int back: " << int_vector.back() << std::endl;
+
+	std::cout << "\n---------------modifiers---------------\n" << std::endl;
+
+//	std::cout << "assign: " << int_orig.assign() << std::endl;
+//	int_orig.push_back(10);
+//	std::cout << "push_back(10) vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
+//	int_orig.push_back(11);
+//	std::cout << "push_back(11) vector[3]: " << int_orig[3] << " capacity: " << int_orig.capacity() << std::endl;
+//	std::cout << "pop_back: " << int_orig.pop_back() << std::endl;
+//	std::cout << "insert: " << int_orig.insert() << std::endl;
+//	std::cout << "erase: " << int_orig.erase() << std::endl;
+//	std::cout << "swap: " << int_orig.swap() << std::endl;
+//	std::cout << "clear: " << int_orig.clear() << std::endl;
+
+//	std::cout << "int assign: " << int_vector.assign() << std::endl;
+//	int_vector.push_back(10);
+//	std::cout << "int push_back(10) vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
+//	int_vector.push_back(11);
+//	std::cout << "int push_back(11) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
+//	std::cout << "int pop_back: " << int_vector.pop_back() << std::endl;
+//	std::cout << "int insert: " << int_vector.insert() << std::endl;
+//	std::cout << "int erase: " << int_vector.erase() << std::endl;
+//	std::cout << "int swap: " << int_vector.swap() << std::endl;
+//	std::cout << "int clear: " << int_vector.clear() << std::endl;
+
+	std::cout << "\n---------------Allocator---------------\n" << std::endl;
 	
-//	std::cout << "ft get_allocator: " << ft_vector.get_allocator() << std::endl;
+//	std::cout << "get_allocator: " << int_orig.get_allocator() << std::endl;
+	
+//	std::cout << "int get_allocator: " << int_vector.get_allocator() << std::endl;
 
-	std::cout << "\n----Non-member function overloads----\n" << std::endl;
+	std::cout << "\n-----Non-member function overloads-----\n" << std::endl;
 
-//	std::cout << "swap: " << orig.swap() << std::endl;
-//	std::cout << "relational operators: " << orig.clear() << std::endl;
+//	std::cout << "swap: " << int_orig.swap() << std::endl;
+//	std::cout << "relational operators: " << int_orig.clear() << std::endl;
 
-//	std::cout << "ft swap: " << ft_vector.swap() << std::endl;
-//	std::cout << "ft relational operators: " << ft_vector.clear() << std::endl;
+//	std::cout << "int swap: " << int_vector.swap() << std::endl;
+//	std::cout << "int relational operators: " << int_vector.clear() << std::endl;
 
 	return (0);
 }
