@@ -35,7 +35,11 @@ namespace ft
 			size_t	capacity();
 			bool	empty();
 
+//			Capacity:
 			void	resize(size_type n, value_type val = value_type());
+			void	reserve(size_type n);
+
+
 			void	push_back(const value_type& val);
 	};
 
@@ -88,9 +92,10 @@ namespace ft
 			return (false);
 	}
 
+//	Capacity:
+
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
-//		std::cout << "case0 \n";
 		if (n < this->_size) {
 			std::cout << "case1 \n";
 			for (size_type i = n; i < this->_size; i++) {
@@ -144,6 +149,29 @@ namespace ft
 			}
 		}
 	}
+
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::reserve(size_type n) {
+		if (n > this->_capacity) {
+			T	*temp;
+
+			temp = _alloc.allocate(n);
+			for (size_type i = 0; i < n; i++) {
+				if (i < this->_size){
+					std::cout << "case5 \n";
+					temp[i] = this->_data[i];
+				}
+			}
+			for (size_type i = 0; i < this->_size; i++) {
+				this->_alloc.destroy(this->_data + i);
+			}
+			_alloc.deallocate(this->_data, this->_capacity);
+			this->_data = temp;
+			this->_capacity = n;
+		}
+	}
+
+
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
