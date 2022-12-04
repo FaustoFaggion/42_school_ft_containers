@@ -111,7 +111,7 @@ namespace ft
 			}
 			else if (n > this->_capacity) {
 
-				if (n <= 2) {
+				if (this->_capacity <= 1) {
 					std::cout << "case3 \n";
 					temp = _alloc.allocate(n);
 					c = n;
