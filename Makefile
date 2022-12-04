@@ -2,7 +2,7 @@ NAME		=	ft_containers
 
 CC			=	c++
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
 
 PATH_OBJ	=	./obj/
 
@@ -11,7 +11,7 @@ SRC			=	main.cpp\
 OBJ			=	$(SRC:%.cpp=$(PATH_OBJ)%.o)
 
 HEADER		=	vector.hpp\
-				vector.tpp\
+				ClassTest.hpp\
 				
 all:	$(NAME)
 

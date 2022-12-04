@@ -7,7 +7,7 @@
 
 namespace ft
 {
-	template<typename T, class Alloc = std::allocator<T>>
+	template<typename T, class Alloc = std::allocator<T> >
 	class vector {
 
 		typedef T											value_type;
@@ -49,14 +49,16 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::vector(const allocator_type& alloc) : _alloc(alloc) {
+		std::cout << "vector constructor \n";
+		this->_data = _alloc.allocate(0);
 		this->_size = 0;
-		this->_data = _alloc.allocate(this->_size);
 		this->_max_size = _alloc.max_size();
 		this->_capacity = 0;
 	}
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
+		std::cout << "vector destructor \n";
 		for (size_type i = 0; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
@@ -88,43 +90,56 @@ namespace ft
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
-		
+//		std::cout << "case0 \n";
 		if (n < this->_size) {
+			std::cout << "case1 \n";
 			for (size_type i = n; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
 			this->_size = n;
 		}
 		else if (n > this->_size) {
-			T	*temp;
+			T			*temp;
+			size_type	c;
 			
 			if (n <= this->_capacity) {
+				std::cout << "case2 \n";
 				for (size_type i = this->_size; i < n; i++) {
 						_alloc.construct(_data + i, val);
 				}
 				this->_size = n;
 			}
 			else if (n > this->_capacity) {
+
 				if (n <= 2) {
+					std::cout << "case3 \n";
 					temp = _alloc.allocate(n);
-					this->_capacity = n;
+					c = n;
 				}
 				else {
-					while (this->_capacity < n)
-						this->_capacity *= 2;
-					temp = _alloc.allocate(this->_capacity);
+					std::cout << "case4 \n";
+					c = this->_capacity;
+					while (c < n)
+						c *= 2;
+					temp = _alloc.allocate(c);
 				}
 				for (size_type i = 0; i < n; i++) {
+					
 					if (i < this->_size){
+						std::cout << "case5 \n";
 						this->_alloc.construct(temp + i, this->_data[i]);
-						this->_alloc.destroy(this->_data + i);
 					}
 					else {
+						std::cout << "case6 \n";
 						_alloc.construct(temp + i, val);
 					}
 				}
+				for (size_type i = 0; i < this->_size; i++) {
+					this->_alloc.destroy(this->_data + i);
+				}
 				_alloc.deallocate(this->_data, this->_capacity);
 				this->_data = temp;
+				this->_capacity = c;
 				this->_size = n;
 			}
 		}
