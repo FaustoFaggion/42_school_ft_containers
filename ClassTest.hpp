@@ -13,11 +13,16 @@ class ClassTest {
 			std::cout << "ClassTest constructor" << std::endl;
 			n = new int(4);
 		}
+		ClassTest(int num) {
+			std::cout << "ClassTest constructor" << std::endl;
+			n = new int(num);
+		}
 		~ClassTest() {
 			std::cout << "ClassTest destructor" << std::endl;
 			delete(n);
 		}
 		ClassTest(ClassTest const & rsc) {
+			std::cout << "ClassTest copy_constructor called" << std::endl;
 			*this = rsc;
 		}
 
@@ -26,7 +31,7 @@ class ClassTest {
 
 ClassTest const	&ClassTest::operator=(ClassTest const &rhs) {
 	std::cout << "ClassTest operator= called" << std::endl;
-	this->n = new int(4);
+	this->n = new int(*rhs.n);
 	(void)rhs;
 	return (*this);
 }

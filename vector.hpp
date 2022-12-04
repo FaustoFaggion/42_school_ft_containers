@@ -39,7 +39,10 @@ namespace ft
 			void	resize(size_type n, value_type val = value_type());
 			void	reserve(size_type n);
 
+//			Element Access:
+			T	&operator[] (size_type n);
 
+//			Modifiers:
 			void	push_back(const value_type& val);
 	};
 
@@ -69,6 +72,8 @@ namespace ft
 		_alloc.deallocate(this->_data, this->_capacity);
 	}
 
+//	Capacity:
+
 	template<typename T, class Alloc>
 	size_t	vector<T, Alloc>::size() {
 		return (this->_size);
@@ -91,8 +96,6 @@ namespace ft
 		else
 			return (false);
 	}
-
-//	Capacity:
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
@@ -155,7 +158,13 @@ namespace ft
 		if (n > this->_capacity) {
 			T	*temp;
 
+			if (n > max_size()) {
+				 throw std::length_error("length_error");
+			}
 			temp = _alloc.allocate(n);
+			if (temp == NULL) {
+				throw std::bad_alloc();
+			}
 			for (size_type i = 0; i < n; i++) {
 				if (i < this->_size){
 					std::cout << "case5 \n";
@@ -171,18 +180,34 @@ namespace ft
 		}
 	}
 
+//	Element Access
+
+	template<typename T, class Alloc>
+	T	&vector<T, Alloc>::operator[] (size_type n) {
+
+		std::cout << "--vector operator[] called--" << std::endl;
+
+		return (this->_data[n]);
+	}
+
+
+//	Modifiers:
+
+
+// VErificar erro em operator[] ou push_back???????
+
 
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
 		
+		std::cout << "--vector push_back called--" << std::endl;
 		
-		if (this->_capacity >= this->_size) {
-			std::cout << "fffffffffff";
-		}
-		else {
-			
+		if (this->_capacity > this->_size) {
+			this->_alloc.construct(this->_data + this->_size, val);
+			this->_size++;
 		}
 	}
+
 };
 #endif
