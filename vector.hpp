@@ -194,7 +194,7 @@ namespace ft
 //	Modifiers:
 
 
-// VErificar erro em operator[] ou push_back???????
+// Verificar erro em operator[] ou push_back???????
 
 
 

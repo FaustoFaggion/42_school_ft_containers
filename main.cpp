@@ -68,6 +68,7 @@ int	main(void) {
 	class_orig.resize(1);
 	std::cout << "--ft--" << std::endl;
 	class_vector.resize(1);
+	
 	std::cout << "------push_back------\n" << std::endl;
 
 	ClassTest	a(2);
@@ -75,13 +76,14 @@ int	main(void) {
 	std::cout << "--orig--" << std::endl;
 	class_orig.push_back(a);
 	class_orig.push_back(b);
-	std::cout << "push_back(ClassTest: n=2) vector[0]: " << class_orig[0] << " capacity: " << class_orig.capacity() << std::endl;
-	std::cout << "push_back(ClassTest: n=6) vector[1]: " << class_orig[1] << " capacity: " << class_orig.capacity() << std::endl;
-	std::cout << "--ft--" << std::endl;
+	std::cout << "push_back(ClassTest: n=2) vector[0]: " << class_orig[1] << " capacity: " << class_orig.capacity() << std::endl;
+	std::cout << "push_back(ClassTest: n=6) vector[1]: " << class_orig[2] << " capacity: " << class_orig.capacity() << std::endl;
+	std::cout << "\n--ft--" << std::endl;
 	class_vector.push_back(a);
 	class_vector.push_back(b);
-	std::cout << "push_back(ClassTest: n=2) vector[0]: " << class_vector[0] << " capacity: " << class_vector.capacity() << std::endl;
-	std::cout << "push_back(ClassTest: n=6) vector[1]: " << class_vector[1] << " capacity: " << class_vector.capacity() << std::endl;
+
+	std::cout << "push_back(ClassTest: n=2) vector[0]: " << class_vector[1] << " capacity: " << class_vector.capacity() << std::endl;
+	std::cout << "push_back(ClassTest: n=6) vector[1]: " << class_vector[2] << " capacity: " << class_vector.capacity() << std::endl;
 //	int_orig.push_back(11);
 //	std::cout << "push_back(11) vector[3]: " << int_orig[3] << " capacity: " << int_orig.capacity() << std::endl;
 //	std::cout << "pop_back: " << int_orig.pop_back() << std::endl;
