@@ -121,15 +121,17 @@ namespace ft
 
 				if (this->_capacity <= 1) {
 					std::cout << "case3 \n";
+					if (n > max_size()) {
+						 throw std::out_of_range("out_of_range: max_size exeded");
+					}
 					temp = _alloc.allocate(n);
 					c = n;
 				}
 				else {
 					std::cout << "case4 \n";
-				//	c = this->_capacity;
-				//	while (c < n)
-				//		c *= 2;
 					c = n * 2;
+					if ((c / 2) != n)
+						throw std::overflow_error("overflow error: size_t exeded");
 					temp = _alloc.allocate(c);
 				}
 				for (size_type i = 0; i < n; i++) {
@@ -160,7 +162,7 @@ namespace ft
 			T	*temp;
 
 			if (n > max_size()) {
-				 throw std::length_error("length_error");
+				 throw std::out_of_range("out_of_range: max_size exeded");
 			}
 			temp = _alloc.allocate(n);
 			if (temp == NULL) {
@@ -194,11 +196,6 @@ namespace ft
 
 //	Modifiers:
 
-
-// Verificar erro em operator[] ou push_back???????
-
-
-
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
 		
@@ -216,4 +213,5 @@ namespace ft
 	}
 
 };
+
 #endif

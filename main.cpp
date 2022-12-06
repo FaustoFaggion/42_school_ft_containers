@@ -47,13 +47,10 @@ int	main(void) {
 //	std::cout << "\n------------element access-------------\n" << std::endl;
 
 //	std::cout << "at: " << int_orig.at(1) << std::endl;
+
+
 //	std::cout << "front: " << int_orig.front() << std::endl;
 //	std::cout << "back: " << int_orig.back() << std::endl;
-
-//	std::cout << "int operator[]: " << int_vector[0] << std::endl;
-//	std::cout << "int at: " << int_vector.at(1) << std::endl;
-//	std::cout << "int front: " << int_vector.front() << std::endl;
-//	std::cout << "int back: " << int_vector.back() << std::endl;
 
 	std::cout << "\n---------------modifiers---------------\n" << std::endl;
 
