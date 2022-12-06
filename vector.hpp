@@ -126,9 +126,10 @@ namespace ft
 				}
 				else {
 					std::cout << "case4 \n";
-					c = this->_capacity;
-					while (c < n)
-						c *= 2;
+				//	c = this->_capacity;
+				//	while (c < n)
+				//		c *= 2;
+					c = n * 2;
 					temp = _alloc.allocate(c);
 				}
 				for (size_type i = 0; i < n; i++) {
@@ -204,8 +205,13 @@ namespace ft
 		std::cout << "--vector push_back called--" << std::endl;
 		
 		if (this->_capacity > this->_size) {
+			std::cout << "--capacity > size--" << std::endl;
 			this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
+		}
+		else {
+			std::cout << "--capacity < size--" << std::endl;
+			resize(this->_size + 1, val);
 		}
 	}
 
