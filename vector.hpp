@@ -46,8 +46,15 @@ namespace ft
 			const T	&at(size_type n) const;
 			T		&back();
 			const T	&back() const;
+			T		&front();
+			const T	&front() const;
+
+
 //			Modifiers:
 			void	push_back(const value_type& val);
+
+//			Non-member function overloads
+//			Alloc	get_allocator() const;
 	};
 
 	template <typename T, class Alloc>
@@ -228,6 +235,15 @@ namespace ft
 		return (this->_data[this->_size - 1]);
 	}
 
+	template<typename T, class Alloc>
+	T	&vector<T, Alloc>::front(void) {
+		return (this->_data[0]);
+	}
+
+	template<typename T, class Alloc>
+	const T	&vector<T, Alloc>::front() const {
+		return (this->_data[0]);
+	}
 
 //	Modifiers:
 
@@ -246,6 +262,13 @@ namespace ft
 			resize(this->_size + 1, val);
 		}
 	}
+
+//	Non-member function overloads
+
+//	template<typename T, class Alloc>
+//	Alloc	vector<T, Alloc>::get_allocator() const {
+//		return(Alloc);
+//	}
 
 };
 
