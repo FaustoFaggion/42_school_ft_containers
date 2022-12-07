@@ -40,8 +40,12 @@ namespace ft
 			void	reserve(size_type n);
 
 //			Element Access:
-			T	&operator[] (size_type n);
-
+			T		&operator[] (size_type n);
+			const T	&operator[] (size_type n) const;
+			T		&at(size_type n);
+			const T	&at(size_type n) const;
+			T		&back();
+			const T	&back() const;
 //			Modifiers:
 			void	push_back(const value_type& val);
 	};
@@ -187,10 +191,41 @@ namespace ft
 
 	template<typename T, class Alloc>
 	T	&vector<T, Alloc>::operator[] (size_type n) {
-
 		std::cout << "--vector operator[] called--" << std::endl;
-
 		return (this->_data[n]);
+	}
+
+	template<typename T, class Alloc>
+	const T	&vector<T, Alloc>::operator[] (size_type n) const {
+		std::cout << "--const vector operator[] called--" << std::endl;
+		return (this->_data[n]);
+	}
+
+	template<typename T, class Alloc>
+	T &vector<T, Alloc>::at (size_type n) {
+		if (n >= this->_size) {
+				 throw std::out_of_range("position out of range");
+			}
+		return ((this->_data[n]));
+	}
+
+
+	template<typename T, class Alloc>
+	const T &vector<T, Alloc>::at (size_type n) const {
+		if (n >= this->_size) {
+				 throw std::out_of_range("position out of range");
+			}
+		return ((this->_data[n]));
+	}
+
+	template<typename T, class Alloc>
+	 T &vector<T, Alloc>::back() {
+		return (this->_data[this->_size - 1]);
+	}
+	
+	template<typename T, class Alloc>
+	const T &vector<T, Alloc>::back() const {
+		return (this->_data[this->_size - 1]);
 	}
 
 
