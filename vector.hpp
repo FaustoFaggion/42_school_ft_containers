@@ -40,18 +40,19 @@ namespace ft
 			void	reserve(size_type n);
 
 //			Element Access:
-			T		&operator[] (size_type n);
-			const T	&operator[] (size_type n) const;
-			T		&at(size_type n);
-			const T	&at(size_type n) const;
-			T		&back();
-			const T	&back() const;
-			T		&front();
-			const T	&front() const;
+			reference		operator[] (size_type n);
+			const_reference	operator[] (size_type n) const;
+			reference		at(size_type n);
+			const_reference	at(size_type n) const;
+			reference		back();
+			const_reference	back() const;
+			reference		front();
+			const_reference	front() const;
 
 
 //			Modifiers:
 			void	push_back(const value_type& val);
+			void	pop_back();
 
 //			Non-member function overloads
 //			Alloc	get_allocator() const;
@@ -197,19 +198,19 @@ namespace ft
 //	Element Access
 
 	template<typename T, class Alloc>
-	T	&vector<T, Alloc>::operator[] (size_type n) {
+	typename vector<T, Alloc>::reference	vector<T, Alloc>::operator[] (size_type n) {
 		std::cout << "--vector operator[] called--" << std::endl;
 		return (this->_data[n]);
 	}
 
 	template<typename T, class Alloc>
-	const T	&vector<T, Alloc>::operator[] (size_type n) const {
+	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::operator[] (size_type n) const {
 		std::cout << "--const vector operator[] called--" << std::endl;
 		return (this->_data[n]);
 	}
 
 	template<typename T, class Alloc>
-	T &vector<T, Alloc>::at (size_type n) {
+	typename vector<T, Alloc>::reference	vector<T, Alloc>::at (size_type n) {
 		if (n >= this->_size) {
 				 throw std::out_of_range("position out of range");
 			}
@@ -218,7 +219,7 @@ namespace ft
 
 
 	template<typename T, class Alloc>
-	const T &vector<T, Alloc>::at (size_type n) const {
+	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::at (size_type n) const {
 		if (n >= this->_size) {
 				 throw std::out_of_range("position out of range");
 			}
@@ -226,22 +227,22 @@ namespace ft
 	}
 
 	template<typename T, class Alloc>
-	 T &vector<T, Alloc>::back() {
+	typename vector<T, Alloc>::reference	vector<T, Alloc>::back() {
 		return (this->_data[this->_size - 1]);
 	}
 	
 	template<typename T, class Alloc>
-	const T &vector<T, Alloc>::back() const {
+	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::back() const {
 		return (this->_data[this->_size - 1]);
 	}
 
 	template<typename T, class Alloc>
-	T	&vector<T, Alloc>::front(void) {
+	typename vector<T, Alloc>::reference	vector<T, Alloc>::front(void) {
 		return (this->_data[0]);
 	}
 
 	template<typename T, class Alloc>
-	const T	&vector<T, Alloc>::front() const {
+	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::front() const {
 		return (this->_data[0]);
 	}
 
@@ -252,15 +253,28 @@ namespace ft
 		
 		std::cout << "--vector push_back called--" << std::endl;
 		
+		std::cout << "capacity: " << this->_capacity << std::endl;
+
+		std::cout << "size: " << this->_size << std::endl;
+
 		if (this->_capacity > this->_size) {
-			std::cout << "--capacity > size--" << std::endl;
+			std::cout << "--capacity > size 1--" << std::endl;
 			this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
 		}
 		else {
-			std::cout << "--capacity < size--" << std::endl;
+			std::cout << "--capacity < size 2--" << std::endl;
 			resize(this->_size + 1, val);
 		}
+	}
+
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::pop_back(void) {
+		
+		std::cout << "--pop_back called--" << std::endl;
+		this->_alloc.destroy(this->_data + this->_size);
+		if (this->_size > 0)
+			this->_size--;
 	}
 
 //	Non-member function overloads

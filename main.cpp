@@ -4,10 +4,11 @@
 
 //static void	vector_resize(void);
 //static void	vector_reserve(void);
-//tatic void vector_push_back(void);
+//static void vector_push_back(void);
 //static void	vector_at(void);
 //static void	vector_back(void);
 //static void	vector_front(void);
+static void	vector_pop_back(void);
 
 int	main(void) {
 
@@ -61,10 +62,8 @@ int	main(void) {
 //	std::cout << "assign: " << int_orig.assign() << std::endl;
 
 //	vector_push_back();
+//	vector_pop_back();
 
-
-
-//	std::cout << "pop_back: " << int_orig.pop_back() << std::endl;
 //	std::cout << "insert: " << int_orig.insert() << std::endl;
 //	std::cout << "erase: " << int_orig.erase() << std::endl;
 //	std::cout << "swap: " << int_orig.swap() << std::endl;
@@ -268,41 +267,28 @@ static void vector_push_back(void) {
 	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
 	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
 	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
-
-
-	std::cout << "\n--int size(1)--" << std::endl;
-	std::cout << "--orig--" << std::endl;
-	int_orig.resize(5);
-	std::cout << "--ft--" << std::endl;
-	int_vector.resize(5);
-	std::cout << "--orig--" << std::endl;
-	int_orig.resize(0);
-	std::cout << "--ft--" << std::endl;
-	int_vector.resize(0);
-
-	std::cout << "\n--class size(1)--" << std::endl;
-	std::cout << "--orig--" << std::endl;
-	class_orig.resize(5);
-	std::cout << "--ft--" << std::endl;
-	class_vector.resize(5);
-	std::cout << "--orig--" << std::endl;
-	class_orig.resize(0);
-	std::cout << "--ft--" << std::endl;
-	class_vector.resize(0);
 	
 	std::cout << "\n------int push_back------\n" << std::endl;
 
 	std::cout << "--orig--" << std::endl;
 	int_orig.push_back(12);
-	int_orig.push_back(15);
 	std::cout << "push_back(int: 12) vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(15);
 	std::cout << "push_back(int: 15) vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(19);
+	std::cout << "push_back(int: 19) vector[4]: " << int_orig[3] << " capacity: " << int_orig.capacity() << std::endl;
+	
 	std::cout << "\n--ft--" << std::endl;
 	int_vector.push_back(12);
-	int_vector.push_back(15);
-
 	std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
-	std::cout << "push_back(int: 15) vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(15);
+	std::cout << "push_back(int: 15) vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(19);
+	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
 
 	std::cout << "\n------class push_back------\n" << std::endl;
 
@@ -524,3 +510,56 @@ static void	vector_front(void) {
 	std::cout << "front: " << class_vector.front() << std::endl;
 }
 */
+static void	vector_pop_back(void) {
+
+	std::cout << "\n------------------VECTOR------------------\n" << std::endl;
+	
+	std::cout << "\n------------Constructor------------\n" << std::endl;
+
+	ClassTest	a(7);
+	ClassTest	b(9);
+
+	std::cout << "--int--" << std::endl;
+	std::vector<int> int_orig;
+	ft::vector<int> int_vector;
+	
+	std::cout << "\n--ClassTest--" << std::endl;
+	std::cout << "--orig--" << std::endl;
+	std::vector<ClassTest> class_orig;
+	std::cout << "--ft--" << std::endl;
+	ft::vector<ClassTest> class_vector;
+
+	std::cout << "\n<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	std::cout << "\n------int pop_back------\n" << std::endl;
+
+	std::cout << "--orig--" << std::endl;
+//	int_orig.pop_back();
+	int_orig.push_back(12);
+	std::cout << "push_back(int: 12) vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(15);
+	std::cout << "push_back(int: 15) vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(19);
+	std::cout << "push_back(int: 19) vector[3]: " << int_orig[3] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.pop_back();
+//	std::cout << "pop_back(int: 19) vector[3]: " << int_orig.at(3) << " capacity: " << int_orig.capacity() << std::endl;
+
+	std::cout << "\n--ft--" << std::endl;
+	int_vector.pop_back();
+	int_vector.push_back(12);
+	std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(15);
+	std::cout << "push_back(int: 15) vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(19);
+	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.pop_back();
+	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
+	std::cout << "push_back(int: 19) vector[3]: " << int_vector.at(3) << " capacity: " << int_vector.capacity() << std::endl;
+}
