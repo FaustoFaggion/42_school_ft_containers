@@ -8,7 +8,7 @@
 //static void	vector_at(void);
 //static void	vector_back(void);
 //static void	vector_front(void);
-static void	vector_pop_back(void);
+//static void	vector_pop_back(void);
 
 int	main(void) {
 
@@ -509,7 +509,6 @@ static void	vector_front(void) {
 	std::cout << "front: " << class_orig.front() << std::endl;
 	std::cout << "front: " << class_vector.front() << std::endl;
 }
-*/
 static void	vector_pop_back(void) {
 
 	std::cout << "\n------------------VECTOR------------------\n" << std::endl;
@@ -563,3 +562,4 @@ static void	vector_pop_back(void) {
 	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
 	std::cout << "push_back(int: 19) vector[3]: " << int_vector.at(3) << " capacity: " << int_vector.capacity() << std::endl;
 }
+*/
