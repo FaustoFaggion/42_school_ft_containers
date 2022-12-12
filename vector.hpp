@@ -261,6 +261,12 @@ namespace ft
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::assign(size_type n, const value_type& val) {
+		if (n < this->_capacity) {
+			for (size_type i = 0; i < n; i++) {
+				this->_alloc.destroy(this->_data + i);
+				_alloc.construct(this->_data + i, val);
+			}
+		}
 
 	}
 

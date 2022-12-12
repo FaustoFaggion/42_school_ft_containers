@@ -21,8 +21,10 @@ int	main(void) {
 
 	std::cout << "--int--" << std::endl;
 	std::vector<int> int_orig;
+	std::vector<int> float_orig;
 	ft::vector<int> int_vector;
 	ft::vector<int> int_vector2;
+	ft::vector<float> float_vector3;
 	
 	std::cout << "\n--ClassTest--" << std::endl;
 	std::cout << "--orig--" << std::endl;
@@ -59,22 +61,17 @@ int	main(void) {
 	int_vector.push_back(19);
 	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
 
-	std::vector<int>::iterator it = int_orig.begin(); 
-
-	std::cout << "orig_begin: " << *it << std::endl;
-
-	ft::vector<int>::iterator itv1 = int_vector.begin();
-	std::cout << "ft_begin: " << *itv1 << std::endl;
+	int_orig.assign(2, 45);
+	int_vector.assign(2, 45);
 
 
-	int_vector2.push_back(12);
-	ft::vector<int>::iterator itv2 = int_vector2.begin();
+	std::cout << "orig assign 2 vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << std::endl;
+	std::cout << "orig assign 2 vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << std::endl;
+	std::cout << "orig assign 2 vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
 
-	if (itv1 != itv2)
-		std::cout << "sim\n";
-	else
-		std::cout << "não\n";
-
+	std::cout << "ft assign 2 vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	std::cout << "ft assign 2 vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;
+	std::cout << "ft assign 2 vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
 //	std::cout << "end: " << int_orig.end() << std::endl;
 //	std::cout << "rbegin: " << int_orig.rbegin() << std::endl;
 //	std::cout << "rend: " << int_orig.rend() << std::endl;
