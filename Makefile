@@ -15,6 +15,8 @@ VPATH		=	./src/
 
 HEADER		=	vector.hpp\
 				ClassTest.hpp\
+				iterator.hpp\
+				random_access_iterator.hpp\
 
 				
 all:	$(NAME)

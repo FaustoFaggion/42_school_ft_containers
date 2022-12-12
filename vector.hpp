@@ -5,30 +5,32 @@
 #include <memory>
 #include <cstring>
 #include <iterator>
+#include "random_access_iterator.hpp"
 
 namespace ft
 {
 	template<typename T, class Alloc = std::allocator<T> >
 	class vector {
 
-		typedef T													value_type;
-		typedef Alloc												allocator_type;
-		typedef typename allocator_type::reference					reference;
-		typedef typename allocator_type::const_reference			const_reference;
-		typedef typename allocator_type::pointer					pointer;
-		typedef typename allocator_type::const_pointer				const_pointer;
-		typedef size_t												size_type;
-		typedef std::ptrdiff_t										difference_type;
-		typedef typename random_access_iterator<value_type>			iterator;
-		typedef typename random_access_iterator<const value_type>	const_iterator;
+		public:
+			typedef T													value_type;
+			typedef Alloc												allocator_type;
+			typedef typename allocator_type::reference					reference;
+			typedef typename allocator_type::const_reference			const_reference;
+			typedef typename allocator_type::pointer					pointer;
+			typedef typename allocator_type::const_pointer				const_pointer;
+			typedef size_t												size_type;
+			typedef std::ptrdiff_t										difference_type;
+			typedef typename ft::random_access_iterator<pointer>		iterator;
+			typedef typename ft::random_access_iterator<const pointer>	const_iterator;
 
 
 		private:
 			std::allocator<T>	_alloc;
+			pointer				_data;
 			size_type			_size;
 			size_type			_max_size;
 			size_type			_capacity;
-			pointer				_data;
 
 
 		public:
@@ -39,6 +41,9 @@ namespace ft
 			size_t	max_size();
 			size_t	capacity();
 			bool	empty();
+
+//			Iterator:
+			iterator begin(void) { return (iterator(_data)); }
 
 //			Capacity:
 			void	resize(size_type n, value_type val = value_type());

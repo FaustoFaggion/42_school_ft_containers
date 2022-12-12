@@ -5,26 +5,33 @@
 
 namespace ft {
 
-template<typename iT>
-class random_access_iterator : public std::iterator<random_access_iterator_tag, iT> {
+	template<typename iT>
+	class random_access_iterator : public iterator<std::random_access_iterator_tag, iT> {
 
-	public:
-		typedef typename iterator_traits::difference_type	difference_type;
-		typedef iT											value_type;
-		typedef iterator_traits::pointer					pointer;
-		typedef iterator_traits::reference					reference;
-		typedef iterator_traits::iterator_category			iterator_category;
+		public:
+			
+			typedef iT												iterator_type;
+			typedef typename iterator_traits<iT>::value_type		value_type;
+			typedef typename iterator_traits<iT>::difference_type	difference_type;
+			typedef typename iterator_traits<iT>::pointer			pointer;
+			typedef typename iterator_traits<iT>::reference			reference;
+			typedef typename iterator_traits<iT>::iterator_category	iterator_category;
 
-	private:
-		pointer	mPtr;
+		private:
+			iterator_type	mPtr;
 
-	public:
-		random_access_iterator() : mPtr(NULL) { };
-		random_access_iterator(pointer ptr) : mPtr(ptr) { };
-}
+		public:
+			random_access_iterator(void) : mPtr(NULL) { };
+			explicit random_access_iterator(const iterator_type &rsc) : mPtr(rsc) { };
+			~random_access_iterator() { }; 
 
+			const random_access_iterator	&operator=(random_access_iterator const &rsc) {
+				this->mPtr = rsc.getPtr();
+				return (*this);
+			}
 
-
+			pointer	getPtr(void) { return (this->mPtr);}
+	};
 
 };
 #endif

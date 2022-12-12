@@ -35,8 +35,35 @@ int	main(void) {
 	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 	
 //	std::cout << "\n-------------Iterators-------------\n" << std::endl;
+
+	std::cout << "\n------int push_back------\n" << std::endl;
+
+	std::cout << "--orig--" << std::endl;
+	int_orig.push_back(12);
+	std::cout << "push_back(int: 12) vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(15);
+	std::cout << "push_back(int: 15) vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
+	int_orig.push_back(19);
+	std::cout << "push_back(int: 19) vector[4]: " << int_orig[3] << " capacity: " << int_orig.capacity() << std::endl;
 	
-//	std::cout << "begin: " << int_orig.begin() << std::endl;
+	std::cout << "\n--ft--" << std::endl;
+	int_vector.push_back(12);
+	std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(15);
+	std::cout << "push_back(int: 15) vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;std::cout << "push_back(int: 12) vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(17);
+	std::cout << "push_back(int: 17) vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
+	int_vector.push_back(19);
+	std::cout << "push_back(int: 19) vector[3]: " << int_vector[3] << " capacity: " << int_vector.capacity() << std::endl;
+
+	std::vector<int>::iterator it = int_orig.begin(); 
+
+	std::cout << "begin: " << *it << std::endl;
+
+	ft::vector<int>::iterator itv = int_vector.begin();
+
 //	std::cout << "end: " << int_orig.end() << std::endl;
 //	std::cout << "rbegin: " << int_orig.rbegin() << std::endl;
 //	std::cout << "rend: " << int_orig.rend() << std::endl;
