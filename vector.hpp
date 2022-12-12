@@ -266,6 +266,25 @@ namespace ft
 				this->_alloc.destroy(this->_data + i);
 				_alloc.construct(this->_data + i, val);
 			}
+			this->_size = n;
+		}
+		else {
+			if (n > max_size()) {
+				 throw std::out_of_range("out_of_range: max_size exeded");
+			}
+			for (size_type i = 0; i < this->_size; i++) {
+				this->_alloc.destroy(this->_data + i);
+			}
+			_alloc.deallocate(this->_data, this->_capacity);
+			this->_data = _alloc.allocate(n);
+			if (this->_data == NULL) {
+				throw std::bad_alloc();
+			}
+			for (size_type i = 0; i < n; i++) {
+				_alloc.construct(this->_data + i, val);
+			}
+			this->_size = n;
+			this->_capacity = n;
 		}
 
 	}

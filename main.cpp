@@ -65,13 +65,13 @@ int	main(void) {
 	int_vector.assign(2, 45);
 
 
-	std::cout << "orig assign 2 vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << std::endl;
-	std::cout << "orig assign 2 vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << std::endl;
-	std::cout << "orig assign 2 vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << std::endl;
+	std::cout << "orig assign 2 vector[0]: " << int_orig[0] << " capacity: " << int_orig.capacity() << " size: " << int_orig.size() << std::endl;
+	std::cout << "orig assign 2 vector[1]: " << int_orig[1] << " capacity: " << int_orig.capacity() << " size: " << int_orig.size() << std::endl;
+	std::cout << "orig assign 2 vector[2]: " << int_orig[2] << " capacity: " << int_orig.capacity() << " size: " << int_orig.size() << std::endl;
 
-	std::cout << "ft assign 2 vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << std::endl;
-	std::cout << "ft assign 2 vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << std::endl;
-	std::cout << "ft assign 2 vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << std::endl;
+	std::cout << "ft assign 2 vector[0]: " << int_vector[0] << " capacity: " << int_vector.capacity() << " size: " << int_vector.size() << std::endl;
+	std::cout << "ft assign 2 vector[1]: " << int_vector[1] << " capacity: " << int_vector.capacity() << " size: " << int_vector.size() << std::endl;
+	std::cout << "ft assign 2 vector[2]: " << int_vector[2] << " capacity: " << int_vector.capacity() << " size: " << int_vector.size() << std::endl;
 //	std::cout << "end: " << int_orig.end() << std::endl;
 //	std::cout << "rbegin: " << int_orig.rbegin() << std::endl;
 //	std::cout << "rend: " << int_orig.rend() << std::endl;
