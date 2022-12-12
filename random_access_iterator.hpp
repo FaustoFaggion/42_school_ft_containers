@@ -21,6 +21,9 @@ namespace ft {
 			iterator_type	mPtr;
 
 		public:
+
+//		Constructors:
+
 			random_access_iterator(void) : mPtr(NULL) { };
 			explicit random_access_iterator(const iterator_type &rsc) : mPtr(rsc) { };
 			~random_access_iterator() { }; 
@@ -30,7 +33,19 @@ namespace ft {
 				return (*this);
 			}
 
-			pointer	getPtr(void) { return (this->mPtr);}
+			iterator_type	getPtr(void) { return (this->mPtr);};
+
+//		Operators:
+
+			bool	operator==(random_access_iterator &rsc) const{ 
+				return (this->mPtr == rsc.getPtr());
+			};
+
+			bool	operator!=(random_access_iterator &rsc) const{ 
+				return (this->mPtr != rsc.getPtr());
+			};
+			
+			reference	operator*(void) { return (*mPtr);};
 	};
 
 };

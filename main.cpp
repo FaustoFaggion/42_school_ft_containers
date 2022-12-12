@@ -22,6 +22,7 @@ int	main(void) {
 	std::cout << "--int--" << std::endl;
 	std::vector<int> int_orig;
 	ft::vector<int> int_vector;
+	ft::vector<int> int_vector2;
 	
 	std::cout << "\n--ClassTest--" << std::endl;
 	std::cout << "--orig--" << std::endl;
@@ -60,9 +61,19 @@ int	main(void) {
 
 	std::vector<int>::iterator it = int_orig.begin(); 
 
-	std::cout << "begin: " << *it << std::endl;
+	std::cout << "orig_begin: " << *it << std::endl;
 
-	ft::vector<int>::iterator itv = int_vector.begin();
+	ft::vector<int>::iterator itv1 = int_vector.begin();
+	std::cout << "ft_begin: " << *itv1 << std::endl;
+
+
+	int_vector2.push_back(12);
+	ft::vector<int>::iterator itv2 = int_vector2.begin();
+
+	if (itv1 != itv2)
+		std::cout << "sim\n";
+	else
+		std::cout << "não\n";
 
 //	std::cout << "end: " << int_orig.end() << std::endl;
 //	std::cout << "rbegin: " << int_orig.rbegin() << std::endl;
