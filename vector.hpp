@@ -44,6 +44,7 @@ namespace ft
 
 //			Iterator:
 			iterator begin(void) { return (iterator(_data)); }
+			iterator end(void) { return (iterator(_data + _size)); }
 
 //			Capacity:
 			void	resize(size_type n, value_type val = value_type());
@@ -260,6 +261,7 @@ namespace ft
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::assign(size_type n, const value_type& val) {
+
 		if (n < this->_capacity) {
 			for (size_type i = 0; i < n; i++) {
 				this->_alloc.destroy(this->_data + i);
@@ -285,26 +287,23 @@ namespace ft
 			this->_size = n;
 			this->_capacity = n;
 		}
-
 	}
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
-		
+
 		if (this->_capacity > this->_size) {
-			std::cout << "1\n";
 			this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
 		}
 		else {
-			std::cout << "2\n";
 			resize(this->_size + 1, val);
 		}
 	}
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::pop_back(void) {
-		
+
 		if (this->_size > 0) {
 			std::cout << "--pop_back called--" << std::endl;
 			this->_alloc.destroy(this->_data + this->_size - 1);

@@ -95,5 +95,11 @@ namespace ft {
 			const random_access_iterator<_IteratorR> &_y) {
 			return (_x.getCurrent() == _y.getCurrent());
 		}
+
+		template<typename _IteratorL, typename _IteratorR>
+		inline bool	operator!=(const random_access_iterator<_IteratorL> &_x,
+			const random_access_iterator<_IteratorR> &_y) {
+			return (_x.getCurrent() != _y.getCurrent());
+		}
 };
 #endif
