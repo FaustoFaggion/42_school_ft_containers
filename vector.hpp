@@ -305,10 +305,11 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::pop_back(void) {
 		
-		std::cout << "--pop_back called--" << std::endl;
-		this->_alloc.destroy(this->_data + this->_size);
-		if (this->_size > 0)
+		if (this->_size > 0) {
+			std::cout << "--pop_back called--" << std::endl;
+			this->_alloc.destroy(this->_data + this->_size - 1);
 			this->_size--;
+		}
 	}
 
 //	Non-member function overloads
