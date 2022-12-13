@@ -7,8 +7,8 @@ namespace ft = std;
 #include "vector.hpp"
 #endif
 
-static void	vector_resize(void);
-//static void	vector_reserve(void);
+//static void	vector_resize(void);
+static void	vector_reserve(void);
 //static void	vector_push_back(void);
 //static void	vector_at(void);
 //static void	vector_back(void);
@@ -17,13 +17,13 @@ static void	vector_resize(void);
 
 int	main(void) {
 
-	vector_resize();
+	vector_reserve();
 
 
 
 	return (0);
 }
-
+/*
 static void	vector_resize(void) {
 	
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -133,73 +133,118 @@ static void	vector_resize(void) {
 	std::cout << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
 }
-
-/*
+*/
 static void	vector_reserve(void) {
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
-	std::cout << "--int--" << std::endl;
+	std::cout << "--orig--" << std::endl;
 	std::vector<int> int_orig;
-	ft::vector<int> int_vector;
-	
-	std::cout << "\n--ClassTest--" << std::endl;
-	std::cout << "--orig--" << std::endl;
+	std::vector<float> float_orig;
 	std::vector<ClassTest> class_orig;
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	
 	std::cout << "--ft--" << std::endl;
+	ft::vector<int> int_vector;
+	std::vector<float> float_vector;
 	ft::vector<ClassTest> class_vector;
-
-	std::cout << "\n<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
 	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
 	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-		std::cout << "------reserve-----\n" << std::endl;
+	std::cout << "\n------reserve 1-----\n" << std::endl;
 	
-	std::cout << "\n--int size(1)--" << std::endl;
+	std::cout << "--orig--" << std::endl;
 	int_orig.reserve(1);
-	int_vector.reserve(1);
-	
-	std::cout << "\n--class size(1)--" << std::endl;
-	std::cout << "--orig--" << std::endl;
+	float_orig.reserve(1);
 	class_orig.reserve(1);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
 	std::cout << "--ft--" << std::endl;
+	int_vector.reserve(1);
+	float_vector.reserve(1);
 	class_vector.reserve(1);
-	
-	std::cout << "\n<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
-	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
-	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
-	
-	std::cout << "\n--size(3)--" << std::endl;
-	std::cout << "\n--int size(3)--" << std::endl;
-	int_orig.reserve(3);
-	int_vector.reserve(3);
-	
-	std::cout << "\n--class size(3)--" << std::endl;
-	std::cout << "--orig--" << std::endl;
-	class_orig.reserve(3);
-	std::cout << "--ft--" << std::endl;
-	class_vector.reserve(3);
-	std::cout << "\n<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
-	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
 	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-	std::cout << "\n--size(2)--" << std::endl;
-	std::cout << "\n--int size(2)--" << std::endl;
-	int_orig.reserve(2);
-	int_vector.reserve(2);
+	std::cout << "\n------reserve 3-----\n" << std::endl;
 	
-	std::cout << "\n--class size(2)--" << std::endl;
 	std::cout << "--orig--" << std::endl;
-	class_orig.reserve(2);
+	int_orig.reserve(3);
+	float_orig.reserve(3);
+	class_orig.reserve(3);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
 	std::cout << "--ft--" << std::endl;
-	class_vector.reserve(2);
-	std::cout << "\n<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
-	std::cout << "<int int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-	std::cout << "\n<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+	int_vector.reserve(3);
+	float_vector.reserve(3);
+	class_vector.reserve(3);
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
 	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	std::cout << "\n------reserve 2-----\n" << std::endl;
+	
+	std::cout << "--orig--" << std::endl;
+	int_orig.reserve(2);
+	float_orig.reserve(2);
+	class_orig.reserve(2);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "--ft--" << std::endl;
+	int_vector.reserve(2);
+	float_vector.reserve(2);
+	class_vector.reserve(2);
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	
+	std::cout << "\n------reserve 4-----\n" << std::endl;
+	
+	std::cout << "--orig--" << std::endl;
+	int_orig.reserve(4);
+	float_orig.reserve(4);
+	class_orig.reserve(4);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "--ft--" << std::endl;
+	int_vector.reserve(4);
+	float_vector.reserve(4);
+	class_vector.reserve(4);
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	std::cout << "\n------reserve 2-----\n" << std::endl;
+	
+	std::cout << "--orig--" << std::endl;
+	int_orig.reserve(2);
+	float_orig.reserve(2);
+	class_orig.reserve(2);
+	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+	std::cout << "<int> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "--ft--" << std::endl;
+	int_vector.reserve(2);
+	float_vector.reserve(2);
+	class_vector.reserve(2);
+	std::cout << "<ft int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	std::cout << "<ft int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
+	std::cout << "<ft class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
 }
+/*
 
 static void vector_push_back(void) {
 	
