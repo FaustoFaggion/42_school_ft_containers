@@ -79,7 +79,7 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::vector(const allocator_type& alloc) : _alloc(alloc) {
-		std::cout << "vector constructor \n";
+//		std::cout << "vector constructor \n";
 		this->_data = _alloc.allocate(0);
 		this->_size = 0;
 		this->_max_size = _alloc.max_size();
@@ -88,7 +88,7 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
-		std::cout << "vector destructor \n";
+//		std::cout << "vector destructor \n";
 		for (size_type i = 0; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
@@ -123,7 +123,7 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
 		if (n < this->_size) {
-			std::cout << "case1 \n";
+//			std::cout << "case1 \n";
 			for (size_type i = n; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
@@ -134,7 +134,7 @@ namespace ft
 			size_type	c;
 			
 			if (n <= this->_capacity) {
-				std::cout << "case2 \n";
+//				std::cout << "case2 \n";
 				for (size_type i = this->_size; i < n; i++) {
 						_alloc.construct(_data + i, val);
 				}
@@ -143,7 +143,7 @@ namespace ft
 			else if (n > this->_capacity) {
 
 				if (this->_capacity <= 1) {
-					std::cout << "case3 \n";
+//					std::cout << "case3 \n";
 					if (n > max_size()) {
 						 throw std::out_of_range("out_of_range: max_size exeded");
 					}
@@ -151,20 +151,20 @@ namespace ft
 					c = n;
 				}
 				else {
-					std::cout << "case4 \n";
-					c = n * 2;
-					if ((c / 2) != n)
+//					std::cout << "case4 \n";
+					c = this->_capacity * 2;
+					if ((c / 2) != this->_capacity)
 						throw std::overflow_error("overflow error: size_t exeded");
 					temp = _alloc.allocate(c);
 				}
 				for (size_type i = 0; i < n; i++) {
 					
 					if (i < this->_size){
-						std::cout << "case5 \n";
+//						std::cout << "case5 \n";
 						this->_alloc.construct(temp + i, this->_data[i]);
 					}
 					else {
-						std::cout << "case6 \n";
+//						std::cout << "case6 \n";
 						_alloc.construct(temp + i, val);
 					}
 				}
@@ -193,7 +193,6 @@ namespace ft
 			}
 			for (size_type i = 0; i < n; i++) {
 				if (i < this->_size){
-					std::cout << "case5 \n";
 					temp[i] = this->_data[i];
 				}
 			}
@@ -292,19 +291,11 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
 		
-		std::cout << "--vector push_back called--" << std::endl;
-		
-		std::cout << "capacity: " << this->_capacity << std::endl;
-
-		std::cout << "size: " << this->_size << std::endl;
-
 		if (this->_capacity > this->_size) {
-			std::cout << "--capacity > size 1--" << std::endl;
 			this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
 		}
 		else {
-			std::cout << "--capacity < size 2--" << std::endl;
 			resize(this->_size + 1, val);
 		}
 	}

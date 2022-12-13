@@ -2,7 +2,11 @@ NAME		=	ft_containers
 
 CC			=	c++
 
-FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3  $(STD1)
+
+STD			= 	-D STD=1
+
+STD1		=
 
 PATH_OBJ	=	./obj/
 
@@ -40,5 +44,5 @@ re:	fclean all
 run:	$(NAME)
 	./$(NAME)
 
-valgrind: $(NAME)
+valgrind: clean $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
