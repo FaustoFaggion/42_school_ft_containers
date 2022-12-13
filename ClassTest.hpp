@@ -31,7 +31,7 @@ class ClassTest {
 
 ClassTest const	&ClassTest::operator=(ClassTest const &rhs) {
 	std::cout << "ClassTest operator= called" << std::endl;
-	this->n = new int(*rhs.n);
+	this->n = new int(*(rhs).n);
 	(void)rhs;
 	return (*this);
 }

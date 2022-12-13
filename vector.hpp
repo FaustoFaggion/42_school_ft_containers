@@ -142,7 +142,7 @@ namespace ft
 			}
 			else if (n > this->_capacity) {
 
-				if (this->_capacity <= 1) {
+				if (this->_capacity <= 2) {
 //					std::cout << "case3 \n";
 					if (n > max_size()) {
 						 throw std::out_of_range("out_of_range: max_size exeded");
@@ -209,13 +209,13 @@ namespace ft
 
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::reference	vector<T, Alloc>::operator[] (size_type n) {
-		std::cout << "--vector operator[] called--" << std::endl;
+		std::cout << "--vector operator[] called-- ";
 		return (this->_data[n]);
 	}
 
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::operator[] (size_type n) const {
-		std::cout << "--const vector operator[] called--" << std::endl;
+		std::cout << "--const vector operator[] called-- ";
 		return (this->_data[n]);
 	}
 
@@ -292,10 +292,12 @@ namespace ft
 	void	vector<T, Alloc>::push_back(const value_type& val) {
 		
 		if (this->_capacity > this->_size) {
+			std::cout << "1\n";
 			this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
 		}
 		else {
+			std::cout << "2\n";
 			resize(this->_size + 1, val);
 		}
 	}
