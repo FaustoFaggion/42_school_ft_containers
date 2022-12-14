@@ -44,7 +44,9 @@ namespace ft
 
 //			Iterator:
 			iterator begin(void) { return (iterator(_data)); }
+			iterator cbegin(void) { return (const_iterator(_data)); }
 			iterator end(void) { return (iterator(_data + _size)); }
+			iterator cend(void) { return (const_iterator(_data + _size)); }
 
 //			Capacity:
 			void	resize(size_type n, value_type val = value_type());

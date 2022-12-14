@@ -8,6 +8,9 @@ namespace ft {
 	template<typename iT>
 	class random_access_iterator : public iterator<std::random_access_iterator_tag, iT> {
 
+		private:
+			typedef random_access_iterator							self;
+
 		public:
 			
 			typedef iT												iterator_type;
@@ -26,12 +29,12 @@ namespace ft {
 
 			random_access_iterator(void) : _current(NULL) { };
 			explicit random_access_iterator(const iterator_type &rsc) : _current(rsc) { };
-			random_access_iterator(random_access_iterator const &rsc) {
+			random_access_iterator(self const &rsc) {
 				*this = rsc;
 			}
 			~random_access_iterator() { }; 
 
-			random_access_iterator	&operator=(random_access_iterator const &rsc) {
+			self	&operator=(self const &rsc) {
 				this->_current = rsc.getCurrent();
 				return (*this);
 			}
@@ -39,11 +42,11 @@ namespace ft {
 			iterator_type	getCurrent(void) const { return (this->_current);};
 
 
-			bool	operator==(random_access_iterator &rsc) const{ 
+			bool	operator==(self &rsc) const{ 
 				return (this->_current == rsc.getCurrent());
 			};
 
-			bool	operator!=(random_access_iterator &rsc) const{ 
+			bool	operator!=(self &rsc) const{ 
 				return (this->_current != rsc.getCurrent());
 			};
 			
@@ -51,20 +54,20 @@ namespace ft {
 
 			reference	operator*(void) { return (*_current);};
 			pointer		operator->(void) { return &(*_current);};
-			random_access_iterator	&operator++(void) {
+			self	&operator++(void) {
 				++_current; return (*this);
 			};
-			random_access_iterator	operator++(int) {
-				return random_access_iterator(_current++);
+			self	operator++(int) {
+				return self(_current++);
 			};
 
 //		Bidirectional iterator requirements:
 
-			random_access_iterator	&operator--(void) {
+			self	&operator--(void) {
 				--_current; return (*this);
 			};
-			random_access_iterator	operator--(int) { 
-				return random_access_iterator(_current--);
+			self	operator--(int) { 
+				return self(_current--);
 			};
 	
 //		Random access iterator requirements:
@@ -72,19 +75,22 @@ namespace ft {
 			reference	operator[](const difference_type & _n) const {
 				return (_current[_n]);
 			};
-			random_access_iterator	&operator+=(const difference_type &_n) {
+			self	&operator+=(const difference_type &_n) {
 				_current += _n;
 				return (*this);
 			}
-			random_access_iterator	&operator-=(const difference_type &_n) {
+			self	&operator-=(const difference_type &_n) {
 				_current -= _n;
 				return (*this);
 			}
-			random_access_iterator	operator+(const difference_type &_n) {
-				return (random_access_iterator(_current + _n));
+			self	operator+(const difference_type &_n) {
+				return (self(_current + _n));
 			}
-			random_access_iterator	operator-(const difference_type &_n) {
-				return (random_access_iterator(_current - _n));
+			friend self	operator+(const difference_type &_n, const self &rhs) {
+				return (self(_n + rhs._current));
+			}
+			self	operator-(const difference_type &_n) {
+				return (self(_current - _n));
 			}
 	};
 
@@ -101,5 +107,7 @@ namespace ft {
 			const random_access_iterator<_IteratorR> &_y) {
 			return (_x.getCurrent() != _y.getCurrent());
 		}
+
+
 };
 #endif

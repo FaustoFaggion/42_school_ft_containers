@@ -2,10 +2,11 @@
 #define ITERATOR_HPP
 
 #include <iterator>
+#include <cstddef>
 
 namespace ft {
 
-	template <class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
 	struct iterator {
 		typedef T         value_type;
 		typedef Distance  difference_type;
@@ -25,7 +26,7 @@ namespace ft {
 	
 	template <typename T>
 	struct iterator_traits<T*> {
-		typedef std::ptrdiff_t					difference_type;
+		typedef ptrdiff_t					difference_type;
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
@@ -34,7 +35,7 @@ namespace ft {
 	
 	template <typename T> 
 	class iterator_traits<T const*> {
-		typedef std::ptrdiff_t					difference_type;
+		typedef ptrdiff_t					difference_type;
 		typedef T								value_type;
 		typedef const T*						pointer;
 		typedef const T&						reference;
