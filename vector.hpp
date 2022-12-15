@@ -91,7 +91,7 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
-//		std::cout << "vector destructor \n";
+		std::cout << "vector destructor \n";
 		for (size_type i = 0; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
