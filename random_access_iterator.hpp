@@ -41,6 +41,7 @@ namespace ft {
 
 			iterator_type	getCurrent(void) const { return (this->_current);};
 
+//		Operators:
 
 			bool	operator==(self &rsc) const{ 
 				return (this->_current == rsc.getCurrent());
@@ -49,26 +50,24 @@ namespace ft {
 			bool	operator!=(self &rsc) const{ 
 				return (this->_current != rsc.getCurrent());
 			};
+
+			bool	operator<=(const self &rhs) const { return _current <= rhs._current;};
+			bool	operator>=(const self &rhs) const  { return _current >= rhs._current;};
+			bool	operator>(const self &rhs) const   { return _current > rhs._current;};
+			bool	operator<(const self &rhs) const   { return _current < rhs._current;};
+
 			
 //		Foward iterator requirements:
 
 			reference	operator*(void) { return (*_current);};
 			pointer		operator->(void) { return &(*_current);};
-			self	&operator++(void) {
-				++_current; return (*this);
-			};
-			self	operator++(int) {
-				return self(_current++);
-			};
+			self	&operator++(void) { ++_current; return (*this);};
+			self	operator++(int) { return self(_current++);};
 
 //		Bidirectional iterator requirements:
 
-			self	&operator--(void) {
-				--_current; return (*this);
-			};
-			self	operator--(int) { 
-				return self(_current--);
-			};
+			self	&operator--(void) { --_current; return (*this);};
+			self	operator--(int) { return self(_current--);};
 	
 //		Random access iterator requirements:
 

@@ -23,6 +23,7 @@ class ClassTest {
 		}
 		ClassTest(ClassTest const & rsc) {
 			std::cout << "ClassTest copy_constructor called" << std::endl;
+			this->n = NULL;
 			*this = rsc;
 		}
 
@@ -31,6 +32,8 @@ class ClassTest {
 
 ClassTest const	&ClassTest::operator=(ClassTest const &rhs) {
 	std::cout << "ClassTest operator= called" << std::endl;
+	if (this->n)
+		delete(n);
 	this->n = new int(*(rhs).n);
 	return (*this);
 }
