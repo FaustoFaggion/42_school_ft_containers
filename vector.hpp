@@ -5,6 +5,7 @@
 #include <memory>
 #include <cstring>
 #include <iterator>
+#include <algorithm>
 #include "random_access_iterator.hpp"
 
 namespace ft
@@ -19,8 +20,8 @@ namespace ft
 			typedef typename allocator_type::const_reference			const_reference;
 			typedef typename allocator_type::pointer					pointer;
 			typedef typename allocator_type::const_pointer				const_pointer;
-			typedef size_t												size_type;
-			typedef std::ptrdiff_t										difference_type;
+			typedef typename allocator_type::size_type					size_type;
+			typedef ptrdiff_t											difference_type;
 			typedef typename ft::random_access_iterator<pointer>		iterator;
 			typedef typename ft::random_access_iterator<const pointer>	const_iterator;
 
@@ -48,6 +49,7 @@ namespace ft
 			iterator	end(void) { return (iterator(_data + _size)); }
 			iterator	cend(void) { return (const_iterator(_data + _size)); }
 			iterator	erase(iterator _position);
+			iterator	erase(iterator first, iterator last);
 
 //			Capacity:
 			void	resize(size_type n, value_type val = value_type());
@@ -326,13 +328,38 @@ namespace ft
 	}
 */
 
+	/*
+	OutputIterator copy (InputIterator first, InputIterator last, OutputIterator result);
+	Copies the elements in the range [first,last) into the range beginning at result.
+	Return an iterator to the end of the destination range where elements have been copied
+	*/
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator _position) {
-		if (_position + 1 != this->end())
-			std::copy(_position + 1, this->end(), _position);
+		std::cout << "erase called\n";
+		if (_position + 1 != end()) {
+			std::cout << "p + 1 " << *(_position + 1) << "\n";
+			std::cout << "end " << *(end() - 1) << "\n";
+			std::copy(_position + 1, end(), _position);
+		}
 		--this->_size;
 		this->_alloc.destroy(this->_data + this->_size);
 		return (_position);
+	}
+//	12 14 16 18
+	/*
+	OutputIterator copy (InputIterator first, InputIterator last, OutputIterator result);
+	Copies the elements in the range [first,last) into the range beginning at result.
+	Return an iterator to the end of the destination range where elements have been copied
+	*/
+	template<typename T, class Alloc>
+	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator first, iterator last) {
+		iterator i(std::copy(last, end(), first));
+		while (i != end()) {
+			this->_alloc.destroy(i);
+			i++;
+		}
+		_size -= (last - first);
+		return (first);
 	}
 
 
