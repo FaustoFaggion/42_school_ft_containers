@@ -1,6 +1,7 @@
 #include "ClassTest.hpp"
 #include <vector>
 #include "vector.hpp"
+#include <string.h>
 
 //#ifdef STD
 //namespace ft = std;
@@ -22,7 +23,6 @@
 int	main(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
-
 
 
 	ClassTest	a(2);
@@ -83,7 +83,99 @@ int	main(void) {
 	std::cout << int_vector[1] << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
 	std::cout << float_vector[1] << "<float> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
 	std::cout << string_vector[1] << "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
+
+	std::cout << "\n------erase------\n" << std::endl;
+
+	std::cout << "\n--orig--" << std::endl;
+	int_orig.erase(int_orig.begin() + 1);
+	for (std::vector<int>::iterator it = int_orig.begin(); it != int_orig.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
+
+	float_orig.erase(float_orig.begin() + 1);
+	for (std::vector<float>::iterator it = float_orig.begin(); it != float_orig.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<float> size: " << float_orig.size() << " max_size: " << float_orig.max_size() << " capacity: " << float_orig.capacity() << " empty: " << float_orig.empty() << std::endl;
 	
+	string_orig.erase(string_orig.begin() + 1);
+	for (std::vector<std::string>::iterator it = string_orig.begin(); it != string_orig.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<string> size: " << string_orig.size() << " max_size: " << string_orig.max_size() << " capacity: " << string_orig.capacity() << " empty: " << string_orig.empty() << std::endl;
+
+	std::cout << "\n--ft--" << std::endl;
+	int_vector.erase(int_vector.begin() + 1);
+	for (ft::vector<int>::iterator it_ = int_vector.begin(); it_ != int_vector.end(); it_++) {
+		std::cout << *it_ << std::endl;
+	}
+	std::cout<< "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+	
+	float_vector.erase(float_vector.begin() + 1);
+	for (ft::vector<float>::iterator it = float_vector.begin(); it != float_vector.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<float> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
+	
+	string_vector.erase(string_vector.begin() + 1);
+	for (ft::vector<std::string>::iterator it = string_vector.begin(); it != string_vector.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
+
+	
+	std::cout << "\n------------Constructor------------\n" << std::endl;
+
+	std::cout << "\n--orig--" << std::endl;
+	std::vector<ClassTest> class_orig;
+
+	std::cout << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "--ft--" << std::endl;
+	ft::vector<ClassTest> class_vector;
+	std::cout << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	std::cout << "\n------int push_back1------\n" << std::endl;
+	
+
+	std::cout << "--orig--" << std::endl;
+	class_orig.push_back(a);
+	std::cout << class_orig[0] << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "\n--ft--" << std::endl;
+	class_vector.push_back(a);
+	std::cout << class_vector[0] << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	
+	std::cout << "\n------int push_back2------\n" << std::endl;
+
+	std::cout << "--orig--" << std::endl;
+	class_orig.push_back(b);
+	std::cout << class_orig[1] << "<class> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "\n--ft--" << std::endl;
+	class_vector.push_back(a);
+	std::cout << class_vector[1] << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+
+	std::cout << "\n------erase------\n" << std::endl;
+
+	std::cout << "\n--orig--" << std::endl;
+	class_orig.erase(class_orig.begin() + 1);
+	for (std::vector<ClassTest>::iterator it = class_orig.begin(); it != class_orig.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<int> size: " << class_orig.size() << " max_size: " << class_orig.max_size() << " capacity: " << class_orig.capacity() << " empty: " << class_orig.empty() << std::endl;
+
+	std::cout << "\n--ft--" << std::endl;
+	class_vector.erase(class_vector.begin() + 1);
+	for (ft::vector<ClassTest>::iterator it = class_vector.begin(); it != class_vector.end(); it++) {
+		std::cout << *it << std::endl;
+	}
+	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
+	
+
+/*	
 	std::cout << "\n------assign------\n" << std::endl;
 	
 	std::cout << "\n--orig--" << std::endl;
@@ -94,7 +186,6 @@ int	main(void) {
 		std::cout << *it << std::endl;
 	}
 	std::cout<< "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;
-/*	
 	float_orig.assign(2, 33.1);
 	for (std::vector<float>::iterator it = float_orig.begin(); it != float_orig.end(); it++) {
 		std::cout << *it << std::endl;
@@ -212,6 +303,7 @@ int	main(void) {
 	}
 	std::cout << class_vector.at(1) << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 */
+	
 	return (0);
 }
 
@@ -587,7 +679,7 @@ static void	vector_at(void) {
 	std::cout << "at: " << int_vector.at(0) << std::endl;
 	std::cout << "at: " << class_vector.at(0) << std::endl;
 
-//	std::cout << "at: " << int_orig.at(2) << std::endl;
+	std::cout << "at: " << int_orig.at(2) << std::endl;
 //	std::cout << "at: " << class_orig.at(2) << std::endl;
 //	std::cout << "at: " << int_vector.at(2) << std::endl;
 //	std::cout << "at: " << class_vector.at(2) << std::endl;
@@ -1231,4 +1323,5 @@ static void	vector_assign2(void) {
 
 	return (0);
 }
+
 */

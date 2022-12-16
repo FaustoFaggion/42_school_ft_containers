@@ -43,10 +43,11 @@ namespace ft
 			bool	empty();
 
 //			Iterator:
-			iterator begin(void) { return (iterator(_data)); }
-			iterator cbegin(void) { return (const_iterator(_data)); }
-			iterator end(void) { return (iterator(_data + _size)); }
-			iterator cend(void) { return (const_iterator(_data + _size)); }
+			iterator	begin(void) { return (iterator(_data)); }
+			iterator	cbegin(void) { return (const_iterator(_data)); }
+			iterator	end(void) { return (iterator(_data + _size)); }
+			iterator	cend(void) { return (const_iterator(_data + _size)); }
+			iterator	erase(iterator _position);
 
 //			Capacity:
 			void	resize(size_type n, value_type val = value_type());
@@ -324,6 +325,17 @@ namespace ft
 		}
 	}
 */
+
+	template<typename T, class Alloc>
+	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator _position) {
+		if (_position + 1 != this->end())
+			std::copy(_position + 1, this->end(), _position);
+		--this->_size;
+		this->_alloc.destroy(this->_data + this->_size);
+		return (_position);
+	}
+
+
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
 
