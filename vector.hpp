@@ -7,25 +7,26 @@
 #include <iterator>
 #include <algorithm>
 #include "random_access_iterator.hpp"
+#include <exception>
 
 namespace ft
 {
-	template<typename T, class Alloc = std::allocator<T> >
+	template<typename T, class Alloc = std::allocator<T> > 
 	class vector {
 		
 		private:
-			typedef vector<T, Alloc>										vector_type;
+			typedef vector<T, Alloc>												vector_type;
 		public:	
-			typedef T														value_type;
-			typedef Alloc													allocator_type;
-			typedef typename allocator_type::reference						reference;
-			typedef typename allocator_type::const_reference				const_reference;
-			typedef typename allocator_type::pointer						pointer;
-			typedef typename allocator_type::const_pointer					const_pointer;
-			typedef typename allocator_type::size_type						size_type;
-			typedef typename allocator_type::difference_type				difference_type;
-			typedef typename ft::random_access_iterator<pointer, vector_type>			iterator;
-			typedef typename ft::random_access_iterator<const pointer, vector_type>		const_iterator;
+			typedef T																value_type;
+			typedef Alloc															allocator_type;
+			typedef typename allocator_type::reference								reference;
+			typedef typename allocator_type::const_reference						const_reference;
+			typedef typename allocator_type::pointer								pointer;
+			typedef typename allocator_type::const_pointer							const_pointer;
+			typedef typename allocator_type::size_type								size_type;
+			typedef typename allocator_type::difference_type						difference_type;
+			typedef typename ft::random_access_iterator<pointer, vector_type>		iterator;
+			typedef typename ft::random_access_iterator<const pointer, vector_type>	const_iterator;
 
 
 		private:
@@ -50,6 +51,8 @@ namespace ft
 			iterator	cbegin(void) { return (const_iterator(_data)); }
 			iterator	end(void) { return (iterator(_data + _size)); }
 			iterator	cend(void) { return (const_iterator(_data + _size)); }
+			iterator 	insert (iterator position, const value_type& val);
+			void		insert_aux(iterator position, const value_type& val);
 			iterator	erase(iterator _position);
 			iterator	erase(iterator first, iterator last);
 
@@ -156,7 +159,7 @@ namespace ft
 			}
 			else if (n > this->_capacity) {
 
-				if (this->_capacity <= 2) {
+				if (this->_capacity == 0) {
 //					std::cout << "case3 \n";
 					if (n > max_size()) {
 						 throw std::out_of_range("out_of_range: max_size exeded");
@@ -168,7 +171,7 @@ namespace ft
 //					std::cout << "case4 \n";
 					c = this->_capacity * 2;
 					if ((c / 2) != this->_capacity)
-						throw std::overflow_error("overflow error: size_t exeded");
+						throw std::overflow_error("overflow error: max_size exeded");
 					temp = _alloc.allocate(c);
 				}
 				for (size_type i = 0; i < n; i++) {
@@ -197,7 +200,7 @@ namespace ft
 	void	vector<T, Alloc>::reserve(size_type n) {
 		if (n > this->_capacity) {
 			T	*temp;
-
+			std::cout << "n: " << n << "\n";
 			if (n > max_size()) {
 				 throw std::out_of_range("out_of_range: max_size exeded");
 			}
@@ -334,6 +337,70 @@ namespace ft
 	}
 */
 
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::push_back(const value_type& val) {
+
+		if (this->_capacity > this->_size) {
+			this->_alloc.construct(this->_data + this->_size, val);
+			this->_size++;
+		}
+		else {
+			resize(this->_size + 1, val);
+		}
+	}
+
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::pop_back(void) {
+
+		if (this->_size > 0) {
+			std::cout << "--pop_back called--" << std::endl;
+			this->_alloc.destroy(this->_data + this->_size - 1);
+			this->_size--;
+		}
+	}
+
+	template<typename T, class Alloc>
+	typename vector<T, Alloc>::iterator	vector<T, Alloc>::insert(iterator position, const value_type& val) {
+		
+		const size_type	n = position - begin();
+		if (this->_size != this->_capacity && position == end()) {
+			this->_alloc.construct(this->_data + this->_size, val);
+			++this->_size;
+		}
+		else {
+			insert_aux(position, val);
+		}
+		return (begin() + n);
+	}
+
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::insert_aux(iterator position, const value_type& val) {
+
+		std::cout << "size__: " << _size << std::endl;
+		std::cout << "capacity: " << _capacity << std::endl;
+		if (this->_size != this->_capacity) {
+			this->_alloc.construct(_data + _size, *(_data + _size - 1));
+			++this->_size;
+			value_type	copy_val = val;
+			std::copy_backward(position, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
+			*position = copy_val;
+		}
+		else {
+			std::cout << "size1: " << _size << std::endl;
+			size_type	n = position - begin();
+			std::cout << "n: " << n << std::endl;
+
+			reserve((_capacity * 2));
+			
+			this->_alloc.construct(_data + _size, *(_data + _size - 1));
+			++this->_size;
+			value_type	copy_val = val;
+			std::copy_backward(begin() + n, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
+			std::cout << "max: " << this->_max_size << std::endl;
+			*(begin() + n) = copy_val;
+		}
+	}
+
 	/*
 	OutputIterator copy (InputIterator first, InputIterator last, OutputIterator result);
 	Copies the elements in the range [first,last) into the range beginning at result.
@@ -343,7 +410,6 @@ namespace ft
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator _position) {
 		if (_position + 1 != end()) {
 			std::copy(((_position + 1)), ((end())), (_position));
-		
 		}
 		--this->_size;
 		this->_alloc.destroy(this->_data + this->_size);
@@ -367,27 +433,6 @@ namespace ft
 	}
 
 
-	template<typename T, class Alloc>
-	void	vector<T, Alloc>::push_back(const value_type& val) {
-
-		if (this->_capacity > this->_size) {
-			this->_alloc.construct(this->_data + this->_size, val);
-			this->_size++;
-		}
-		else {
-			resize(this->_size + 1, val);
-		}
-	}
-
-	template<typename T, class Alloc>
-	void	vector<T, Alloc>::pop_back(void) {
-
-		if (this->_size > 0) {
-			std::cout << "--pop_back called--" << std::endl;
-			this->_alloc.destroy(this->_data + this->_size - 1);
-			this->_size--;
-		}
-	}
 
 //	Non-member function overloads
 

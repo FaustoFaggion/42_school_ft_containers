@@ -10,7 +10,6 @@ namespace ft {
 
 		private:
 			typedef random_access_iterator							self;
-
 		public:
 			
 			typedef iT												iterator_type;
@@ -63,12 +62,12 @@ namespace ft {
 			self	operator+(const difference_type &_n) {
 				return (self(_current + _n));
 			}
+			friend self	operator+(const self &rhs, const difference_type &_n) {
+				return (self(rhs.getCurrent() + _n));
+			}
 			self	&operator-=(const difference_type &_n) {
 				_current -= _n;
 				return (*this);
-			}
-			friend self	operator+(const difference_type &_n, const self &rhs) {
-				return (self(_n + rhs._current));
 			}
 			self	operator-(const difference_type &_n) {
 				return (self(_current - _n));

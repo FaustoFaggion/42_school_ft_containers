@@ -42,8 +42,6 @@ int	main(void) {
 	std::cout << "<int> size: " << float_vector.size() << " max_size: " << float_vector.max_size() << " capacity: " << float_vector.capacity() << " empty: " << float_vector.empty() << std::endl;
 	std::cout << "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
 
-	int_vector.reserve(10);
-
 	std::cout << "\n------int push_back1------\n" << std::endl;
 	
 
@@ -119,10 +117,10 @@ int	main(void) {
 	std::cout << string_vector[3] << "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
 
 
-	std::cout << "\n------erase------\n" << std::endl;
+	std::cout << "\n------insert------\n" << std::endl;
 
 	std::cout << "\n--orig--" << std::endl;
-	int_orig.erase(int_orig.begin() + 1, int_orig.begin() + 3);
+	int_orig.insert(int_orig.begin() + 2, 100);
 	for (std::vector<int>::iterator it = int_orig.begin(); it != int_orig.end(); it++) {
 		std::cout << *it << std::endl;
 	}
@@ -142,12 +140,12 @@ int	main(void) {
 
 
 	std::cout << "\n--ft--" << std::endl;
-	int_vector.erase(int_vector.begin() + 1, int_vector.begin() + 3);
+	int_vector.insert(int_vector.begin() + 2 , 100);
 	for (ft::vector<int>::iterator it_ = int_vector.begin(); it_ != int_vector.end(); it_++) {
 		std::cout << *it_ << std::endl;
 	}
 	std::cout<< "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-
+/*
 	float_vector.erase(float_vector.begin() + 1, float_vector.begin() + 3);
 	for (ft::vector<float>::iterator it = float_vector.begin(); it != float_vector.end(); it++) {
 		std::cout << *it << std::endl;
@@ -224,7 +222,7 @@ int	main(void) {
 		std::cout << *it << std::endl;
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
-
+*/
 	return (0);
 }
 
