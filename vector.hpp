@@ -12,22 +12,24 @@ namespace ft
 {
 	template<typename T, class Alloc = std::allocator<T> >
 	class vector {
-
-		public:
-			typedef T													value_type;
-			typedef Alloc												allocator_type;
-			typedef typename allocator_type::reference					reference;
-			typedef typename allocator_type::const_reference			const_reference;
-			typedef typename allocator_type::pointer					pointer;
-			typedef typename allocator_type::const_pointer				const_pointer;
-			typedef typename allocator_type::size_type					size_type;
-			typedef ptrdiff_t											difference_type;
-			typedef typename ft::random_access_iterator<pointer>		iterator;
-			typedef typename ft::random_access_iterator<const pointer>	const_iterator;
+		
+		private:
+			typedef vector<T, Alloc>										vector_type;
+		public:	
+			typedef T														value_type;
+			typedef Alloc													allocator_type;
+			typedef typename allocator_type::reference						reference;
+			typedef typename allocator_type::const_reference				const_reference;
+			typedef typename allocator_type::pointer						pointer;
+			typedef typename allocator_type::const_pointer					const_pointer;
+			typedef typename allocator_type::size_type						size_type;
+			typedef typename allocator_type::difference_type				difference_type;
+			typedef typename ft::random_access_iterator<pointer, vector_type>			iterator;
+			typedef typename ft::random_access_iterator<const pointer, vector_type>		const_iterator;
 
 
 		private:
-			std::allocator<T>	_alloc;
+			allocator_type		_alloc;
 			pointer				_data;
 			size_type			_size;
 			size_type			_max_size;
@@ -77,6 +79,8 @@ namespace ft
 //			Alloc	get_allocator() const;
 	};
 
+//	Operators:
+
 	template <typename T, class Alloc>
 	std::ostream&	operator<<(std::ostream& lhs, vector<T, Alloc> &rhs) {
 		for (int i = 0; i < rhs._capacity(); i++) {
@@ -84,6 +88,8 @@ namespace ft
 		}	
 		return (lhs);
 	}
+
+//	Constructors:
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::vector(const allocator_type& alloc) : _alloc(alloc) {
@@ -335,17 +341,15 @@ namespace ft
 	*/
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator _position) {
-		std::cout << "erase called\n";
 		if (_position + 1 != end()) {
-			std::cout << "p + 1 " << *(_position + 1) << "\n";
-			std::cout << "end " << *(end() - 1) << "\n";
-			std::copy(_position + 1, end(), _position);
+			std::copy(((_position + 1)), ((end())), (_position));
+		
 		}
 		--this->_size;
 		this->_alloc.destroy(this->_data + this->_size);
 		return (_position);
 	}
-//	12 14 16 18
+
 	/*
 	OutputIterator copy (InputIterator first, InputIterator last, OutputIterator result);
 	Copies the elements in the range [first,last) into the range beginning at result.
@@ -355,7 +359,7 @@ namespace ft
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator first, iterator last) {
 		iterator i(std::copy(last, end(), first));
 		while (i != end()) {
-			this->_alloc.destroy(i);
+			this->_alloc.destroy(&(*i));
 			i++;
 		}
 		_size -= (last - first);

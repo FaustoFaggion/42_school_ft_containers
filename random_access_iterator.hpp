@@ -5,7 +5,7 @@
 
 namespace ft {
 
-	template<typename iT>
+	template<typename iT, typename _container>
 	class random_access_iterator : public iterator<std::random_access_iterator_tag, iT> {
 
 		private:
@@ -20,7 +20,7 @@ namespace ft {
 			typedef typename iterator_traits<iT>::reference			reference;
 			typedef typename iterator_traits<iT>::iterator_category	iterator_category;
 
-		private:
+		protected:
 			iterator_type	_current;
 
 		public:
@@ -29,9 +29,7 @@ namespace ft {
 
 			random_access_iterator(void) : _current(NULL) { };
 			explicit random_access_iterator(const iterator_type &rsc) : _current(rsc) { };
-			random_access_iterator(self const &rsc) {
-				*this = rsc;
-			}
+			random_access_iterator(self const &rsc) {*this = rsc;}
 			~random_access_iterator() { }; 
 
 			self	&operator=(self const &rsc) {
@@ -40,27 +38,11 @@ namespace ft {
 			}
 
 			iterator_type	getCurrent(void) const { return (this->_current);};
-
-//		Operators:
-
-			bool	operator==(self &rsc) const{ 
-				return (this->_current == rsc.getCurrent());
-			};
-
-			bool	operator!=(self &rsc) const{ 
-				return (this->_current != rsc.getCurrent());
-			};
-
-			bool	operator<=(const self &rhs) const { return _current <= rhs._current;};
-			bool	operator>=(const self &rhs) const  { return _current >= rhs._current;};
-			bool	operator>(const self &rhs) const   { return _current > rhs._current;};
-			bool	operator<(const self &rhs) const   { return _current < rhs._current;};
-
 			
 //		Foward iterator requirements:
 
 			reference	operator*(void) { return (*_current);};
-			pointer		operator->(void) { return &(*_current);};
+			pointer		operator->(void) { return (_current);};// &(*_current)
 			self	&operator++(void) { ++_current; return (*this);};
 			self	operator++(int) { return self(_current++);};
 
@@ -78,12 +60,12 @@ namespace ft {
 				_current += _n;
 				return (*this);
 			}
+			self	operator+(const difference_type &_n) {
+				return (self(_current + _n));
+			}
 			self	&operator-=(const difference_type &_n) {
 				_current -= _n;
 				return (*this);
-			}
-			self	operator+(const difference_type &_n) {
-				return (self(_current + _n));
 			}
 			friend self	operator+(const difference_type &_n, const self &rhs) {
 				return (self(_n + rhs._current));
@@ -95,23 +77,45 @@ namespace ft {
 
 //		Foward iterator requirements:
 
-		template<typename _IteratorL, typename _IteratorR>
-		inline bool	operator==(const random_access_iterator<_IteratorL> &_x,
-			const random_access_iterator<_IteratorR> &_y) {
-			return (_x.getCurrent() == _y.getCurrent());
+		template<typename _IteratorL, typename _IteratorR, typename _container>
+		inline bool	operator==(const random_access_iterator<_IteratorL, _container> &lhs,
+			const random_access_iterator<_IteratorR, _container> &rhs) {
+			return (lhs.getCurrent() == rhs.getCurrent());
 		}
 
-		template<typename _IteratorL, typename _IteratorR>
-		inline bool	operator!=(const random_access_iterator<_IteratorL> &_x,
-			const random_access_iterator<_IteratorR> &_y) {
-			return (_x.getCurrent() != _y.getCurrent());
+		template<typename _Iterator, typename _container>
+		inline bool	operator==(const random_access_iterator<_Iterator, _container> &lhs,
+			const random_access_iterator<_Iterator, _container> &rhs) { 
+			return (lhs.getCurrent() == rhs.getCurrent());
+		};
+
+
+		template<typename _IteratorL, typename _IteratorR, typename _container>
+		inline bool	operator!=(const random_access_iterator<_IteratorL, _container> &lhs,
+			const random_access_iterator<_IteratorR, _container> &rhs) {
+			return (lhs.getCurrent() != rhs.getCurrent());
 		}
 		
-		template<typename _IteratorL, typename _IteratorR>
-		inline bool	operator-(const random_access_iterator<_IteratorL> &_x,
-			const random_access_iterator<_IteratorR> &_y) {
-			return (_x.getCurrent() - _y.getCurrent());
-		}
+		template<typename _Iterator, typename _container>
+		bool	operator!=(const random_access_iterator<_Iterator, _container> &lhs,
+			const random_access_iterator<_Iterator, _container> &rhs) {
+			return (lhs.getCurrent() != rhs.getCurrent());;
+		};
+		
+		template<typename _IteratorL, typename _IteratorR, typename _container>
+		inline typename random_access_iterator<_IteratorL, _container>::difference_type
+			operator-(const random_access_iterator<_IteratorL, _container> &lhs,
+				const random_access_iterator<_IteratorR, _container> &rhs) {
+				return (lhs.getCurrent() - rhs.getCurrent());
+			}
+
+		template<typename _IteratorL, typename _IteratorR, typename _container>
+		inline typename random_access_iterator<_IteratorL, _container>::difference_type
+			operator+(const random_access_iterator<_IteratorL, _container> &lhs,
+				const random_access_iterator<_IteratorR, _container> &rhs) {
+				return (lhs.getCurrent() + rhs.getCurrent());
+			}
+
 
 };
 #endif
