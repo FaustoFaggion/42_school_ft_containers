@@ -1860,7 +1860,6 @@ static void	vector_insert1(void) {
 	std::cout << "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
 
 	std::cout << "\n------push_back1------\n" << std::endl;
-	
 
 	std::cout << "--orig--" << std::endl;
 	int_orig.push_back(12);
