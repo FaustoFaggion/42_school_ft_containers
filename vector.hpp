@@ -390,13 +390,27 @@ namespace ft
 	template<typename T, class Alloc>
 	void vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
 
-		if (n != 0) {
-			if ((_capacity - _size) >= n) {
-
-				if (position == end()) {
-					for(; position += n; position++)
-						push_back(val);
-				}
+		if (n == 0)
+			return ;
+		if ((_size + n) > _capacity) {
+			std::cout << "insert 1\n";
+			difference_type d = position - begin();
+			std::cout << d << std::endl;
+			reserve(_size + n);
+			position = begin() + d;
+		}
+		if (position == end()) {
+			std::cout << "insert 2\n";
+			for(size_type i = 0; i < n; i++)
+				push_back(val);
+		}
+		else {
+			std::cout << "insert 3\n";
+			iterator old_end(end());
+			resize(_size + n);
+			std::copy_backward(position, old_end, end());
+			for(size_type i = 0; i < n; i++) {
+				_alloc.construct(&(*(position + i)), val);
 			}
 		}
 	}
