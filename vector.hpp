@@ -47,18 +47,14 @@ namespace ft
 			bool	empty();
 
 //			Iterator:
-			iterator	begin(void) { return (iterator(_data)); }
-			iterator	cbegin(void) { return (const_iterator(_data)); }
-			iterator	end(void) { return (iterator(_data + _size)); }
-			iterator	cend(void) { return (const_iterator(_data + _size)); }
-			iterator 	insert (iterator position, const value_type& val);
-			void		insert_aux(iterator position, const value_type& val);
-			iterator	erase(iterator _position);
-			iterator	erase(iterator first, iterator last);
+			iterator		begin(void) { return (iterator(_data)); }
+			iterator		cbegin(void) { return (const_iterator(_data)); }
+			iterator		end(void) { return (iterator(_data + _size)); }
+			iterator		cend(void) { return (const_iterator(_data + _size)); }
 
 //			Capacity:
-			void	resize(size_type n, value_type val = value_type());
-			void	reserve(size_type n);
+			void			resize(size_type n, value_type val = value_type());
+			void			reserve(size_type n);
 
 //			Element Access:
 			reference		operator[] (size_type n);
@@ -72,11 +68,15 @@ namespace ft
 
 
 //			Modifiers:
-			void	assign(size_type n, const value_type& val);
+			void			assign(size_type n, const value_type& val);
 			template<typename InputIterator>
-			void	assign(InputIterator first, InputIterator last);
-			void	push_back(const value_type& val);
-			void	pop_back();
+			void			assign(InputIterator first, InputIterator last);
+			void			push_back(const value_type& val);
+			void			pop_back();
+			iterator 		insert (iterator position, const value_type& val);
+			void 			insert(iterator position, size_type n, const value_type& val);
+			iterator		erase(iterator _position);
+			iterator		erase(iterator first, iterator last);
 
 //			Non-member function overloads
 //			Alloc	get_allocator() const;
@@ -200,7 +200,6 @@ namespace ft
 	void	vector<T, Alloc>::reserve(size_type n) {
 		if (n > this->_capacity) {
 			T	*temp;
-			std::cout << "n: " << n << "\n";
 			if (n > max_size()) {
 				 throw std::out_of_range("out_of_range: max_size exeded");
 			}
@@ -208,14 +207,11 @@ namespace ft
 			if (temp == NULL) {
 				throw std::bad_alloc();
 			}
-			for (size_type i = 0; i < n; i++) {
-				if (i < this->_size){
-					temp[i] = this->_data[i];
-				}
+			for (size_type i = 0; i < _size; i++) {
+					_alloc.construct((temp + i), *(_data + i));
 			}
-			for (size_type i = 0; i < this->_size; i++) {
+			for (size_type i = 0; i < this->_size; i++)
 				this->_alloc.destroy(this->_data + i);
-			}
 			_alloc.deallocate(this->_data, this->_capacity);
 			this->_data = temp;
 			this->_capacity = n;
@@ -362,42 +358,46 @@ namespace ft
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::insert(iterator position, const value_type& val) {
 		
-		const size_type	n = position - begin();
-		if (this->_size != this->_capacity && position == end()) {
-			this->_alloc.construct(this->_data + this->_size, val);
-			++this->_size;
+		if (_size == _capacity) {
+			std::cout << "insert 1\n";
+			const size_type	n = position - begin();
+			reserve((_capacity * 2));
+			position = begin() + n;
+		}
+		if (position == end()) {
+			std::cout << "insert 2\n";
+			push_back(val);
 		}
 		else {
-			insert_aux(position, val);
-		}
-		return (begin() + n);
-	}
-
-	template<typename T, class Alloc>
-	void	vector<T, Alloc>::insert_aux(iterator position, const value_type& val) {
-
-		std::cout << "size__: " << _size << std::endl;
-		std::cout << "capacity: " << _capacity << std::endl;
-		if (this->_size != this->_capacity) {
+			std::cout << "insert 3\n";
 			this->_alloc.construct(_data + _size, *(_data + _size - 1));
 			++this->_size;
 			value_type	copy_val = val;
 			std::copy_backward(position, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
 			*position = copy_val;
 		}
-		else {
-			std::cout << "size1: " << _size << std::endl;
-			size_type	n = position - begin();
-			std::cout << "n: " << n << std::endl;
+		return (position);
+	}
 
-			reserve((_capacity * 2));
-			
-			this->_alloc.construct(_data + _size, *(_data + _size - 1));
-			++this->_size;
-			value_type	copy_val = val;
-			std::copy_backward(begin() + n, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
-			std::cout << "max: " << this->_max_size << std::endl;
-			*(begin() + n) = copy_val;
+	/*std::unitialized_copy
+	Constructs copies of the elements in the range [first,last) into a range
+	beginning at result and returns an iterator to the last element in the 
+	destination range. Unlike algorithm copy, uninitialized_copy constructs the
+	objects in-place, instead of just copying them. This allows to obtain fully
+	constructed copies of the elements into a range of uninitialized memory,
+	such as a memory block obtained by a call to get_temporary_buffer or malloc.*/
+	
+	template<typename T, class Alloc>
+	void vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val) {
+
+		if (n != 0) {
+			if ((_capacity - _size) >= n) {
+
+				if (position == end()) {
+					for(; position += n; position++)
+						push_back(val);
+				}
+			}
 		}
 	}
 

@@ -42,34 +42,34 @@ namespace ft {
 
 			reference	operator*(void) { return (*_current);};
 			pointer		operator->(void) { return (_current);};// &(*_current)
-			self	&operator++(void) { ++_current; return (*this);};
-			self	operator++(int) { return self(_current++);};
+			self		&operator++(void) { ++_current; return (*this);};
+			self		operator++(int) { return self(_current++);};
 
 //		Bidirectional iterator requirements:
 
-			self	&operator--(void) { --_current; return (*this);};
-			self	operator--(int) { return self(_current--);};
+			self		&operator--(void) { --_current; return (*this);};
+			self		operator--(int) { return self(_current--);};
 	
 //		Random access iterator requirements:
 
 			reference	operator[](const difference_type & _n) const {
 				return (_current[_n]);
 			};
-			self	&operator+=(const difference_type &_n) {
+			self		&operator+=(const difference_type &_n) {
 				_current += _n;
 				return (*this);
 			}
-			self	operator+(const difference_type &_n) {
+			self		operator+(const difference_type &_n) {
 				return (self(_current + _n));
 			}
 			friend self	operator+(const self &rhs, const difference_type &_n) {
 				return (self(rhs.getCurrent() + _n));
 			}
-			self	&operator-=(const difference_type &_n) {
+			self		&operator-=(const difference_type &_n) {
 				_current -= _n;
 				return (*this);
 			}
-			self	operator-(const difference_type &_n) {
+			self		operator-(const difference_type &_n) {
 				return (self(_current - _n));
 			}
 	};
@@ -96,7 +96,7 @@ namespace ft {
 		}
 		
 		template<typename _Iterator, typename _container>
-		bool	operator!=(const random_access_iterator<_Iterator, _container> &lhs,
+		inline bool	operator!=(const random_access_iterator<_Iterator, _container> &lhs,
 			const random_access_iterator<_Iterator, _container> &rhs) {
 			return (lhs.getCurrent() != rhs.getCurrent());;
 		};
@@ -114,7 +114,5 @@ namespace ft {
 				const random_access_iterator<_IteratorR, _container> &rhs) {
 				return (lhs.getCurrent() + rhs.getCurrent());
 			}
-
-
 };
 #endif
