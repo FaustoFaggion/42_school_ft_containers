@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "random_access_iterator.hpp"
 #include <exception>
+#include "integral_type_traits.hpp"
 
 namespace ft
 {
@@ -74,7 +75,7 @@ namespace ft
 			void			push_back(const value_type& val);
 			void			pop_back();
 			template <class InputIterator>
-			void			insert(iterator position, InputIterator first, 
+			void			insert(iterator position, InputIterator first,
 				typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last);
 			iterator 		insert (iterator position, const value_type& val);
 			void 			insert(iterator position, size_type n, const value_type& val);

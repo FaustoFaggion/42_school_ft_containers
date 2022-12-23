@@ -21,6 +21,7 @@ HEADER		=	vector.hpp\
 				ClassTest.hpp\
 				iterator.hpp\
 				random_access_iterator.hpp\
+				integral_type_traits.hpp\
 
 				
 all:	$(NAME)
