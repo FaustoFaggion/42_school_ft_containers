@@ -11,9 +11,9 @@
 
 namespace ft
 {
-	template<typename T, class Alloc = std::allocator<T> > 
+	template<typename T, class Alloc = std::allocator<T> >
 	class vector {
-		
+
 		private:
 			typedef vector<T, Alloc>												vector_type;
 		public:	
@@ -73,6 +73,9 @@ namespace ft
 			void			assign(InputIterator first, InputIterator last);
 			void			push_back(const value_type& val);
 			void			pop_back();
+			template <class InputIterator>
+			void			insert(iterator position, InputIterator first, 
+				typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last);
 			iterator 		insert (iterator position, const value_type& val);
 			void 			insert(iterator position, size_type n, const value_type& val);
 			iterator		erase(iterator _position);
@@ -356,6 +359,18 @@ namespace ft
 	}
 
 	template<typename T, class Alloc>
+	template <class InputIterator>
+	void	vector<T, Alloc>::insert(iterator position, InputIterator first,
+		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
+
+		std::cout << "vamo lá" << *position << last << first << std::endl;
+		// for (; first != last; first++) {
+		// 	position = insert(position, first);
+		// 	++position;
+		// }
+	}
+
+	template<typename T, class Alloc>
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::insert(iterator position, const value_type& val) {
 		
 		if (_size == _capacity) {
@@ -410,7 +425,7 @@ namespace ft
 			resize(_size + n);
 			std::copy_backward(position, old_end, end());
 			for(size_type i = 0; i < n; i++) {
-				_alloc.construct(&(*(position + i)), val);
+				*(position + i) = val;
 			}
 		}
 	}
