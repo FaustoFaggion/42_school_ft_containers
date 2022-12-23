@@ -364,11 +364,10 @@ namespace ft
 	void	vector<T, Alloc>::insert(iterator position, InputIterator first,
 		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
 
-		std::cout << "vamo lá" << *position << last << first << std::endl;
-		// for (; first != last; first++) {
-		// 	position = insert(position, first);
-		// 	++position;
-		// }
+		for (; first != last; first++) {
+			position = insert(position, *first);
+			++position;
+		}
 	}
 
 	template<typename T, class Alloc>
