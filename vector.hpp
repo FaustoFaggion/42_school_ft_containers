@@ -338,13 +338,11 @@ namespace ft
 
 		if (n > _capacity)
 			reserve(n);
-		if (n <= this->_capacity) {
-			for (size_type i = 0; i < n; i++) {
-				this->_alloc.destroy(this->_data + i);
-				_alloc.construct(this->_data + i, val);
-			}
-			this->_size = n;
-	}
+		for (size_type i = 0; i < _size; i++)
+			this->_alloc.destroy(this->_data + i);
+		for (size_type i = 0; i < n; i++) 
+			_alloc.construct(this->_data + i, val);
+		this->_size = n;
 	}
 
 /* 	template<typename T, class Alloc>
