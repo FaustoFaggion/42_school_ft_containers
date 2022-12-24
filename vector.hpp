@@ -79,8 +79,8 @@ namespace ft
 
 //			Modifiers:
 			void			assign(size_type n, const value_type& val);
-			template<typename InputIterator>
-			void			assign(InputIterator first, InputIterator last);
+			// template<typename InputIterator>
+			// void			assign(InputIterator first, InputIterator last);
 			void			push_back(const value_type& val);
 			void			pop_back();
 			template <class InputIterator>
@@ -336,39 +336,23 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::assign(size_type n, const value_type& val) {
 
+		if (n > _capacity)
+			reserve(n);
 		if (n <= this->_capacity) {
 			for (size_type i = 0; i < n; i++) {
 				this->_alloc.destroy(this->_data + i);
 				_alloc.construct(this->_data + i, val);
 			}
 			this->_size = n;
-		}
-		else {
-			if (n > max_size()) {
-				 throw std::out_of_range("out_of_range: max_size exeded");
-			}
-			for (size_type i = 0; i < this->_size; i++) {
-				this->_alloc.destroy(this->_data + i);
-			}
-			_alloc.deallocate(this->_data, this->_capacity);
-			this->_data = _alloc.allocate(n);
-			if (this->_data == NULL) {
-				throw std::bad_alloc();
-			}
-			for (size_type i = 0; i < n; i++) {
-				_alloc.construct(this->_data + i, val);
-			}
-			this->_size = n;
-			this->_capacity = n;
-		}
+	}
 	}
 
-	template<typename T, class Alloc>
+/* 	template<typename T, class Alloc>
 	template<typename InputIterator>
 	void	vector<T, Alloc>::assign(InputIterator first, InputIterator last) {
 		
 	}
-
+ */
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
