@@ -29,7 +29,7 @@ int	main(void) {
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
 	std::cout << "--orig--" << std::endl;
-	std::vector<int> int_orig;
+	std::vector<int> int_orig(10, 55);
 	std::vector<float> float_orig;
 	std::vector<std::string> string_orig;
 	std::cout << "<int> size: " << int_orig.size() << " max_size: " << int_orig.max_size() << " capacity: " << int_orig.capacity() << " empty: " << int_orig.empty() << std::endl;

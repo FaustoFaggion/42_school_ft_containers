@@ -40,6 +40,8 @@ namespace ft
 
 		public:
 			explicit vector(const allocator_type& alloc = allocator_type());
+			explicit vector (size_type n, const value_type& val = value_type(),
+				const allocator_type& alloc = allocator_type());
 			~vector();
 
 			size_t	size();
@@ -100,12 +102,25 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::vector(const allocator_type& alloc) : _alloc(alloc) {
-//		std::cout << "vector constructor \n";
 		this->_data = _alloc.allocate(0);
 		this->_size = 0;
 		this->_max_size = _alloc.max_size();
 		this->_capacity = 0;
 	}
+
+
+	template<typename T, class Alloc>
+	vector<T, Alloc>::vector (size_type n, const value_type& val,
+		const allocator_type& alloc) {
+		
+		_data.allocate(n);
+		_size = n;
+		_capacity = n;
+		this->_max_size = _alloc.max_size();
+		for (size_type i = 0; i < n; i ++)
+			_alloc.construct(_data + i, val);
+	}
+
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
@@ -304,38 +319,13 @@ namespace ft
 			this->_capacity = n;
 		}
 	}
-/*
+
 	template<typename T, class Alloc>
 	template<typename InputIterator>
 	void	vector<T, Alloc>::assign(InputIterator first, InputIterator last) {
 		
-		if (n <= this->_capacity) {
-			for (vector::iterator it = first; it != last; it++) {
-				this->_alloc.destroy(it);
-				_alloc.construct(it, val);
-			}
-			this->_size = n;
-		}
-		else {
-			if (n > max_size()) {
-				 throw std::out_of_range("out_of_range: max_size exeded");
-			}
-			for (vector::iterator it = first; it != last; it++) {
-				this->_alloc.destroy(it);
-			}
-			_alloc.deallocate(this->_data, this->_capacity);
-			this->_data = _alloc.allocate(n);
-			if (this->_data == NULL) {
-				throw std::bad_alloc();
-			}
-			for (vector::iterator it = first; it != last; it++) {
-				_alloc.construct(it, val);
-			}
-			this->_size = n;
-			this->_capacity = n;
-		}
 	}
-*/
+
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
