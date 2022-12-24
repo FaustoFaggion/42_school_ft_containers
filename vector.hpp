@@ -42,11 +42,14 @@ namespace ft
 			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector (size_type n, const value_type& val = value_type(),
 				const allocator_type& alloc = allocator_type());
-			// template <class InputIterator>
-			// vector (InputIterator first,
-			// 	typename ft::enable_if<is_integral<InputIterator>::value, InputIterator>::type last,
-			// 	const allocator_type& alloc = allocator_type());
+			template <class InputIterator>
+			vector (InputIterator first,
+				typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+				const allocator_type& alloc = allocator_type());
+			vector (vector const &rsc);
 			~vector();
+
+			vector_type&	operator=(vector_type const &rhs);
 
 			size_t	size();
 			size_t	max_size();
@@ -89,7 +92,8 @@ namespace ft
 			iterator		erase(iterator first, iterator last);
 
 //			Non-member function overloads
-//			Alloc	get_allocator() const;
+			Alloc	get_allocator() const { return (this->_alloc);}
+
 	};
 
 //	Operators:
@@ -100,6 +104,21 @@ namespace ft
 			lhs << rhs._data[i] << std::endl;
 		}	
 		return (lhs);
+	}
+
+	template<typename T, class Alloc>
+	vector<T, Alloc>&	vector<T, Alloc>::operator=(vector<T, Alloc> const &rhs) {
+
+		for (size_type i = 0; i < _size; i++)
+			_alloc.destroy(_data + i);
+		_alloc.deallocate(_data, size_type());
+		_size = rhs._size;
+		_capacity = rhs._capacity;
+		_data = _alloc.allocate(_capacity);
+		_max_size = rhs._max_size;
+		for (size_t i = 0; i < _size; i++)
+			_alloc.construct(_data + i, *(rhs._data + i));
+		return *this;
 	}
 
 //	Constructors:
@@ -125,22 +144,27 @@ namespace ft
 			_alloc.construct(_data + i, val);
 	}
 
-	// template<typename T, class Alloc>
-	// template <class InputIterator>
-	// vector<T, Alloc>::vector (InputIterator first,
-	// 	typename ft::enable_if<is_integral<InputIterator>::value, InputIterator>::type last,
-	// 	const allocator_type& alloc) {
-	// 	std::cout << "hello" <<std::endl;
+	template<typename T, class Alloc>
+	template <class InputIterator>
+	vector<T, Alloc>::vector (InputIterator first,
+		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+		const allocator_type& alloc) : _alloc(alloc) {
+		std::cout << "hello" <<std::endl;
 
-	// 	_data = _alloc.allocate(last - first);
-	// 	_size = 0;
-	// 	_capacity = last - first;
-	// 	_max_size = _alloc.max_size();
-	// 	for (; first != last; ++first)
-	// 		push_back(*first);
-	// }
+		_data = _alloc.allocate(last - first);
+		_size = 0;
+		_capacity = last - first;
+		_max_size = _alloc.max_size();
+		for (; first != last; ++first)
+			push_back(*first);
+	}
 
-
+	template<typename T, class Alloc>
+	vector<T, Alloc>::vector(const vector& rsc) :	_alloc(rsc.get_allocator()){
+		_size = 0;
+		_data = _alloc.allocate(0);
+		*this = rsc;
+	}
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
 		std::cout << "vector destructor \n";
