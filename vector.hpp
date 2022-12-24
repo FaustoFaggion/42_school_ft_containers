@@ -79,8 +79,9 @@ namespace ft
 
 //			Modifiers:
 			void			assign(size_type n, const value_type& val);
-			// template<typename InputIterator>
-			// void			assign(InputIterator first, InputIterator last);
+			template<typename InputIterator>
+			void			assign(InputIterator first,
+				typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last);
 			void			push_back(const value_type& val);
 			void			pop_back();
 			template <class InputIterator>
@@ -345,12 +346,19 @@ namespace ft
 		this->_size = n;
 	}
 
-/* 	template<typename T, class Alloc>
+ 	template<typename T, class Alloc>
 	template<typename InputIterator>
-	void	vector<T, Alloc>::assign(InputIterator first, InputIterator last) {
-		
+	void	vector<T, Alloc>::assign(InputIterator first,
+		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
+		difference_type	n = last - first;
+		if ((size_type)n > _capacity)
+			reserve(n);
+		for (size_type i = 0; i < _size; i++)
+			this->_alloc.destroy(this->_data + i);
+		for (size_type i = 0; i < (size_type)n; i++)
+			_alloc.construct(this->_data + i, *(first + i));
+		this->_size = n;
 	}
- */
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::push_back(const value_type& val) {
