@@ -42,6 +42,10 @@ namespace ft
 			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector (size_type n, const value_type& val = value_type(),
 				const allocator_type& alloc = allocator_type());
+			// template <class InputIterator>
+			// vector (InputIterator first,
+			// 	typename ft::enable_if<is_integral<InputIterator>::value, InputIterator>::type last,
+			// 	const allocator_type& alloc = allocator_type());
 			~vector();
 
 			size_t	size();
@@ -111,15 +115,30 @@ namespace ft
 
 	template<typename T, class Alloc>
 	vector<T, Alloc>::vector (size_type n, const value_type& val,
-		const allocator_type& alloc) {
+		const allocator_type& alloc) : _alloc(alloc) {
 		
-		_data.allocate(n);
+		_data = _alloc.allocate(n);
 		_size = n;
 		_capacity = n;
 		this->_max_size = _alloc.max_size();
 		for (size_type i = 0; i < n; i ++)
 			_alloc.construct(_data + i, val);
 	}
+
+	// template<typename T, class Alloc>
+	// template <class InputIterator>
+	// vector<T, Alloc>::vector (InputIterator first,
+	// 	typename ft::enable_if<is_integral<InputIterator>::value, InputIterator>::type last,
+	// 	const allocator_type& alloc) {
+	// 	std::cout << "hello" <<std::endl;
+
+	// 	_data = _alloc.allocate(last - first);
+	// 	_size = 0;
+	// 	_capacity = last - first;
+	// 	_max_size = _alloc.max_size();
+	// 	for (; first != last; ++first)
+	// 		push_back(*first);
+	// }
 
 
 	template<typename T, class Alloc>

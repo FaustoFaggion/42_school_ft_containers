@@ -37,7 +37,7 @@ int	main(void) {
 	std::cout << "<string> size: " << string_orig.size() << " max_size: " << string_orig.max_size() << " capacity: " << string_orig.capacity() << " empty: " << string_orig.empty() << std::endl;
 
 	std::cout << "--ft--" << std::endl;
-	ft::vector<int> int_vector;
+	ft::vector<int> int_vector(10, 44);
 	ft::vector<float> float_vector;
 	ft::vector<std::string> string_vector;
 	std::cout << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
