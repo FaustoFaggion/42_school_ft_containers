@@ -10,19 +10,19 @@ class ClassTest {
 		int		*n;
 
 		ClassTest() {
-			std::cout << "ClassTest constructor" << std::endl;
+//			std::cout << "ClassTest constructor" << std::endl;
 			n = new int(4);
 		}
 		ClassTest(int num) {
-			std::cout << "ClassTest constructor" << std::endl;
+//			std::cout << "ClassTest constructor" << std::endl;
 			n = new int(num);
 		}
 		~ClassTest() {
-			std::cout << "ClassTest destructor" << std::endl;
+//			std::cout << "ClassTest destructor" << std::endl;
 			delete(n);
 		}
 		ClassTest(ClassTest const & rsc) {
-			std::cout << "ClassTest copy_constructor called" << std::endl;
+//			std::cout << "ClassTest copy_constructor called" << std::endl;
 			this->n = NULL;
 			*this = rsc;
 		}
@@ -31,7 +31,7 @@ class ClassTest {
 };
 
 ClassTest const	&ClassTest::operator=(ClassTest const &rhs) {
-	std::cout << "ClassTest operator= called" << std::endl;
+//	std::cout << "ClassTest operator= called" << std::endl;
 	if (this->n)
 		delete(n);
 	this->n = new int(*(rhs).n);

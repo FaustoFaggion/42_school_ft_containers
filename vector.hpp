@@ -287,13 +287,11 @@ namespace ft
 
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::reference	vector<T, Alloc>::operator[] (size_type n) {
-		std::cout << "--vector operator[] called-- ";
 		return (this->_data[n]);
 	}
 
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::const_reference	vector<T, Alloc>::operator[] (size_type n) const {
-		std::cout << "--const vector operator[] called-- ";
 		return (this->_data[n]);
 	}
 
@@ -510,11 +508,46 @@ namespace ft
 
 //	Non-member function overloads
 
-//	template<typename T, class Alloc>
-//	Alloc	vector<T, Alloc>::get_allocator() const {
-//		return(Alloc);
-//	}
+//	Relational Operators
 
+	template<typename T, class Alloc>
+	bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+
+		if (lhs.size != rhs.size)
+			return (false);
+		return (std::equal(lhs.begin(), lhs.end(), rhs.begin()));
+	}
+
+	template<typename T, class Alloc>
+	bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (!(lhs == rhs));
+	}
+
+	template<typename T, class Alloc>
+	bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	}
+
+	template<typename T, class Alloc>
+	bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (lhs < rhs || lhs == rhs);
+	}
+
+	template<typename T, class Alloc>
+	bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	}
+
+	template<typename T, class Alloc>
+	bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (lhs > rhs || lhs == rhs);
+	}
+
+//	Swap
+	template<typename T, class Alloc>
+	void	swap(vector<T,Alloc>& lhs, vector<T,Alloc>& rhs) {
+		lhs.swap(rhs);
+	}
 };
 
 #endif
