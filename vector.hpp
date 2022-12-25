@@ -92,6 +92,7 @@ namespace ft
 			iterator		erase(iterator _position);
 			iterator		erase(iterator first, iterator last);
 			void			clear(void);
+			void			swap(vector_type &rsc);
 
 //			Non-member function overloads
 			Alloc	get_allocator() const { return (this->_alloc);}
@@ -488,6 +489,22 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::clear(void) {
 		erase(begin(), end());
+	}
+
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::swap(vector_type &rsc) {
+
+		size_type	tmp_size = _size;
+		size_type	tmp_capacity = _capacity;
+		pointer		tmp_data = _data;
+
+		_size = rsc._size;
+		_capacity = rsc._capacity;
+		_data = rsc._data;
+
+		rsc._size = tmp_size;
+		rsc._capacity = tmp_capacity;
+		rsc._data = tmp_data;
 	}
 
 
