@@ -91,6 +91,7 @@ namespace ft
 			void 			insert(iterator position, size_type n, const value_type& val);
 			iterator		erase(iterator _position);
 			iterator		erase(iterator first, iterator last);
+			void			clear(void);
 
 //			Non-member function overloads
 			Alloc	get_allocator() const { return (this->_alloc);}
@@ -484,6 +485,10 @@ namespace ft
 		return (first);
 	}
 
+	template<typename T, class Alloc>
+	void	vector<T, Alloc>::clear(void) {
+		erase(begin(), end());
+	}
 
 
 //	Non-member function overloads
