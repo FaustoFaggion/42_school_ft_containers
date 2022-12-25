@@ -28,10 +28,10 @@
 //static void	vector_operator_equal(void);
 //static void	vector_clear(void);
 //static void	vector_swap(void);
-static void	vector_swap_non_member(void);
+//static void	vector_swap_non_member(void);
 int	main(void) {
 
-	vector_swap_non_member();
+
 	return (0);
 }
 

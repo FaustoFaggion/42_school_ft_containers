@@ -1,12 +1,10 @@
-#ifndef ITERATOR_HPP
-#define ITERATOR_HPP
+#ifndef ITERATOR_TRAITS_HPP
+#define ITERATOR_TRAITSHPP
 
 #include <iterator>
 #include <cstddef>
 
 namespace ft {
-	
-//	iterator_traits:
 
 	template <class Category, class T, class Distance = ptrdiff_t, 
 		class Pointer = T*, class Reference = T&>
