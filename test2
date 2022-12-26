@@ -1,0 +1,48 @@
+
+------------RESIZE------------
+
+
+------------Constructor------------
+
+--orig--
+<int> size: 0 max_size: 2305843009213693951 capacity: 0 empty: 1
+<float> size: 0 max_size: 2305843009213693951 capacity: 0 empty: 1
+<class> size: 0 max_size: 1152921504606846975 capacity: 0 empty: 1
+
+------resize 1------
+
+--orig--
+<int> size: 1 max_size: 2305843009213693951 capacity: 1 empty: 0
+<float> size: 1 max_size: 2305843009213693951 capacity: 1 empty: 0
+<class> size: 1 max_size: 1152921504606846975 capacity: 1 empty: 0
+
+------resize 2------
+
+--orig--
+<int> size: 2 max_size: 2305843009213693951 capacity: 2 empty: 0
+<float> size: 2 max_size: 2305843009213693951 capacity: 2 empty: 0
+<class> size: 2 max_size: 1152921504606846975 capacity: 2 empty: 0
+
+------resize 5------
+
+--orig--
+<int> size: 5 max_size: 2305843009213693951 capacity: 5 empty: 0
+<float> size: 5 max_size: 2305843009213693951 capacity: 5 empty: 0
+<class> size: 5 max_size: 1152921504606846975 capacity: 5 empty: 0
+
+------resize 1------
+
+--orig--
+
+<int> size: 1 max_size: 2305843009213693951 capacity: 5 empty: 0
+
+<int> size: 1 max_size: 2305843009213693951 capacity: 5 empty: 0
+
+<class> size: 1 max_size: 1152921504606846975 capacity: 5 empty: 0
+
+------resize 0------
+
+--orig--
+<int> size: 0 max_size: 2305843009213693951 capacity: 5 empty: 1
+<float> size: 0 max_size: 2305843009213693951 capacity: 5 empty: 1
+<class> size: 0 max_size: 1152921504606846975 capacity: 5 empty: 1

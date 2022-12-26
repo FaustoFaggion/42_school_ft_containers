@@ -6,3 +6,19 @@ START VECTOR TESTS
 
 ----push_back----
 
+----at----
+
+----back----
+
+----front----
+
+----pop_back----
+
+----begin() & end()----
+
+----iterator operators----
+
+----assing_fill----
+
+----assing_range----
+

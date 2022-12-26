@@ -342,7 +342,6 @@ namespace ft
 	void	vector<T, Alloc>::pop_back(void) {
 
 		if (this->_size > 0) {
-			std::cout << "--pop_back called--" << std::endl;
 			this->_alloc.destroy(this->_data + this->_size - 1);
 			this->_size--;
 		}
