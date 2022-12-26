@@ -68,3 +68,21 @@ c++ -Wall -Wextra -Werror -std=c++98 vector_assign_range_orig.cpp && ./a.out > t
 c++ -Wall -Wextra -Werror -std=c++98 vector_assign_range_ft.cpp && ./a.out > test2
 diff test1 test2 >> test_difference
 echo "" >> test_difference
+
+echo "----erase_position----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_erase_position_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_erase_position_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----erase_range----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_erase_range_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_erase_range_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----insert_element----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_insert_element_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_insert_element_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference

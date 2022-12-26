@@ -11,7 +11,7 @@
 // static void	vector_front(void);
 // static void	vector_pop_back(void);
 // static void	vector_end(void);
- static void	vector_operators_mais_menos(void);
+// static void	vector_operators_mais_menos(void);
 // static void	vector_assign2(void);
 // static void	vector_assign_range(void);
 // static void	vector_erase(void);
@@ -36,9 +36,7 @@ int	main(void) {
 	vector_front();
 	vector_pop_back();
 	vector_end();
-	*/
 	vector_operators_mais_menos();
-	/*
 	vector_assign2();
 	vector_assign_range();
 	vector_erase();
@@ -322,8 +320,8 @@ int	main(void) {
 	*/
 	return (0);
 }
-/*
-static void	vector_resize(void) {
+
+/*static void	vector_resize(void) {
 	
 
 	std::cout << "\n------------RESIZE------------\n" << std::endl;
@@ -668,8 +666,8 @@ static void vector_push_back(void) {
 	std::cout << class_vector[5] << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 }
 */
-/*
-static void	vector_at(void) {
+
+/*static void	vector_at(void) {
 
 	std::cout << "\n------------AT------------\n" << std::endl;
 	ClassTest	a(2);
@@ -730,8 +728,7 @@ static void	vector_at(void) {
 }
 */
 
-/*
-static void	vector_back(void) {
+/*static void	vector_back(void) {
 
 	std::cout << "\n------------BACK------------\n" << std::endl;
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -799,8 +796,8 @@ static void	vector_back(void) {
 	std::cout << "back: " << class_vector.back() << std::endl;
 }
 */
-/*
-static void	vector_front(void) {
+
+/*static void	vector_front(void) {
 
 	std::cout << "\n------------FRONT------------\n" << std::endl;
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -869,8 +866,8 @@ static void	vector_front(void) {
 	
 }
 */
-/*
-static void	vector_pop_back(void) {
+
+/*static void	vector_pop_back(void) {
 
 	std::cout << "\n------------POP_BACK------------\n" << std::endl;
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -970,8 +967,7 @@ static void	vector_pop_back(void) {
 }
 */
 
-/*
-static void	vector_end(void) {
+/*static void	vector_end(void) {
 
 	std::cout << "\n------------END------------\n" << std::endl;
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -1079,8 +1075,7 @@ static void	vector_end(void) {
 }
 */
 
-/*
-static void	vector_iterator_operators(void) {
+/*static void	vector_iterator_operators(void) {
 
 
 	std::cout << "\n------------OPERATOR (+ & - ------------\n" << std::endl;
@@ -1162,8 +1157,7 @@ static void	vector_iterator_operators(void) {
 }
 */
 
-/*
- static void	vector_assign2(void) {
+/*static void	vector_assign2(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -1355,8 +1349,8 @@ static void	vector_iterator_operators(void) {
 
 }
 */
-/*
-static void	vector_assign_range(void) {
+
+/*static void	vector_assign_range(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -1539,9 +1533,9 @@ static void	vector_assign_range(void) {
 	}
 	std::cout << class_vector.at(1) << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
-static void	vector_erase(void){
+/*static void	vector_erase(void){
 	
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -1694,9 +1688,9 @@ static void	vector_erase(void){
 		std::cout << *it << std::endl;
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
-}
+}*/
 
-static void	vector_erase2(void) {
+/*static void	vector_erase2(void) {
 
 		std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -1899,9 +1893,9 @@ static void	vector_erase2(void) {
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
-static void	vector_insert_element(void) {
+/*static void	vector_insert_element(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -2114,9 +2108,9 @@ static void	vector_insert_element(void) {
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
-static void	vector_insert_range(void) {
+/*static void	vector_insert_range(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -2335,9 +2329,9 @@ static void	vector_insert_range(void) {
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
- static void	vector_constructor(void) {
+/*static void	vector_constructor(void) {
 
 
 	std::cout << "\n------------Constructor fill 2------------\n" << std::endl;
@@ -2573,9 +2567,9 @@ static void	vector_insert_range(void) {
 	}
 	std::cout<< "<class> size: " << class_vector3.size() << " max_size: " << class_vector3.max_size() << " capacity: " << class_vector3.capacity() << " empty: " << class_vector3.empty() << std::endl;
 
-}
+}*/
 
- static void	vector_operator_equal(void) {
+/*static void	vector_operator_equal(void) {
 
 		
 	std::cout << "\n------------Constructor------------\n" << std::endl;
@@ -2638,9 +2632,9 @@ static void	vector_insert_range(void) {
 	}
 	std::cout << "<int> size: " << int_vector2.size() << " max_size: " << int_vector2.max_size() << " capacity: " << int_vector2.capacity() << " empty: " << int_vector2.empty() << std::endl;
 	
-} 
+}*/
 
-static void	vector_clear(void) {
+/*static void	vector_clear(void) {
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
 
@@ -2738,9 +2732,9 @@ static void	vector_clear(void) {
 	}
 	std::cout<< "<string> size: " << string_vector.size() << " max_size: " << string_vector.max_size() << " capacity: " << string_vector.capacity() << " empty: " << string_vector.empty() << std::endl;
 
-}
+}*/
 
-static void	vector_swap(void) {
+/*static void	vector_swap(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -2938,9 +2932,9 @@ static void	vector_swap(void) {
 
 	std::cout << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
-static void	vector_swap_non_member(void) {
+/*static void	vector_swap_non_member(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
