@@ -72,7 +72,7 @@ namespace ft {
 				return (self(_current + _n));
 			}
 
-			friend self	operator+(const self &rhs, const difference_type &_n) {
+			friend self	operator+(const difference_type &_n, const self &rhs) {
 				return (self(rhs.getCurrent() + _n));
 			}
 
@@ -138,11 +138,11 @@ namespace ft {
 			return (lhs.getCurrent() - rhs.getCurrent());
 		}
 
-//	template<typename _IteratorL, typename _IteratorR, typename _container>
-//	inline typename random_access_iterator<_IteratorL, _container>::difference_type
-//		operator+(const random_access_iterator<_IteratorL, _container> &lhs,
-//			const random_access_iterator<_IteratorR, _container> &rhs) {
-//			return (lhs.getCurrent() + rhs.getCurrent());
-//		}
+	template<typename _IteratorL, typename _IteratorR, typename _container>
+	inline typename random_access_iterator<_IteratorL, _container>::difference_type
+		operator+(const random_access_iterator<_IteratorL, _container> &lhs,
+			const random_access_iterator<_IteratorR, _container> &rhs) {
+			return (lhs.getCurrent() + rhs.getCurrent());
+		}
 };
 #endif

@@ -21,6 +21,7 @@ HEADER		=	vector.hpp\
 				ClassTest.hpp\
 				iterator_traits.hpp\
 				random_access_iterator.hpp\
+				reverse_iterator.hpp\
 				integral_type_traits.hpp\
 
 				

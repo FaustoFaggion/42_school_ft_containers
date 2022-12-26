@@ -7,6 +7,7 @@
 #include <iterator>
 #include <algorithm>
 #include "random_access_iterator.hpp"
+#include "reverse_iterator.hpp"
 #include <exception>
 #include "integral_type_traits.hpp"
 
@@ -28,7 +29,8 @@ namespace ft
 			typedef typename allocator_type::difference_type						difference_type;
 			typedef typename ft::random_access_iterator<pointer, vector_type>		iterator;
 			typedef typename ft::random_access_iterator<const pointer, vector_type>	const_iterator;
-
+			typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
+			typedef typename ft::reverse_iterator<const iterator>					const_reverse_iterator;
 
 		private:
 			allocator_type		_alloc;
@@ -61,6 +63,18 @@ namespace ft
 			iterator		cbegin(void) { return (const_iterator(_data)); }
 			iterator		end(void) { return (iterator(_data + _size)); }
 			iterator		cend(void) { return (const_iterator(_data + _size)); }
+
+			reverse_iterator	rbegin() { return (reverse_iterator(end()));}
+			reverse_iterator	rend() { return reverse_iterator(begin()); }
+      /**
+       *  Returns a read-only (constant) reverse iterator that points
+       *  to the last element in the %vector.  Iteration is done in
+       *  reverse element order.
+       */
+      const_reverse_iterator
+      rbegin() const
+      { return const_reverse_iterator(end()); }
+
 
 //			Capacity:
 			void			resize(size_type n, value_type val = value_type());
@@ -170,7 +184,6 @@ namespace ft
 	}
 	template<typename T, class Alloc>
 	vector<T, Alloc>::~vector() {
-		std::cout << "vector destructor \n";
 		for (size_type i = 0; i < this->_size; i++) {
 				this->_alloc.destroy(this->_data + i);
 			}
@@ -204,61 +217,11 @@ namespace ft
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
-		if (n < this->_size) {
-//			std::cout << "case1 \n";
-			for (size_type i = n; i < this->_size; i++) {
-				this->_alloc.destroy(this->_data + i);
-			}
-			this->_size = n;
-		}
-		else if (n > this->_size) {
-			T			*temp;
-			size_type	c;
-			
-			if (n <= this->_capacity) {
-//				std::cout << "case2 \n";
-				for (size_type i = this->_size; i < n; i++) {
-						_alloc.construct(_data + i, val);
-				}
-				this->_size = n;
-			}
-			else if (n > this->_capacity) {
-
-				if (this->_capacity == 0) {
-//					std::cout << "case3 \n";
-					if (n > max_size()) {
-						 throw std::out_of_range("out_of_range: max_size exeded");
-					}
-					temp = _alloc.allocate(n);
-					c = n;
-				}
-				else {
-//					std::cout << "case4 \n";
-					c = this->_capacity * 2;
-					if ((c / 2) != this->_capacity)
-						throw std::overflow_error("overflow error: max_size exeded");
-					temp = _alloc.allocate(c);
-				}
-				for (size_type i = 0; i < n; i++) {
-					
-					if (i < this->_size){
-//						std::cout << "case5 \n";
-						this->_alloc.construct(temp + i, this->_data[i]);
-					}
-					else {
-//						std::cout << "case6 \n";
-						_alloc.construct(temp + i, val);
-					}
-				}
-				for (size_type i = 0; i < this->_size; i++) {
-					this->_alloc.destroy(this->_data + i);
-				}
-				_alloc.deallocate(this->_data, this->_capacity);
-				this->_data = temp;
-				this->_capacity = c;
-				this->_size = n;
-			}
-		}
+		
+		if (n < _size)
+			erase(begin() + n, end());
+		else
+			insert(end(), n - _size, val);
 	}
 
 	template<typename T, class Alloc>
@@ -368,7 +331,10 @@ namespace ft
 			this->_size++;
 		}
 		else {
-			resize(this->_size + 1, val);
+			
+			reserve(_capacity == 0? 1 : _capacity * 2);
+			this->_alloc.construct(this->_data + this->_size, val);
+			this->_size++;
 		}
 	}
 
@@ -397,17 +363,14 @@ namespace ft
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::insert(iterator position, const value_type& val) {
 		
 		if (_size == _capacity) {
-			std::cout << "insert 1\n";
 			const size_type	n = position - begin();
 			reserve((_capacity * 2));
 			position = begin() + n;
 		}
 		if (position == end()) {
-			std::cout << "insert 2\n";
 			push_back(val);
 		}
 		else {
-			std::cout << "insert 3\n";
 			this->_alloc.construct(_data + _size, *(_data + _size - 1));
 			++this->_size;
 			value_type	copy_val = val;
@@ -431,19 +394,15 @@ namespace ft
 		if (n == 0)
 			return ;
 		if ((_size + n) > _capacity) {
-			std::cout << "insert 1\n";
 			difference_type d = position - begin();
-			std::cout << d << std::endl;
 			reserve(_size + n);
 			position = begin() + d;
 		}
 		if (position == end()) {
-			std::cout << "insert 2\n";
 			for(size_type i = 0; i < n; i++)
 				push_back(val);
 		}
 		else {
-			std::cout << "insert 3\n";
 			iterator old_end(end());
 			resize(_size + n);
 			std::copy_backward(position, old_end, end());
