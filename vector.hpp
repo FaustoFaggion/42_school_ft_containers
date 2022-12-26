@@ -351,7 +351,7 @@ namespace ft
 	template <class InputIterator>
 	void	vector<T, Alloc>::insert(iterator position, InputIterator first,
 		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
-
+		
 		for (; first != last; first++) {
 			position = insert(position, *first);
 			++position;
