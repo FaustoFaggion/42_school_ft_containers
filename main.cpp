@@ -16,8 +16,8 @@
 // static void	vector_assign_range(void);
 // static void	vector_erase(void);
 // static void	vector_erase2(void);
-// static void	vector_insert_element(void);
- static void	vector_insert_range(void);
+ static void	vector_insert_element(void);
+// static void	vector_insert_range(void);
 // static void	vector_constructor(void);
 // static void	vector_operator_equal(void);
 // static void	vector_clear(void);
@@ -41,11 +41,11 @@ int	main(void) {
 	vector_assign_range();
 	vector_erase();
 	vector_erase2();
-	vector_insert_element();
 	*/
+	vector_insert_element();
+	/*
 	vector_insert_range();
-	
-	/*vector_constructor();
+	vector_constructor();
 	vector_operator_equal();
 	vector_clear();
 	vector_swap();
@@ -1897,7 +1897,7 @@ static void vector_push_back(void) {
 
 }*/
 
-/*static void	vector_insert_element(void) {
+static void	vector_insert_element(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -2110,9 +2110,9 @@ static void vector_push_back(void) {
 	}
 	std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}*/
+}
 
-static void	vector_insert_range(void) {
+/*static void	vector_insert_range(void) {
 
 	std::cout << "\n------------Constructor------------\n" << std::endl;
 
@@ -2380,7 +2380,7 @@ static void	vector_insert_range(void) {
 	// }
 	// std::cout<< "<float> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
-}
+}*/
 
 /*static void	vector_constructor(void) {
 

@@ -360,11 +360,20 @@ namespace ft
 			push_back(val);
 		}
 		else {
-			this->_alloc.construct(_data + _size, *(_data + _size - 1));
-			++this->_size;
-			value_type	copy_val = val;
-			std::copy_backward(position, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
-			*position = copy_val;
+			if (is_integral<T>::value) {
+
+				push_back(*(_data + _size - 1));
+				value_type	copy_val = val;
+				std::copy_backward(&(*position), ((_data + _size) - 2), ((_data + _size) - 1));
+				*position = copy_val;
+			}
+			else {
+				this->_alloc.construct(_data + _size, *(_data + _size - 1));
+				++this->_size;
+				value_type	copy_val = val;
+				std::copy_backward(position, iterator((_data + _size) - 2), iterator((_data + _size) - 1));
+				*position = copy_val;
+			}
 		}
 		return (position);
 	}
@@ -423,10 +432,16 @@ namespace ft
 	*/
 	template<typename T, class Alloc>
 	typename vector<T, Alloc>::iterator	vector<T, Alloc>::erase(iterator first, iterator last) {
-		iterator i(std::copy(last, end(), first));
-		while (i != end()) {
-			this->_alloc.destroy(&(*i));
-			i++;
+		
+		if (is_integral<T>::value) {
+			std::copy(&(*last), &(*end()), &(*first));
+		}
+		else {
+			iterator i(std::copy(last, end(), first));
+			while (i != end()) {
+				this->_alloc.destroy(&(*i));
+				i++;
+			}
 		}
 		_size -= (last - first);
 		return (first);
