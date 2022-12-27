@@ -86,3 +86,39 @@ c++ -Wall -Wextra -Werror -std=c++98 vector_insert_element_orig.cpp && ./a.out >
 c++ -Wall -Wextra -Werror -std=c++98 vector_insert_element_ft.cpp && ./a.out > test2
 diff test1 test2 >> test_difference
 echo "" >> test_difference
+
+echo "----insert_range----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_insert_range_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_insert_range_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----constructors----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_constructors_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_constructors_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----operator_equal----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_operator_equal_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_operator_equal_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----clear----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_clear_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_clear_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----swap----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_swap_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_swap_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+echo "----swap_non_member----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 vector_swap_non_member_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 vector_swap_non_member_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference

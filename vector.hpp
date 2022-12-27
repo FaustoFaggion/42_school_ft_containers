@@ -166,7 +166,6 @@ namespace ft
 	vector<T, Alloc>::vector (InputIterator first,
 		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
 		const allocator_type& alloc) : _alloc(alloc) {
-		std::cout << "hello" <<std::endl;
 
 		_data = _alloc.allocate(last - first);
 		_size = 0;
