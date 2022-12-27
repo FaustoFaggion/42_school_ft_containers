@@ -41,16 +41,17 @@ namespace ft
 
 
 		public:
+//			Constructor:
 			explicit vector(const allocator_type& alloc = allocator_type());
 			explicit vector (size_type n, const value_type& val = value_type(),
-				const allocator_type& alloc = allocator_type());
+								const allocator_type& alloc = allocator_type());
 			template <class InputIterator>
-			vector (InputIterator first,
-				typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
-				const allocator_type& alloc = allocator_type());
+			vector (InputIterator first, typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last,
+													const allocator_type& alloc = allocator_type());
 			vector (vector const &rsc);
 			~vector();
-
+			
+//			Operator:
 			vector_type&	operator=(vector_type const &rhs);
 
 			size_t	size();
@@ -59,22 +60,14 @@ namespace ft
 			bool	empty();
 
 //			Iterator:
-			iterator		begin(void) { return (iterator(_data)); }
-			iterator		cbegin(void) { return (const_iterator(_data)); }
-			iterator		end(void) { return (iterator(_data + _size)); }
-			iterator		cend(void) { return (const_iterator(_data + _size)); }
-
-			reverse_iterator	rbegin() { return (reverse_iterator(end()));}
-			reverse_iterator	rend() { return reverse_iterator(begin()); }
-      /**
-       *  Returns a read-only (constant) reverse iterator that points
-       *  to the last element in the %vector.  Iteration is done in
-       *  reverse element order.
-       */
-      const_reverse_iterator
-      rbegin() const
-      { return const_reverse_iterator(end()); }
-
+			iterator				begin(void) { return (iterator(_data)); }
+			const_iterator			cbegin(void) { return (const_iterator(_data)); }
+			iterator				end(void) { return (iterator(_data + _size)); }
+			const_iterator			cend(void) { return (const_iterator(_data + _size)); }
+			reverse_iterator		rbegin() { return (reverse_iterator(end()));}
+			reverse_iterator		rend() { return reverse_iterator(begin()); }
+			const_reverse_iterator	rbegin() const { return const_reverse_iterator(end()); }
+			const_reverse_iterator	rend() const { return const_reverse_iterator(begin()); }
 
 //			Capacity:
 			void			resize(size_type n, value_type val = value_type());
@@ -89,7 +82,6 @@ namespace ft
 			const_reference	back() const;
 			reference		front();
 			const_reference	front() const;
-
 
 //			Modifiers:
 			void			assign(size_type n, const value_type& val);
@@ -330,9 +322,8 @@ namespace ft
 			this->_size++;
 		}
 		else {
-			
 			reserve(_capacity == 0? 1 : _capacity * 2);
-			this->_alloc.construct(this->_data + this->_size, val);
+				this->_alloc.construct(this->_data + this->_size, val);
 			this->_size++;
 		}
 	}
