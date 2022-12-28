@@ -1,0 +1,151 @@
+
+------------Constructor------------
+
+<int> size: 0 max_size: 2305843009213693951 capacity: 0 empty: 1
+<int> size: 0 max_size: 2305843009213693951 capacity: 0 empty: 1
+<string> size: 0 max_size: 288230376151711743 capacity: 0 empty: 1
+
+------int push_back1------
+
+12<int> size: 1 max_size: 2305843009213693951 capacity: 1 empty: 0
+12.1<float> size: 1 max_size: 2305843009213693951 capacity: 1 empty: 0
+Ana 12<string> size: 1 max_size: 288230376151711743 capacity: 1 empty: 0
+
+------int push_back2------
+
+14<int> size: 2 max_size: 2305843009213693951 capacity: 2 empty: 0
+14.1<float> size: 2 max_size: 2305843009213693951 capacity: 2 empty: 0
+Arnold 14<string> size: 2 max_size: 288230376151711743 capacity: 2 empty: 0
+
+------int push_back3------
+
+16<int> size: 3 max_size: 2305843009213693951 capacity: 4 empty: 0
+16.1<float> size: 3 max_size: 2305843009213693951 capacity: 4 empty: 0
+Arnoldoca 16<string> size: 3 max_size: 288230376151711743 capacity: 4 empty: 0
+
+------int push_back4------
+
+18<int> size: 4 max_size: 2305843009213693951 capacity: 4 empty: 0
+18.1<float> size: 4 max_size: 2305843009213693951 capacity: 4 empty: 0
+Arnoljones 18<string> size: 4 max_size: 288230376151711743 capacity: 4 empty: 0
+
+------int push_back5------
+
+20<int> size: 5 max_size: 2305843009213693951 capacity: 8 empty: 0
+20.1<float> size: 5 max_size: 2305843009213693951 capacity: 8 empty: 0
+Arnoljones 20<string> size: 5 max_size: 288230376151711743 capacity: 8 empty: 0
+
+------insert range------
+
+12
+14
+16
+18
+20
+9
+9
+9
+9
+9
+<int> size: 10 max_size: 2305843009213693951 capacity: 10 empty: 0
+12.1
+14.1
+16.1
+18.1
+20.1
+9.1
+9.1
+9.1
+9.1
+9.1
+<float> size: 10 max_size: 2305843009213693951 capacity: 10 empty: 0
+Ana 12
+Arnold 14
+Arnoldoca 16
+Arnoljones 18
+Arnoljones 20
+Orlando
+Orlando
+Orlando
+Orlando
+Orlando
+<string> size: 10 max_size: 288230376151711743 capacity: 10 empty: 0
+
+------insert range 2------
+
+12
+14
+7
+7
+7
+7
+7
+16
+18
+20
+9
+9
+9
+9
+9
+<int> size: 15 max_size: 2305843009213693951 capacity: 20 empty: 0
+12.1
+14.1
+7.1
+7.1
+7.1
+7.1
+7.1
+16.1
+18.1
+20.1
+9.1
+9.1
+9.1
+9.1
+9.1
+<float> size: 15 max_size: 2305843009213693951 capacity: 20 empty: 0
+Ana 12
+Arnold 14
+ana
+ana
+ana
+ana
+ana
+Arnoldoca 16
+Arnoljones 18
+Arnoljones 20
+Orlando
+Orlando
+Orlando
+Orlando
+Orlando
+<string> size: 15 max_size: 288230376151711743 capacity: 20 empty: 0
+
+------------Constructor------------
+
+<class> size: 0 max_size: 1152921504606846975 capacity: 0 empty: 1
+
+------int push_back1------
+
+2<class> size: 1 max_size: 1152921504606846975 capacity: 1 empty: 0
+
+------int push_back2------
+
+4<class> size: 2 max_size: 1152921504606846975 capacity: 2 empty: 0
+
+------int push_back3------
+
+6<class> size: 3 max_size: 1152921504606846975 capacity: 4 empty: 0
+
+------insert range------
+
+2
+2
+2
+2
+2
+2
+4
+6
+<float> size: 8 max_size: 1152921504606846975 capacity: 8 empty: 0

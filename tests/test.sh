@@ -93,6 +93,13 @@ c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_insert_range_ft.cpp && .
 diff test1 test2 >> test_difference
 echo "" >> test_difference
 
+echo "----insert_range_n----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_insert_range_n_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_insert_range_n_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
+
 echo "----constructors----" >> test_difference
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_constructors_orig.cpp && ./a.out > test1
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_constructors_ft.cpp && ./a.out > test2

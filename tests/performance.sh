@@ -24,6 +24,8 @@ c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/insert_element.cpp && .
 
 c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/insert_range.cpp && ./a.out
 
+c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/insert_range_n.cpp && ./a.out
+
 c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/pop_back.cpp && ./a.out
 
 c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/push_back.cpp && ./a.out
