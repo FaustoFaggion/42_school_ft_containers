@@ -1,0 +1,42 @@
+START VECTOR TESTS
+
+----resize----
+
+----reserve----
+
+----push_back----
+
+----at----
+
+----back----
+
+----front----
+
+----pop_back----
+
+----begin() & end()----
+
+----iterator operators----
+
+----assing_fill----
+
+----assing_range----
+
+----erase_position----
+
+----erase_range----
+
+----insert_element----
+
+----insert_range----
+
+----constructors----
+
+----operator_equal----
+
+----clear----
+
+----swap----
+
+----swap_non_member----
+

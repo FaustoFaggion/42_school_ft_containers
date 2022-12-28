@@ -48,3 +48,4 @@ run:	$(NAME)
 
 valgrind: clean $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+	

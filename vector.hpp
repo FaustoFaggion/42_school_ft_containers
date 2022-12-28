@@ -209,10 +209,15 @@ namespace ft
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::resize(size_type n, value_type val) {
 		
+		if (n > _capacity)
+			reserve(n);
 		if (n < _size)
-			erase(begin() + n, end());
-		else
-			insert(end(), n - _size, val);
+			erase(begin() + n);
+		else {
+			for(size_type i = _size; i < n; i++)
+				_alloc.construct(_data + i, val);
+		}
+		_size = n;
 	}
 
 	template<typename T, class Alloc>
@@ -304,6 +309,7 @@ namespace ft
 	template<typename InputIterator>
 	void	vector<T, Alloc>::assign(InputIterator first,
 		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
+		
 		difference_type	n = last - first;
 		if ((size_type)n > _capacity)
 			reserve(n);
@@ -341,10 +347,35 @@ namespace ft
 	template <class InputIterator>
 	void	vector<T, Alloc>::insert(iterator position, InputIterator first,
 		typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type last) {
-		
-		for (; first != last; first++) {
-			position = insert(position, *first);
-			++position;
+
+		difference_type	n = last - first;
+		if ((size_type)n + _size > _capacity) {
+			difference_type d = position - begin();
+			reserve(_size + n);
+			position = begin() + d;
+		}
+		if (position == end()) {
+			for(; first != last; first++)
+				push_back(*first);
+		}
+		else {
+			iterator old_end(end());
+			if (is_integral<T>::value) {
+				std::copy_backward(&(*position), &(*old_end), &(*(end() + n)));
+				for(; first != last; first++) {
+					*(position) = *first;
+					position++;
+				}
+				_size += n;
+			}
+			else {
+				resize(_size + n);
+				std::copy_backward(position, old_end, end());
+				for(; first != last; first++) {
+					*(position) = *first;
+					position++;
+				}
+			}
 		}
 	}
 
@@ -459,9 +490,9 @@ namespace ft
 		size_type	tmp_capacity = _capacity;
 		pointer		tmp_data = _data;
 
+		_data = rsc._data;
 		_size = rsc._size;
 		_capacity = rsc._capacity;
-		_data = rsc._data;
 
 		rsc._size = tmp_size;
 		rsc._capacity = tmp_capacity;
