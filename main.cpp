@@ -4,7 +4,6 @@
 #include <string.h>
 
 static void	vector_resize(void);
-/*
 static void	vector_reserve(void);
 static void	vector_push_back(void);
 static void	vector_at(void);
@@ -27,13 +26,12 @@ static void	vector_operator_equal(void);
 static void	vector_clear(void);
 static void	vector_swap(void);
 static void	vector_swap_non_member(void);
-*/
+
 
 
 int	main(void) {
 
 	vector_resize();
-	/*
 	vector_reserve();
 	vector_push_back();
 	vector_at();
@@ -49,13 +47,12 @@ int	main(void) {
 	vector_erase2();
 	vector_insert_element();
 	vector_insert_range();
-	 vector_insert_range_n();
+	vector_insert_range_n();
 	vector_constructor();
 	vector_operator_equal();
 	vector_clear();
 	vector_swap();
 	vector_swap_non_member();
-	*/
 
 
 	return (0);
@@ -174,7 +171,7 @@ static void	vector_resize(void) {
 	std::cout << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 
 }
-/*
+
 static void	vector_reserve(void) {
 	
 	std::cout << "\n------------RESERVE------------\n" << std::endl;
@@ -406,7 +403,6 @@ static void vector_push_back(void) {
 	std::cout << class_vector[5] << "<class> size: " << class_vector.size() << " max_size: " << class_vector.max_size() << " capacity: " << class_vector.capacity() << " empty: " << class_vector.empty() << std::endl;
 }
 
-
 static void	vector_at(void) {
 
 	std::cout << "\n------------AT------------\n" << std::endl;
@@ -461,12 +457,7 @@ static void	vector_at(void) {
 	class_vector.push_back(a);
 	std::cout << "at: " << int_vector.at(0) << std::endl;
 	std::cout << "at: " << class_vector.at(0) << std::endl;
-
-	std::cout << "at: " << class_orig.at(2) << std::endl;
-	std::cout << "at: " << int_vector.at(2) << std::endl;
-	std::cout << "at: " << class_vector.at(2) << std::endl;
 }
-
 
 static void	vector_back(void) {
 
@@ -3297,4 +3288,3 @@ static void	vector_swap_non_member(void) {
 
 
 }
-*/
