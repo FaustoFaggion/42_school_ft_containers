@@ -12,10 +12,10 @@ int	main(void) {
 
 	std::cout << "RESIZE" << std::endl;
 {
-	clock_t	t1_std;
-	clock_t	t2_ft;
-	clock_t	t3_std;
-	clock_t	t4_ft;
+	float	t1_std;
+	float	t2_ft;
+	float	t3_std;
+	float	t4_ft;
 	int		n = 1000000;
 	
 	ft::vector<std::string> str_ft0(20, "a");
@@ -31,25 +31,25 @@ int	main(void) {
 	t1_std = std::clock();
 	for (int i = 0; i < n; i++)
 		str_std.resize(1000);
-	t1_std = std::clock() - t1_std;
+	t1_std = ((std::clock() - t1_std) / CLOCKS_PER_SEC) * 1000;
 
 	t2_ft = std::clock();
 	for (int i = 0; i < n; i++)
 		str_ft.resize(1000);
-	t2_ft = std::clock() - t2_ft;
+	t2_ft = ((std::clock() - t2_ft) / CLOCKS_PER_SEC) * 1000;
 
 	t3_std = std::clock();
 	for (int i = 0; i < n; i++)
 		int_std.resize(1000);
-	t3_std = std::clock() - t3_std;
+	t3_std = ((std::clock() - t3_std) / CLOCKS_PER_SEC) * 1000;
 
 	t4_ft = std::clock();
 	for (int i = 0; i < n; i++)
 		int_ft.resize(1000);
-	t4_ft = std::clock() - t4_ft;
+	t4_ft = ((std::clock() - t4_ft) / CLOCKS_PER_SEC) * 1000;
 
-	std::cout << "string: " << (t2_ft / t1_std) << "    std: " << t1_std << " ft: " << t2_ft << std::endl;
-	std::cout << "int:    " << (t4_ft / t3_std) << "    std: " << t3_std << " ft: " << t4_ft << std::endl;
+	std::cout << "string: " << (int)(t2_ft / t1_std) << "    std: " << t1_std << "ms    ft: " << t2_ft << "ms" << std::endl;
+	std::cout << "int:    " << (int)(t4_ft / t3_std) << "    std: " << t3_std << "ms    ft: " << t4_ft << "ms" << std::endl;
 }
 
 }

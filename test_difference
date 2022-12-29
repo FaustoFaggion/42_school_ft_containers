@@ -16,6 +16,8 @@ START VECTOR TESTS
 
 ----begin() & end()----
 
+----rbegin() & rend()----
+
 ----iterator operators----
 
 ----assing_fill----
@@ -29,6 +31,8 @@ START VECTOR TESTS
 ----insert_element----
 
 ----insert_range----
+
+----insert_range_n----
 
 ----constructors----
 

@@ -11,7 +11,7 @@
 int	main(void) {
 
 {
-	std::cout << "SWAP" << std::endl;
+	std::cout << "SWAP NON MEMBER" << std::endl;
 
 	float	t1_std;
 	float	t2_ft;
@@ -37,7 +37,7 @@ int	main(void) {
 
 	for (int i = 0; i < 10; i++) {
 		t1_std = std::clock();
-		str_std0.swap(str_std);
+		swap(str_std0, str_std);
 		t1_std = ((std::clock() - t1_std) / CLOCKS_PER_SEC) * 1000;
 		t5_std+= t1_std;
 		str_std0.pop_back();
@@ -45,7 +45,7 @@ int	main(void) {
 
 	for (int i = 0; i < 10; i++) {
 		t2_ft = std::clock();
-		str_ft0.swap(str_ft);
+		swap(str_ft0, str_ft);
 		t2_ft = ((std::clock() - t2_ft) / CLOCKS_PER_SEC) * 1000;
 		t6_ft += t2_ft;
 		str_ft0.pop_back();
@@ -53,7 +53,7 @@ int	main(void) {
 
 	for (int i = 0; i < 10; i++) {
 		t3_std = std::clock();
-		int_std0.swap(int_std);
+		swap(int_std0, int_std);
 		t3_std = ((std::clock() - t3_std) / CLOCKS_PER_SEC) * 1000;
 		t7_std += t3_std;
 		int_std0.pop_back();

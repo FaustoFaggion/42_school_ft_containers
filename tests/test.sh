@@ -51,6 +51,12 @@ c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_begin_end_ft.cpp && ./a.
 diff test1 test2 >> test_difference
 echo "" >> test_difference
 
+echo "----rbegin() & rend()----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_rbegin_rend_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_rbegin_rend_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
 echo "----iterator operators----" >> test_difference
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_iterator_operators_orig.cpp && ./a.out > test1
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_iterator_operators_ft.cpp && ./a.out > test2

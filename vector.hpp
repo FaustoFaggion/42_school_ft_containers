@@ -66,8 +66,8 @@ namespace ft
 			const_iterator			cend(void) { return (const_iterator(_data + _size)); }
 			reverse_iterator		rbegin() { return (reverse_iterator(end()));}
 			reverse_iterator		rend() { return reverse_iterator(begin()); }
-			const_reverse_iterator	rbegin() const { return const_reverse_iterator(end()); }
-			const_reverse_iterator	rend() const { return const_reverse_iterator(begin()); }
+			const_reverse_iterator	rbegin() const { return (const_reverse_iterator(end())); }
+			const_reverse_iterator	rend() const { return (const_reverse_iterator(begin())); }
 
 //			Capacity:
 			void			resize(size_type n, value_type val = value_type());
@@ -313,10 +313,16 @@ namespace ft
 		difference_type	n = last - first;
 		if ((size_type)n > _capacity)
 			reserve(n);
-		for (size_type i = 0; i < _size; i++)
-			this->_alloc.destroy(this->_data + i);
-		for (size_type i = 0; i < (size_type)n; i++)
-			_alloc.construct(this->_data + i, *(first + i));
+		if (is_integral<T>::value){
+			for (size_type i = 0; i < (size_type)n; i++)
+				*(this->_data + i) = *(&(*first) + i);
+		}
+		else {
+			for (size_type i = 0; i < _size; i++)
+				this->_alloc.destroy(this->_data + i);
+			for (size_type i = 0; i < (size_type)n; i++)
+				_alloc.construct(this->_data + i, *(&(*first) + i));
+		}
 		this->_size = n;
 	}
 
@@ -363,7 +369,7 @@ namespace ft
 			if (is_integral<T>::value) {
 				std::copy_backward(&(*position), &(*old_end), &(*(end() + n)));
 				for(; first != last; first++) {
-					*(position) = *first;
+					*(&(*position)) = *(&(*first));
 					position++;
 				}
 				_size += n;
@@ -432,11 +438,19 @@ namespace ft
 				push_back(val);
 		}
 		else {
-			iterator old_end(end());
-			resize(_size + n);
-			std::copy_backward(position, old_end, end());
-			for(size_type i = 0; i < n; i++) {
-				*(position + i) = val;
+			if (is_integral<T>::value) {
+				std::copy_backward(position.getCurrent(), end().getCurrent(), end().getCurrent() + n);
+				for (size_type i = 0; i < n; i ++)
+					*(position.getCurrent() + i) = val;
+				_size += n;
+			}
+			else{
+				iterator old_end(end());
+				resize(_size + n);
+				std::copy_backward(position, old_end, end());
+				for(size_type i = 0; i < n; i++) {
+					*(position + i) = val;
+				}
 			}
 		}
 	}
