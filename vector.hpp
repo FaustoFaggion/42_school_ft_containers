@@ -212,7 +212,7 @@ namespace ft
 		if (n > _capacity)
 			reserve(n);
 		if (n < _size)
-			erase(begin() + n);
+			erase(begin() + n, end());
 		else {
 			for(size_type i = _size; i < n; i++)
 				_alloc.construct(_data + i, val);
@@ -315,13 +315,13 @@ namespace ft
 			reserve(n);
 		if (is_integral<T>::value){
 			for (size_type i = 0; i < (size_type)n; i++)
-				*(this->_data + i) = *(&(*first) + i);
+				*(this->_data + i) = *(&(*(first + i)));
 		}
 		else {
 			for (size_type i = 0; i < _size; i++)
 				this->_alloc.destroy(this->_data + i);
 			for (size_type i = 0; i < (size_type)n; i++)
-				_alloc.construct(this->_data + i, *(&(*first) + i));
+				_alloc.construct(this->_data + i, *(&(*(first + i))));
 		}
 		this->_size = n;
 	}
@@ -401,7 +401,7 @@ namespace ft
 
 				push_back(*(_data + _size - 1));
 				value_type	copy_val = val;
-				std::copy_backward(&(*position), ((_data + _size) - 2), ((_data + _size) - 1));
+				std::copy_backward(position.getCurrent(), ((_data + _size) - 2), ((_data + _size) - 1));
 				*position = copy_val;
 			}
 			else {
