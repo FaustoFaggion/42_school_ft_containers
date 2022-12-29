@@ -367,9 +367,9 @@ namespace ft
 		else {
 			iterator old_end(end());
 			if (is_integral<T>::value) {
-				std::copy_backward(&(*position), &(*old_end), &(*(end() + n)));
+				std::copy_backward(position.getCurrent(), end().getCurrent(), end().getCurrent() + n);
 				for(; first != last; first++) {
-					*(&(*position)) = *(&(*first));
+					*(position.getCurrent()) = *(&(*first));
 					position++;
 				}
 				_size += n;

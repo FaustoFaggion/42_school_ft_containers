@@ -22,7 +22,7 @@ int	main(void) {
 	float	t7_std = 0;
 	float	t8_ft = 0;
 
-//	int		n = 1000000;
+	int		n = 10000;
 	
 	
 	ft::vector<std::string> str_ft0(5, "a");
@@ -35,15 +35,14 @@ int	main(void) {
 	ft::vector<int> int_ft(2, 2);
 	std::vector<int> int_std(2, 2);
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < n; i++) {
 		t1_std = std::clock();
 		swap(str_std0, str_std);
 		t1_std = ((std::clock() - t1_std) / CLOCKS_PER_SEC) * 1000;
 		t5_std+= t1_std;
-		str_std0.pop_back();
 	}
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < n; i++) {
 		t2_ft = std::clock();
 		swap(str_ft0, str_ft);
 		t2_ft = ((std::clock() - t2_ft) / CLOCKS_PER_SEC) * 1000;
@@ -51,16 +50,15 @@ int	main(void) {
 		str_ft0.pop_back();
 	}
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < n; i++) {
 		t3_std = std::clock();
 		swap(int_std0, int_std);
 		t3_std = ((std::clock() - t3_std) / CLOCKS_PER_SEC) * 1000;
 		t7_std += t3_std;
 		int_std0.pop_back();
 	}
-	
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < n; i++) {
 		t4_ft = std::clock();
 		int_ft0.swap(int_ft);;
 		t4_ft = ((std::clock() - t4_ft) / CLOCKS_PER_SEC) * 1000;

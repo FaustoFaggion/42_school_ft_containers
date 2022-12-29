@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "START VECTOR PERFORMANCE" > test_difference
+echo "START VECTOR PERFORMANCE"
 
 c++ -Wall -Wextra -Werror -std=c++98 ./performance_tests/assign_fill.cpp && ./a.out
 
