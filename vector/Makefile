@@ -14,8 +14,6 @@ SRC			=	main.cpp\
 
 OBJ			=	$(SRC:%.cpp=$(PATH_OBJ)%.o)
 
-VPATH		=	./src/
-
 
 HEADER		=	vector.hpp\
 				ClassTest.hpp\

@@ -33,6 +33,18 @@ START VECTOR TESTS
 ----insert_range----
 
 ----insert_range_n----
+91c91
+< <int> size: 15 max_size: 2305843009213693951 capacity: 20 empty: 0
+---
+> <int> size: 15 max_size: 2305843009213693951 capacity: 15 empty: 0
+107c107
+< <float> size: 15 max_size: 2305843009213693951 capacity: 20 empty: 0
+---
+> <float> size: 15 max_size: 2305843009213693951 capacity: 15 empty: 0
+123c123
+< <string> size: 15 max_size: 288230376151711743 capacity: 20 empty: 0
+---
+> <string> size: 15 max_size: 288230376151711743 capacity: 15 empty: 0
 
 ----constructors----
 

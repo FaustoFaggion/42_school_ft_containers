@@ -135,3 +135,6 @@ c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_swap_non_member_orig.cpp
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_swap_non_member_ft.cpp && ./a.out > test2
 diff test1 test2 >> test_difference
 echo "" >> test_difference
+
+rm - rf test1
+rm -rf test2
