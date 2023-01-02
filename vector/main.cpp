@@ -48,13 +48,24 @@ int	main(void) {
 	}
 	std::cout << "<int> size: " << int_vector2.size() << " max_size: " << int_vector2.max_size() << " capacity: " << int_vector2.capacity() << " empty: " << int_vector2.empty() << std::endl;
 
+	std::cout << "\nvector1 != vector2: \n" << std::endl;
 	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
 	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
 	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
 	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
+	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
+	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
+	
 	int_vector = int_vector2;
 
+	std::cout << "\nvector1 = vector2: \n" << std::endl;
 
+	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
+	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
+	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
+	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
+	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
+	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
 	
 }
 
