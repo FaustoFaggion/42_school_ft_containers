@@ -17,10 +17,7 @@ OBJ			=	$(SRC:%.cpp=$(PATH_OBJ)%.o)
 
 HEADER		=	map.hpp\
 				ClassTest.hpp\
-				iterator_traits.hpp\
-				bidirectional_iterator.hpp\
-				reverse_iterator.hpp\
-				integral_type_traits.hpp\
+				map.hpp\
 
 				
 all:	$(NAME)
