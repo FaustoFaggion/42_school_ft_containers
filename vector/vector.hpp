@@ -55,11 +55,6 @@ namespace ft
 //			Operator:
 			vector_type&	operator=(vector_type const &rhs);
 
-			size_t	size() const;
-			size_t	max_size() const;
-			size_t	capacity() const;
-			bool	empty();
-
 //			Iterator:
 			iterator				begin(void) { return (iterator(_data)); }
 			const_iterator			begin(void) const { return (const_iterator(_data)); }
@@ -71,6 +66,10 @@ namespace ft
 			const_reverse_iterator	rend() const { return (const_reverse_iterator(begin())); }
 
 //			Capacity:
+			size_t			size() const;
+			size_t			max_size() const;
+			size_t			capacity() const;
+			bool			empty() const;
 			void			resize(size_type n, value_type val = value_type());
 			void			reserve(size_type n);
 
@@ -200,7 +199,7 @@ namespace ft
 	}
 
 	template<typename T, class Alloc>
-	bool	vector<T, Alloc>::empty() {
+	bool	vector<T, Alloc>::empty() const{
 		if (this->_size == 0)
 			return(true);
 		else
