@@ -118,6 +118,12 @@ c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_operator_equal_ft.cpp &&
 diff test1 test2 >> test_difference
 echo "" >> test_difference
 
+echo "----operators----" >> test_difference
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_operators_orig.cpp && ./a.out > test1
+c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_operators_ft.cpp && ./a.out > test2
+diff test1 test2 >> test_difference
+echo "" >> test_difference
+
 echo "----clear----" >> test_difference
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_clear_orig.cpp && ./a.out > test1
 c++ -Wall -Wextra -Werror -std=c++98 ./run_tests/vector_clear_ft.cpp && ./a.out > test2

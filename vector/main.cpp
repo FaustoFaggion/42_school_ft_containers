@@ -3,7 +3,7 @@
 #include "vector.hpp"
 #include <string.h>
 
-static void	vector_resize(void);
+/* static void	vector_resize(void);
 static void	vector_reserve(void);
 static void	vector_push_back(void);
 static void	vector_at(void);
@@ -26,12 +26,38 @@ static void	vector_operator_equal(void);
 static void	vector_clear(void);
 static void	vector_swap(void);
 static void	vector_swap_non_member(void);
-
+ */
 
 
 int	main(void) {
 
-	vector_resize();
+{
+
+		
+	std::cout << "\n------------Constructor------------\n" << std::endl;
+
+	ft::vector<int> int_vector(2, 122);
+	for (ft::vector<int>::iterator it_ = int_vector.begin(); it_ != int_vector.end(); it_++) {
+		std::cout << *it_ << std::endl;
+	}
+	std::cout << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+
+	ft::vector<int> int_vector2(2, 126);
+	for (ft::vector<int>::iterator it_ = int_vector2.begin(); it_ != int_vector2.end(); it_++) {
+		std::cout << *it_ << std::endl;
+	}
+	std::cout << "<int> size: " << int_vector2.size() << " max_size: " << int_vector2.max_size() << " capacity: " << int_vector2.capacity() << " empty: " << int_vector2.empty() << std::endl;
+
+	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
+	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
+	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
+	int_vector = int_vector2;
+
+
+	
+}
+
+/* 	vector_resize();
 	vector_reserve();
 	vector_push_back();
 	vector_at();
@@ -54,10 +80,10 @@ int	main(void) {
 	vector_swap();
 	vector_swap_non_member();
 
-
+ */
 	return (0);
 }
-
+/* 
 static void	vector_resize(void) {
 	
 
@@ -3288,3 +3314,4 @@ static void	vector_swap_non_member(void) {
 
 
 }
+ */

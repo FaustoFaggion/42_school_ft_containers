@@ -21,6 +21,7 @@ HEADER		=	vector.hpp\
 				random_access_iterator.hpp\
 				reverse_iterator.hpp\
 				integral_type_traits.hpp\
+				algorithm.hpp\
 
 				
 all:	$(NAME)

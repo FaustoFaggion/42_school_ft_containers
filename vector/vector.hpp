@@ -6,6 +6,7 @@
 #include <cstring>
 #include <iterator>
 #include <algorithm>
+#include "algorithm.hpp"
 #include "random_access_iterator.hpp"
 #include "reverse_iterator.hpp"
 #include <exception>
@@ -28,9 +29,9 @@ namespace ft
 			typedef typename allocator_type::size_type								size_type;
 			typedef typename allocator_type::difference_type						difference_type;
 			typedef typename ft::random_access_iterator<pointer, vector_type>		iterator;
-			typedef typename ft::random_access_iterator<const pointer, vector_type>	const_iterator;
+			typedef typename ft::random_access_iterator<const_pointer, vector_type>	const_iterator;
 			typedef typename ft::reverse_iterator<iterator>							reverse_iterator;
-			typedef typename ft::reverse_iterator<const iterator>					const_reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 
 		private:
 			allocator_type		_alloc;
@@ -54,16 +55,16 @@ namespace ft
 //			Operator:
 			vector_type&	operator=(vector_type const &rhs);
 
-			size_t	size();
-			size_t	max_size();
-			size_t	capacity();
+			size_t	size() const;
+			size_t	max_size() const;
+			size_t	capacity() const;
 			bool	empty();
 
 //			Iterator:
 			iterator				begin(void) { return (iterator(_data)); }
-			const_iterator			cbegin(void) { return (const_iterator(_data)); }
+			const_iterator			begin(void) const { return (const_iterator(_data)); }
 			iterator				end(void) { return (iterator(_data + _size)); }
-			const_iterator			cend(void) { return (const_iterator(_data + _size)); }
+			const_iterator			end(void) const { return (const_iterator(_data + _size)); }
 			reverse_iterator		rbegin() { return (reverse_iterator(end()));}
 			reverse_iterator		rend() { return reverse_iterator(begin()); }
 			const_reverse_iterator	rbegin() const { return (const_reverse_iterator(end())); }
@@ -184,17 +185,17 @@ namespace ft
 //	Capacity:
 
 	template<typename T, class Alloc>
-	size_t	vector<T, Alloc>::size() {
+	size_t	vector<T, Alloc>::size() const{
 		return (this->_size);
 	}
 
 	template<typename T, class Alloc>
-	size_t	vector<T, Alloc>::max_size() {
+	size_t	vector<T, Alloc>::max_size() const {
 		return (this->_max_size);
 	}
 
 	template<typename T, class Alloc>
-	size_t	vector<T, Alloc>::capacity() {
+	size_t	vector<T, Alloc>::capacity() const {
 		return (this->_capacity);
 	}
 
@@ -521,9 +522,9 @@ namespace ft
 	template<typename T, class Alloc>
 	bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
 
-		if (lhs.size != rhs.size)
+		if (lhs.size() != rhs.size())
 			return (false);
-		return (std::equal(lhs.begin(), lhs.end(), rhs.begin()));
+		return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
 	}
 
 	template<typename T, class Alloc>
@@ -533,7 +534,7 @@ namespace ft
 
 	template<typename T, class Alloc>
 	bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	}
 
 	template<typename T, class Alloc>
@@ -543,12 +544,12 @@ namespace ft
 
 	template<typename T, class Alloc>
 	bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		return (std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		return (rhs < lhs);
 	}
 
 	template<typename T, class Alloc>
 	bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		return (lhs > rhs || lhs == rhs);
+		return (!(lhs < rhs));
 	}
 
 //	Swap
