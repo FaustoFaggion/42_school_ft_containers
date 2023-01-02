@@ -42,7 +42,7 @@ int	main(void) {
 	}
 	std::cout << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
 
-	ft::vector<int> int_vector2(2, 126);
+	ft::vector<int> int_vector2(2, 132);
 	for (ft::vector<int>::iterator it_ = int_vector2.begin(); it_ != int_vector2.end(); it_++) {
 		std::cout << *it_ << std::endl;
 	}
@@ -51,6 +51,7 @@ int	main(void) {
 	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
 	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
 	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
+	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
 	int_vector = int_vector2;
 
 
