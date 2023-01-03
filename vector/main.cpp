@@ -26,48 +26,12 @@ static void	vector_operator_equal(void);
 static void	vector_clear(void);
 static void	vector_swap(void);
 static void	vector_swap_non_member(void);
- */
+static void vector_operator(void);
+*/
 
 
 int	main(void) {
 
-{
-
-		
-	std::cout << "\n------------Constructor------------\n" << std::endl;
-
-	ft::vector<int> int_vector(2, 122);
-	for (ft::vector<int>::iterator it_ = int_vector.begin(); it_ != int_vector.end(); it_++) {
-		std::cout << *it_ << std::endl;
-	}
-	std::cout << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
-
-	ft::vector<int> int_vector2(2, 132);
-	for (ft::vector<int>::iterator it_ = int_vector2.begin(); it_ != int_vector2.end(); it_++) {
-		std::cout << *it_ << std::endl;
-	}
-	std::cout << "<int> size: " << int_vector2.size() << " max_size: " << int_vector2.max_size() << " capacity: " << int_vector2.capacity() << " empty: " << int_vector2.empty() << std::endl;
-
-	std::cout << "\nvector1 != vector2: \n" << std::endl;
-	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
-	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
-	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
-	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
-	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
-	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
-	
-	int_vector = int_vector2;
-
-	std::cout << "\nvector1 = vector2: \n" << std::endl;
-
-	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
-	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
-	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
-	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
-	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
-	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
-	
-}
 
 /* 	vector_resize();
 	vector_reserve();
@@ -91,12 +55,13 @@ int	main(void) {
 	vector_clear();
 	vector_swap();
 	vector_swap_non_member();
+	vector_operator();
 
  */
 	return (0);
 }
-/* 
-static void	vector_resize(void) {
+
+/* static void	vector_resize(void) {
 	
 
 	std::cout << "\n------------RESIZE------------\n" << std::endl;
@@ -3326,4 +3291,58 @@ static void	vector_swap_non_member(void) {
 
 
 }
+
+static void vector_operator(void) {
+		std::cout << "\n------------Constructor------------\n" << std::endl;
+
+	ft::vector<int> int_vector(2, 122);
+	for (ft::vector<int>::iterator it_ = int_vector.begin(); it_ != int_vector.end(); it_++) {
+		std::cout << *it_ << std::endl;
+	}
+	std::cout << "<int> size: " << int_vector.size() << " max_size: " << int_vector.max_size() << " capacity: " << int_vector.capacity() << " empty: " << int_vector.empty() << std::endl;
+
+	ft::vector<int> int_vector2(2, 132);
+	for (ft::vector<int>::iterator it_ = int_vector2.begin(); it_ != int_vector2.end(); it_++) {
+		std::cout << *it_ << std::endl;
+	}
+	std::cout << "<int> size: " << int_vector2.size() << " max_size: " << int_vector2.max_size() << " capacity: " << int_vector2.capacity() << " empty: " << int_vector2.empty() << std::endl;
+
+	std::cout << "\nvector1 != vector2: \n" << std::endl;
+	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
+	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
+	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
+	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
+	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
+	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
+	
+	int_vector = int_vector2;
+
+	std::cout << "\nvector1 = vector2: \n" << std::endl;
+
+	std::cout << "vector1 == vector2: " << (int_vector == int_vector2) << std::endl;
+	std::cout << "vector1 != vector2: " << (int_vector != int_vector2) << std::endl;
+	std::cout << "vector1 < vector2: " << (int_vector < int_vector2) << std::endl;
+	std::cout << "vector1 > vector2: " << (int_vector > int_vector2) << std::endl;
+	std::cout << "vector1 <= vector2: " << (int_vector <= int_vector2) << std::endl;
+	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
+	
+}
  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
