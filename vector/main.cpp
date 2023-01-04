@@ -3,7 +3,7 @@
 #include "vector.hpp"
 #include <string.h>
 
-/* static void	vector_resize(void);
+static void	vector_resize(void);
 static void	vector_reserve(void);
 static void	vector_push_back(void);
 static void	vector_at(void);
@@ -27,13 +27,13 @@ static void	vector_clear(void);
 static void	vector_swap(void);
 static void	vector_swap_non_member(void);
 static void vector_operator(void);
-*/
+
 
 
 int	main(void) {
 
 
-/* 	vector_resize();
+	vector_resize();
 	vector_reserve();
 	vector_push_back();
 	vector_at();
@@ -57,11 +57,10 @@ int	main(void) {
 	vector_swap_non_member();
 	vector_operator();
 
- */
 	return (0);
 }
 
-/* static void	vector_resize(void) {
+static void	vector_resize(void) {
 	
 
 	std::cout << "\n------------RESIZE------------\n" << std::endl;
@@ -3327,7 +3326,7 @@ static void vector_operator(void) {
 	std::cout << "vector1 >= vector2: " << (int_vector >= int_vector2) << std::endl;
 	
 }
- */
+
 
 
 

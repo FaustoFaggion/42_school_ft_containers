@@ -222,7 +222,13 @@ namespace ft
 
 	template<typename T, class Alloc>
 	void	vector<T, Alloc>::reserve(size_type n) {
-		if (n > this->_capacity) {
+		if (n > this->_capacity) {if (n > max_size()) {if (n > max_size()) {if (n > max_size()) {
+				 throw std::out_of_range("out_of_range: max_size exeded");
+			}
+				 throw std::out_of_range("out_of_range: max_size exeded");
+			}
+				 throw std::out_of_range("out_of_range: max_size exeded");
+			}
 			T	*temp;
 			if (n > max_size()) {
 				 throw std::out_of_range("out_of_range: max_size exeded");
