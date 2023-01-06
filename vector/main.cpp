@@ -529,7 +529,6 @@ static void	vector_back(void) {
 	std::cout << "back: " << class_vector.back() << std::endl;
 }
 
-
 static void	vector_front(void) {
 
 	std::cout << "\n------------FRONT------------\n" << std::endl;
@@ -598,7 +597,6 @@ static void	vector_front(void) {
 	std::cout << "front: " << class_vector.front() << std::endl;
 	
 }
-
 
 static void	vector_pop_back(void) {
 
@@ -698,7 +696,6 @@ static void	vector_pop_back(void) {
 	float_vector.pop_back();
 	class_vector.pop_back();
 }
-
 
 static void	vector_beging_end(void) {
 
@@ -806,7 +803,6 @@ static void	vector_beging_end(void) {
 	}
 
 }
-
 
 static void	vector_rbegin_rend(void) {
 
