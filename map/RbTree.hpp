@@ -51,6 +51,14 @@ namespace ft {
 			typedef size_t				size_type;
 			typedef ptrdiff_t			difference_type;
 			typedef Alloc				allocator_type;
+
+
+		/*CONSTRUCTORS*/
+		
+		RbTree(const Compare& comp, const allocator_type& alloc) {
+			
+		}
+
 	};
 
 
