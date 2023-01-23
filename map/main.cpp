@@ -5,15 +5,8 @@ int main(void) {
 
 	ft::map<std::string, int> mft();
 	
-	std::map<std::string, int> mstd1;
-	std::map<std::string, int> mstd2;
+	std::map<std::string, int> o_map;
 
-	mstd1["a"] = 1;
-	mstd1.insert({"b", 2});
-	mstd1.insert({"c", 3});
-
-	for (std::map<std::string, int>::iterator it = mstd1.begin(); it != mstd1.end(); it++) {
-
-	}
+	std::cout << "size: " << o_map.size() << std::endl;
 
 }

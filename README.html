@@ -1,0 +1,339 @@
+<h1>42_school_ft_containers</h1>
+<hr/>
+
+<h2>Namespace</h2>
+<hr>
+<p>Namespaces allow to group entities like classes, objects and functions under a name. This way the global scope can be divided in "sub-scopes", each one with its own name.</p>
+<p>The format of namespaces is:</p>
+
+<code>
+<pre>
+namespace &ltsidentifier&gt {
+  entities
+}
+</pre>
+</code>
+
+<p>Where identifier is any valid identifier and entities is the set of classes, objects and functions that are included within the namespace. For example:</p>
+<code>
+<pre>
+namespace myNamespace {
+  int a, b;
+}
+</pre>
+</code>
+
+<p>In this case, the variables a and b are normal variables declared within a namespace called myNamespace. In order to access these variables from outside the myNamespace namespace we have to use the scope operator ::. For example, to access the previous variables from outside myNamespace we can write:</p>
+
+<code>
+<pre>
+myNamespace::a
+myNamespace::b
+</pre>
+</code>
+
+<p>The functionality of namespaces is especially useful in the case that there
+is a possibility that a global object or function uses the same identifier as
+another one, causing redefinition errors.</p>
+
+<h2>Vector</h2>
+<hr/>
+
+<p>Vector are sequence containers representing arrays that can be change in sie.</p>
+<p>Internally, vectors use a dynamically allocated array to store their elements.
+	This array needs to be reallocated in order to grow in size when new elements
+are inserted</p>
+<p>Reallocate is a expensive task in terms of processing time, and thus, containers
+	may allocate extra storage to accommodate for possible growth, having a capacity
+	bigger than its size.</p>
+<p>Therefore, compared to arrays, vectors consume more memory in exchange for
+	the ability to manage storage</p>
+<p>Performace compared to other containers (deques, lists and foward_lists):</p>
+<ul>
+	<li>more eficient accessing elements and relatively efficient adding or
+		removing elements from its end</li>
+	<li>worse to add or remove elements at positions different of its end</li>
+	</ul>
+
+<h3>Generic Template</h3>
+
+<code>template &ltclass T, class Alloc = allocator&ltT&gt &gt class vector;</code>
+
+<dl>
+	<dt>T</dt><dd>Type of the elements</dd>
+	<dt>Alloc</dt><dd>Type of the allocator object used to define the storage
+		allocation model.</dd>
+</dl>
+
+<h3>Member Types</h3>
+<img src="./img/vector_member_types.png" alt="Vector Member Types">
+
+
+<h2>MAP CONTAINER</h2>
+<hr/>
+
+<p>Maps are associative containers that store elements formed by a combination
+	of <b>key value</b> and a <b>mapped value</b>, following a specific order</p>
+<p>Internally, the elements in a map are always sorted by its <b>key</b> following
+	a specific <em><b>strict weak ordering</b></em> indicate by its Internal
+	<em>comparation object(of type Compare)</em></p>
+<p>The values in a map can be accessed directily by their corresponding key using
+	the <b>braket operator</b> ([ ]).</p>
+
+	<dl>
+	<dt>key value</dt>
+	<dd>generally used to sort and uniquely identify the elements</dd>
+	<dt>mapped value</dt>
+	<dd>content associate to the key</dd>
+</dl>
+<p>The types of key and mapped may differ, and are grouped together in member
+	<code> type_value</code>, which is a <code>std::pair</code> type combinig both.</p>
+
+<h3>Generic Template</h3>
+
+<code>template &lt class Key, class T, class Compare = less&ltKey&gt,
+	Alloc = allocator&ltpair&ltconst Key,T&gt &gt &gt class map;</code>
+
+<dl>
+	<dt>Key</b></dt>
+	<dd>type of the keys. Each element in a map is uniquely identified.</dd>
+	<dt>T</b></dt>
+	<dd>type of the mapped value.</dd>
+	<dt>Compare</b></dt>
+	<dd>a binary predicate the takes two element keys as arguments and return a
+		bool. the expression comp(a, b), where comp is a object of this type and
+		a and b are key values, shall return true true if <b>a</b> is cosidered
+		to go before <b>b</b> in the strict weak ordering the function defines.</dd>
+	<dt>Alloc</dt>
+	<dd>Type of the allocator object use to define the alocation model. By
+		default the <b>allocator</b> class template is used.</dd>
+</dl>
+
+<h3>Member Types</h3>
+<img src="./img/map_member_types.png" alt="Map Member Types">
+<br/>
+
+<h2>std::Pair</h2>
+<hr/>
+
+
+<h3>Generic Template</h3>
+<code>template pair&ltconst key, T&gt struct pair;</const></code>
+
+<p>Couples together a pair of values, which may be different types (T1 and T2).
+	The individual values can be accessed through its public members first and
+	second.
+</p>
+<dl>
+	<dt>T1</dt>
+	<dd>Type of first member, aliased as first_type.</dd>
+	<dt>T2></dt>
+	<dd>Type of seconde member, aliased as second_type.</dd>
+</dl>
+
+<h3>MEMBER TYPES</h3>
+<img src="./img/pair_member_types.png" alt="Map Member Types">
+<br/>
+
+<br/>
+
+<h2>RED AND BLACK BINARY TREE</h2>
+<hr/>
+
+<p>The rb binary tree will be the data structure used to store the data inserted
+	in the container.</p>
+
+
+<pre>
+<code>
+class nó(x) {
+	private:
+		chave(k);	// (x.esquerda.chave < x.chave) (x.direita.chave > x.chave) 
+		esquerda;	// nó filho a esquerda
+		direita;	// nó filho a direita
+		p;		// nó pai
+}
+</code>
+</pre>
+
+<h3>OPERAÇÕES:</h3>
+
+
+<h4>SEARCH</h4>
+
+<p>x = nó raiz;</p>
+<p>k = chave;</p>
+
+<h4>Método Recursivo</h4>
+<pre>
+<code>
+Tree-Search(x, k) {
+	if (x == NULL || k == x.chave)
+		return (x);
+	if(k < x.chave)
+		return (Tree-Search(x.esquerda, k));
+	else
+		return (Tree-Search(x.direita, k));
+}
+</code>
+</pre>
+
+<h4>Método Iterativo</h4>
+
+<pre>
+<code>
+Tree-Search(x, k) {
+	While (x != NULL && k != x.chave) {
+		if (k < x.chave)
+			x = x.esquerda;
+		else
+			x = x.direita;
+	}
+	return (x);
+}
+</code>
+</pre>
+
+MINIMUM:
+
+Tree-Minimum(x) {
+	while (x.esquerda != NULL)
+		x = x.esquerda;
+	return (x);
+}
+
+MAXIMUM:
+
+Tree-Maximum(x) {
+	while (x.direita != NULL)
+		x = x.direita;
+	return (x);
+}
+
+SUCESSOR:
+
+Tree_Sucessor(x) {
+	if (x.direita != NULL)
+		return (Tree-Minimum(x.dirreita))
+	
+}
+
+INSERT:
+
+Tree-Insert(T, z) {
+	y = NULL;
+	x = T.raiz;
+	while (x != NULL) {
+		y = x;
+		if (z.chave < x. chave)
+			x = x.esquerda;
+		else
+			x = x.direita;
+	}
+	z.p = y;
+	if (y == NULL)
+		T.raiz = z;
+	else if (z.chave < y.chave)
+		y.esquerda = z;
+	else
+		y.direita = z;
+}
+
+DELETE:
+
+Tree-Delete(T, z) {
+	if (z.esquerda == NULL)
+		Transplat(T, z, z.esquerda);
+	else if (z.direita == NULL)
+		Transplat(T, z, z.direita);
+	else {
+		y = Tree_Minimum(z.direita);
+		if (y.p != z) {
+			Transplant(T, y, y.direita);
+			y.direita = z.direita;
+			y.direita.p = y 
+		}
+		Transplant(T, z, y);
+		y.esquerda = z.esquerda;
+		y.esquerda.p = y;
+	}
+}
+
+
+
+ÁRVORE VERMELHA E PRETA
+
+
+Left-Rotate(T, x) {
+	y = x.direita;
+	x.direita = y.esquerda;
+	if (y.esquerda != T.null)
+		y.esquerda.p = x;
+	y.p = x.p;
+	if (x.p == T.null)
+		T.raiz = y;
+	else if (x == x.p.esquerda)
+		x.p.esquerda = y;
+	else
+		x.pdireita = y
+	y.esquerda = x;
+	x.p = y;
+}
+
+Right-Rotate(T, x) {
+	y = x. esquerda;
+	x.esquerda = y.direita;
+	if (y.direita != T.null)
+		y.direita.p = x;
+	y.p = x.p;
+	if (x.p == T.null)
+		T.raiz = y;
+	else if (x == x.p.esquerda)
+		x.p.esquerda = y
+	else
+		x.p.direita = y;
+	y.direita = x;
+	x.p = y;
+}
+
+RB-INSERT:
+
+Tree-Insert(T, z) {
+	y = NULL;
+	x = T.raiz;
+	while (x != NULL) {
+		y = x;
+		if (z.chave < x. chave)
+			x = x.esquerda;
+		else
+			x = x.direita;
+	}
+	z.p = y;
+	if (y == NULL)
+		T.raiz = z;
+	else if (z.chave < y.chave)
+		y.esquerda = z;
+	else
+		y.direita = z;
+	z.esquerda = T.null;
+	z.direita = T.null;
+	z.cor = red
+	RB-Insert_fixup(T, z);
+}
+
+
+1. Todo nó é vermelho ou preto.
+2. A raiz é preta.
+3. Toda folha NULL é preta.
+4. Se um nó é vermelho, então os seus filhos são pretos.
+5. Para cada nó, todos os caminhos simples do nó até folhas descendentes contêm o mesmo número de nós pretos
+
+RB-Insert-Fixup(T, z) {
+	while (z.p.cor == vermelho)
+	{
+		if (z.p == z.p.p.esquerda)
+		{
+
+		}
+	}
+}
