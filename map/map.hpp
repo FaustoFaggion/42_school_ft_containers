@@ -64,7 +64,7 @@ namespace ft
 		//	Constructor:
 		
 			explicit map(const key_compare& comp,
-				const allocator_type& alloc = allocator_type());, 
+				const allocator_type& alloc = allocator_type());
 			
 			template<typename InputIterator>
 			map(InputIterator first, InputIterator last,
