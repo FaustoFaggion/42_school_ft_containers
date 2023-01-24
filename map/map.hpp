@@ -41,24 +41,22 @@ namespace ft
 		private:
 
 			typedef RbTree <key_type, value_type, std::_Select1st<value_type>,
-								key_compare, Alloc>				container;
+								key_compare, Alloc>				Tree_struct;
 			
-			container	_tree;
+			Tree_struct	_tree;
 
 		public:
-			typedef typename Alloc::pointer						pointer;
-			typedef typename Alloc::const_pointer				const_pointer;
-			typedef typename Alloc::reference					reference;
-			typedef typename Alloc::const_reference				const_reference;
-			typedef typename container::allocator_type			allocator_type;
-			typedef typename container::size_type				size_type;
-			typedef typename allocator_type::difference_type	difference_type;
-//			typedef typename container::iterator				iterator;
-//			typedef typename container::const_iterator			const_iterator;
-//			typedef typename container::reverse_iterator		reverse_iterator;
-//			typedef typename container::const_reverse_iterator	const_reverse_iterator;
-
-
+			typedef typename Alloc::pointer							pointer;
+			typedef typename Alloc::const_pointer					const_pointer;
+			typedef typename Alloc::reference						reference;
+			typedef typename Alloc::const_reference					const_reference;
+			typedef typename Tree_struct::allocator_type			allocator_type;
+			typedef typename Tree_struct::size_type					size_type;
+			typedef typename Tree_struct::difference_type			difference_type;
+			typedef typename Tree_struct::iterator					iterator;
+//			typedef typename Tree_struct::const_iterator			const_iterator;
+//			typedef typename Tree_struct::reverse_iterator			reverse_iterator;
+//			typedef typename Tree_struct::const_reverse_iterator	const_reverse_iterator;
 
 		public:
 		/*CONSTRUCTORS*/
@@ -76,6 +74,9 @@ namespace ft
 	
 		/*CAPACITY*/
 		size_type	size(void) {return(_tree.size());};
+
+		/*MODIFIER*/
+		
 	};
 
 	template<typename Key, typename T, class Compare, class Alloc>

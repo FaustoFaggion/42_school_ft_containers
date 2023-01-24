@@ -20,7 +20,6 @@ namespace ft {
 			typedef std::bidirectional_iterator_tag		iterator_category;
 			typedef ptrdiff_t							difference_type;
 			typedef RbTree_iterator<iT>					self;
-			typedef node_base::base_ptr 				base_ptr;
 			typedef node_tree<iT>*						node_ptr;
 		
 		public:
