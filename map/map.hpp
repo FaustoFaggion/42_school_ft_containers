@@ -53,16 +53,17 @@ namespace ft
 			typedef typename container::allocator_type			allocator_type;
 			typedef typename container::size_type				size_type;
 			typedef typename allocator_type::difference_type	difference_type;
-			typedef typename container::iterator				iterator;
-			typedef typename container::const_iterator			const_iterator;
-			typedef typename container::reverse_iterator		reverse_iterator;
-			typedef typename container::const_reverse_iterator	const_reverse_iterator;
+//			typedef typename container::iterator				iterator;
+//			typedef typename container::const_iterator			const_iterator;
+//			typedef typename container::reverse_iterator		reverse_iterator;
+//			typedef typename container::const_reverse_iterator	const_reverse_iterator;
 
 
 
 		public:
-		//	Constructor:
-		
+		/*CONSTRUCTORS*/
+			map() : _tree(Compare(), allocator_type()) { };
+			
 			explicit map(const key_compare& comp,
 				const allocator_type& alloc = allocator_type());
 			
@@ -72,6 +73,9 @@ namespace ft
 				const allocator_type& alloc = allocator_type());
 
 			map(const map& rsc);
+	
+		/*CAPACITY*/
+		size_type	size(void) {return(_tree.size());};
 	};
 
 	template<typename Key, typename T, class Compare, class Alloc>

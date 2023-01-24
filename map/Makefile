@@ -18,6 +18,9 @@ OBJ			=	$(SRC:%.cpp=$(PATH_OBJ)%.o)
 HEADER		=	map.hpp\
 				ClassTest.hpp\
 				map.hpp\
+				RbTree.hpp\
+				RbTree_iterator.hpp\
+				node_base.hpp\
 
 				
 all:	$(NAME)
