@@ -71,6 +71,8 @@ namespace ft
 				const allocator_type& alloc = allocator_type());
 
 			map(const map& rsc);
+
+			~map();
 	
 		/*CAPACITY*/
 		size_type	size(void) {return(_tree.size());};
@@ -79,9 +81,13 @@ namespace ft
 		
 	};
 
+	/*CONSTRUCTORS*/
 	template<typename Key, typename T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::map(const key_compare& comp,
 				const allocator_type& alloc) : _tree(comp, alloc) { };
+
+	template<typename Key, typename T, class Compare, class Alloc>
+	map<Key, T, Compare, Alloc>::~map(void) { };
 };
 
 #endif
