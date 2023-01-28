@@ -10,14 +10,18 @@ namespace	ft {
 			typedef T1			first_type;
 			typedef T2			second_type;
 		
-		private:
+	//	private:
 			T1	first;
 			T2	second;
 		
-		pair(const T1& a, const T2& b) : first(a), second(b) { }
+		public:
 
-		template<typename U1, typename U2>
-		pair(const pair<U1, U2>& p) : first(p.first), second(p.second) { }
+			pair() : first(), second() { };
+
+			pair(const T1& a, const T2& b) : first(a), second(b) { }
+
+			template<typename U1, typename U2>
+			pair(const pair<U1, U2>& p) : first(p.first), second(p.second) { };
 
 	};
 
@@ -29,7 +33,7 @@ namespace	ft {
 	template<typename T1, typename T2>
 	inline bool	operator<(const pair<T1, T2>& lhs, const pair<T1, T2>& rhs) {
 		return (lhs.first < rhs.first 
-			|| (!(rhs.first < lhs.first) && lhs.second < rhs.second);)
+			|| (!(rhs.first < lhs.first) && lhs.second < rhs.second));
 	}
 
 	template<typename T1, typename T2>

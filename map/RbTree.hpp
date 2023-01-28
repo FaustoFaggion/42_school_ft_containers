@@ -7,6 +7,7 @@
 
 #include "RbTree_iterator.hpp"
 #include "node_base.hpp"
+#include "pair.hpp"
 
 /* DELETE................USE FOR PRINT TREE*/
 #include <queue>
@@ -132,14 +133,13 @@ namespace ft {
 				new_node->_p = y;
 			}
 
-			void	tree_balance(node_ptr& new_node)
+			void	tree_balance(node_ptr new_node)
 			{
 				node_ptr	y;
 				int i = 0;
 
 				while (new_node->_p->_color == RED)
 				{
-					std::cout << "i: " << i << "color: " << new_node->_p->_color << std::endl;
 					i++;
 					if (new_node->_p == new_node->_p->_p->_left)
 					{
@@ -224,7 +224,7 @@ namespace ft {
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};
 
-			node_ptr	insert(value_type val)
+			iterator	insert(const value_type& val)
 			{
 				node_ptr	x = _root;
 				node_ptr	y = _nill;
@@ -239,7 +239,7 @@ namespace ft {
 					else if (val.first > x->_node_value.first)
 						x = x->_right;
 					else
-						return(y);
+						return(iterator(y));
 				}
 				new_node = node_create(val);
 				new_node->_p = y;
@@ -253,7 +253,7 @@ namespace ft {
 					y->_right = new_node;
 				}
 				tree_balance(new_node);
-				return (new_node);
+				return (iterator(new_node));
 			}
 
 			void	clear()

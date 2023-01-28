@@ -9,11 +9,12 @@
 #include <utility>
 #include <exception>
 #include "RbTree.hpp"
+#include "pair.hpp"
 
 namespace ft
 {
 	template<typename Key, typename T, class Compare = std::less<Key>,
-						class Alloc = std::allocator<std::pair<const Key, T> > >
+						class Alloc = std::allocator<ft::pair<const Key, T> > >
 	class map {
 
 		private:
@@ -21,7 +22,7 @@ namespace ft
 		public:
 			typedef Key								key_type;
 			typedef T								mapped_type;
-			typedef std::pair<const Key, T>			value_type;
+			typedef ft::pair<const Key, T>			value_type;
 			typedef Compare							key_compare;
 
 			
@@ -54,11 +55,15 @@ namespace ft
 			typedef typename Tree_struct::size_type					size_type;
 			typedef typename Tree_struct::difference_type			difference_type;
 			typedef typename Tree_struct::iterator					iterator;
-//			typedef typename Tree_struct::const_iterator			const_iterator;
+			typedef typename Tree_struct::const_iterator			const_iterator;
 //			typedef typename Tree_struct::reverse_iterator			reverse_iterator;
 //			typedef typename Tree_struct::const_reverse_iterator	const_reverse_iterator;
 
 		public:
+
+		/*UTILS*/
+		void	print_map() { return (_tree.print_tree(_tree._root, 0));}
+
 		/*CONSTRUCTORS*/
 			map() : _tree(Compare(), allocator_type()) { };
 			
@@ -74,13 +79,17 @@ namespace ft
 
 			~map();
 	
+		/*ITERATOR*/
+		iterator	begin(){ return (_tree.begin());};
+
+
 		/*CAPACITY*/
-		size_type	size(void) {return(_tree.size());};
+		size_type	size();
 
 		/*MODIFIER*/
-		
+		iterator	insert(const value_type& val) { return (_tree.insert(val));};
 	};
-
+	
 	/*CONSTRUCTORS*/
 	template<typename Key, typename T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::map(const key_compare& comp,
@@ -88,6 +97,12 @@ namespace ft
 
 	template<typename Key, typename T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::~map(void) { };
+
+	/*CAPACITY*/
+	template<typename Key, typename T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::size_type	map<Key, T, Compare, Alloc>::size(void) {return(_tree.size());};
+
+	/*ITERATOR*/
 };
 
 #endif

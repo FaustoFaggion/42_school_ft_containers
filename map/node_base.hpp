@@ -1,6 +1,8 @@
 #ifndef NODE_BASE_HPP
 #define NODE_BASE_HPP
 
+#include "pair.hpp"
+
 namespace ft {
 
 	enum	node_color {RED, BLACK};
