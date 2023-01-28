@@ -2,9 +2,14 @@
 #define RBTREE_HPP
 
 
-#include <cstddef> /*ptrdiff_t*/
+/*Use for ptrdiff_t*/
+#include <cstddef> 
+
 #include "RbTree_iterator.hpp"
 #include "node_base.hpp"
+
+/* DELETE................USE FOR PRINT TREE*/
+#include <queue>
 
 namespace ft {
 
@@ -41,7 +46,33 @@ namespace ft {
 		Compare					_comp;
 
 		/*UTILS*/
+		public:
+
+			void	print_tree(node_ptr node, int space)
+			{
+				/*Base case*/
+				if (node == _nill)
+					return;
+
+				/*Increase distance between levels*/
+				space += 10;
+				
+				/*Right child first*/
+				print_tree(node->_right, space);
+				
+				/*Print current node after space count*/
+				std::cout << "\n";
+				for (int i = 10; i < space; i++)
+					std::cout << " ";
+				std::cout << node->_node_value.second << ":" << node->_color;
+
+				/*Process left child*/
+				print_tree(node->_left, space);
+
+			}
+
 		private:
+
 			node_ptr	node_create(value_type val) {
 
 				node_ptr	_new;
@@ -52,6 +83,109 @@ namespace ft {
 				_new->_right = _nill;
 				_new->_p =	_nill;
 				return (_new);
+			}
+
+			void	delete_tree(node_ptr& node)
+			{
+				if (node == _nill)
+					return;
+				delete_tree(node->_left);
+				delete_tree(node->_right);
+				_node_alloc.destroy(node);
+				_node_alloc.deallocate(node, sizeof(node));
+			}
+
+			void	left_rotate(node_ptr new_node)
+			{
+				node_ptr	y = new_node->_right;
+
+				new_node->_right = y->_left;
+				if (y->_left != _nill)
+					y->_left->_p = new_node;
+				y->_p = new_node->_p;
+				if (new_node->_p == _nill)
+					_root = y;
+				else if (new_node == new_node->_p->_left)
+					new_node->_p->_left = y;
+				else
+					new_node->_p->_right = y;
+				y->_left = new_node;
+				new_node->_p = y;
+			}
+
+			void	right_rotate(node_ptr new_node)
+			{
+				node_ptr	y = new_node->_left;
+
+				new_node->_left = y->_right;
+				if (y->_right != _nill)
+					y->_right->_p = new_node;
+				y->_p = new_node->_p;
+				if (new_node->_p == _nill)
+					_root = y;
+				else if (new_node == new_node->_p->_right)
+					new_node->_p->_right = y;
+				else
+					new_node->_p->_left = y;
+				y->_right = new_node;
+				new_node->_p = y;
+			}
+
+			void	tree_balance(node_ptr& new_node)
+			{
+				node_ptr	y;
+				int i = 0;
+
+				while (new_node->_p->_color == RED)
+				{
+					std::cout << "i: " << i << "color: " << new_node->_p->_color << std::endl;
+					i++;
+					if (new_node->_p == new_node->_p->_p->_left)
+					{
+						y = new_node->_p->_p->_right;
+						if (y->_color == RED)
+						{
+							new_node->_p->_color = BLACK;
+							y->_color = BLACK;
+							new_node->_p->_p->_color = RED;
+							new_node = new_node->_p->_p;
+						}
+						else
+						{
+							if (new_node == new_node->_p->_right)
+							{
+								new_node = new_node->_p;
+								left_rotate(new_node);
+							}
+							new_node->_p->_color = BLACK;
+							new_node->_p->_p->_color = RED;
+							right_rotate(new_node->_p->_p);
+						}
+					}
+					else
+					{
+						y = new_node->_p->_p->_left;
+						if (y->_color == RED)
+						{
+							new_node->_p->_color = BLACK;
+							y->_color = BLACK;
+							new_node->_p->_p->_color = RED;
+							new_node = new_node->_p->_p;
+						}
+						else
+						{
+							if (new_node == new_node->_p->_left)
+							{
+								new_node = new_node->_p;
+								right_rotate(new_node);
+							}
+							new_node->_p->_color = BLACK;
+							new_node->_p->_p->_color = RED;
+							left_rotate(new_node->_p->_p);
+						}
+					}
+				}
+				_root->_color = BLACK;
 			}
 
 		public:
@@ -66,9 +200,10 @@ namespace ft {
 				_size = 0;
 				_nill = _node_alloc.allocate(1);
 				_node_alloc.construct(_nill, node_tree<value_type>());
+				_nill->_color = BLACK;
+				_nill->_p =	_nill;
 				_nill->_left = _nill;
 				_nill->_right = _nill;
-				_nill->_p =	_nill;
 				_root = _nill;
 			};
 
@@ -95,32 +230,31 @@ namespace ft {
 					y = x;
 					if (val.first < x->_node_value.first)
 						x = x->_left;
-					else
+					else if (val.first > x->_node_value.first)
 						x = x->_right;
+					else
+						return(y);
 				}
-
+				new_node = node_create(val);
+				new_node->_p = y;
 				if (y == _nill)
-					_root = node_create(val);
+					_root = new_node;
 				else
 				{ 
-					new_node = node_create(val);
-					new_node->_p = y;
 					if (new_node->_node_value.first < y->_node_value.first) 
 						y->_left = new_node;
 					else
 					y->_right = new_node;
 				}
-
-				return (_root);
+				tree_balance(new_node);
+				return (new_node);
 			}
 
-			void	clear(){
-				
-					_node_alloc.destroy(_root);
-					_node_alloc.deallocate(_root, sizeof(_root));
-
-					_root = NULL;
-				}
+			void	clear()
+			{
+				delete_tree(_root);
+				_root = NULL;
+			}
 	};
 };
 
