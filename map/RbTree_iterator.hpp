@@ -22,6 +22,7 @@ namespace ft {
 			typedef typename iterator_traits<iT>::iterator_category	iterator_category;
 		
 		protected:
+		
 			iterator_type	_current;
 
 		public:

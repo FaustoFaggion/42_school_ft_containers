@@ -224,7 +224,7 @@ namespace ft {
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};
 
-			iterator	insert(const value_type& val)
+			pair<iterator, bool>	insert(const value_type& val)
 			{
 				node_ptr	x = _root;
 				node_ptr	y = _nill;
@@ -239,7 +239,7 @@ namespace ft {
 					else if (val.first > x->_node_value.first)
 						x = x->_right;
 					else
-						return(iterator(y));
+						return(pair<iterator, bool>(iterator(y), false));
 				}
 				new_node = node_create(val);
 				new_node->_p = y;
@@ -253,7 +253,7 @@ namespace ft {
 					y->_right = new_node;
 				}
 				tree_balance(new_node);
-				return (iterator(new_node));
+				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
 			void	clear()

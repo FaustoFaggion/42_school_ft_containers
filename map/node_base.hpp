@@ -7,27 +7,6 @@ namespace ft {
 
 	enum	node_color {RED, BLACK};
 
-/*
-	struct node_base
-	{
-		typedef node_base*			base_ptr;
-		typedef const node_base*	const_base_ptr;
-
-		node_color	_color;
-		base_ptr	_left;
-		base_ptr	_right;
-		base_ptr	_p;
-
-		node_base(void)
-		{
-			_color = RED;
-			_left = NULL;
-			_right = NULL;
-			_p = NULL;
-		}
-	};
-*/	
-
 	template<typename Val>
 	struct node_tree
 	{

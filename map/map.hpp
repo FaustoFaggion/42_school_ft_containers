@@ -87,7 +87,7 @@ namespace ft
 		size_type	size();
 
 		/*MODIFIER*/
-		iterator	insert(const value_type& val) { return (_tree.insert(val));};
+		pair<iterator, bool>	insert(const value_type& val) { return (_tree.insert(val));};
 	};
 	
 	/*CONSTRUCTORS*/
