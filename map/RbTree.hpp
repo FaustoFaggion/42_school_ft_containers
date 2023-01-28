@@ -22,21 +22,22 @@ namespace ft {
 
 		protected:
 
-			typedef node_tree<Val>					node;
-			typedef node*							node_ptr;
-			typedef const node*						const_node_ptr;
+			typedef node_tree<Val>						node;
+			typedef node*								node_ptr;
+			typedef const node*							const_node_ptr;
 
 		public:
-			typedef Key								key_type;
-			typedef Val								value_type;
-			typedef value_type*						pointer;
-			typedef const value_type*				const_pointer;
-			typedef value_type&						reference;
-			typedef const value_type&				const_reference;
-			typedef size_t							size_type;
-			typedef ptrdiff_t						difference_type;
-			typedef Alloc							allocator_type;
-			typedef RbTree_iterator<value_type>		iterator;
+			typedef Key									key_type;
+			typedef Val									value_type;
+			typedef value_type*							pointer;
+			typedef const value_type*					const_pointer;
+			typedef value_type&							reference;
+			typedef const value_type&					const_reference;
+			typedef size_t								size_type;
+			typedef ptrdiff_t							difference_type;
+			typedef Alloc								allocator_type;
+			typedef RbTree_iterator<node_ptr>			iterator;
+			typedef RbTree_iterator<const_node_ptr>		const_iterator;
 
 		node_ptr				_nill;
 		node_ptr				_root;
@@ -214,6 +215,11 @@ namespace ft {
 				_node_alloc.destroy(_nill);
 				_node_alloc.deallocate(_nill, sizeof(_nill));
 			};
+
+		/*ITERATORS*/
+
+			iterator				begin(void) { return (iterator(_root)); }
+			const_iterator			begin(void) const { return (const_iterator(_root)); }
 
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};

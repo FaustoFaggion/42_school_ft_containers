@@ -14,15 +14,25 @@ namespace ft {
 
 		private:
 
-			typedef iT									iterator_type;
-			typedef iT&									iterator_reference;
-			typedef iT*									iterator_pointer;
-			typedef std::bidirectional_iterator_tag		iterator_category;
-			typedef ptrdiff_t							difference_type;
-			typedef RbTree_iterator<iT>					self;
-			typedef node_tree<iT>*						node_ptr;
+			typedef iT												iterator_type;
+			typedef typename iterator_traits<iT>::value_type		value_type;
+			typedef typename iterator_traits<iT>::difference_type	difference_type;
+			typedef typename iterator_traits<iT>::pointer			pointer;
+			typedef typename iterator_traits<iT>::reference			reference;
+			typedef typename iterator_traits<iT>::iterator_category	iterator_category;
 		
+		protected:
+			iterator_type	_current;
+
 		public:
+
+		RbTree_iterator(void) : _current(NULL) { };
+			explicit RbTree_iterator(const iterator_type &rsc) : _current(rsc) { };
+
+		/*OPERATORS*/
+
+			reference	operator*(void) { return (*_current);};
+			pointer		operator->(void) { return (_current);};// &(*_current)
 	};
 };
 

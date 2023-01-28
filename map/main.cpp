@@ -30,6 +30,9 @@ int main(void) {
 
 	tr.print_tree(tr._root, 0);
 
+	ft::RbTree<int, std::pair<int, std::string>, int>::iterator it;
+	it = tr.begin();
+	std::cout << "it value: " << it->_node_value.second << std::endl;
 	std::cout << "\n\n";
 	std::cout << "root value: " << tr._root->_node_value.second << std::endl;
 	std::cout << "size tree: " << tr.size() << std::endl;
