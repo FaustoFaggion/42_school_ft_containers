@@ -22,7 +22,7 @@ namespace ft {
 		
 		node_tree() : _node_value(Val())
 		{
-			std::cout << "default constructor called" << std::endl;
+			// std::cout << "default constructor called" << std::endl;
 			_color = RED;
 			_left = NULL;
 			_right = NULL;
@@ -31,7 +31,7 @@ namespace ft {
 
 		explicit node_tree(Val value) : _node_value(value)
 		{
-			std::cout << "value constructor called" << std::endl;
+			// std::cout << "value constructor called" << std::endl;
 			_color = RED;
 			_left = NULL;
 			_right = NULL;

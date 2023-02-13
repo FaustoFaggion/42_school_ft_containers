@@ -189,13 +189,27 @@ namespace ft {
 				_root->_color = BLACK;
 			}
 
+			iterator	minimum(node_ptr ref_root)
+			{
+				while(ref_root->_left != _nill)
+					ref_root = ref_root->_left;
+				return (iterator(ref_root));
+			}
+
+			iterator	maximum(node_ptr ref_root)
+			{
+				while(ref_root->_right != _nill)
+					ref_root = ref_root->_right;
+				return (iterator(ref_root));
+			}
+
 		public:
 
 		/*CONSTRUCTORS*/
 			RbTree(const Compare& comp = Compare(),
 								const allocator_type& alloc = allocator_type())
 			{
-				std::cout << "RbTree default constructor called" << std::endl;
+				// std::cout << "RbTree default constructor called" << std::endl;
 				_alloc = alloc;
 				_comp = comp;
 				_size = 0;
@@ -210,7 +224,7 @@ namespace ft {
 
 			~RbTree(void)
 			{
-				std::cout << "RbTree destructor called" << std::endl;
+				// std::cout << "RbTree destructor called" << std::endl;
 				clear();
 				_node_alloc.destroy(_nill);
 				_node_alloc.deallocate(_nill, sizeof(_nill));
@@ -218,8 +232,11 @@ namespace ft {
 
 		/*ITERATORS*/
 
-			iterator				begin(void) { return (iterator(_root)); }
-			const_iterator			begin(void) const { return (const_iterator(_root)); }
+			iterator				begin(void) { return (minimum(_root)); }
+			const_iterator			begin(void) const { return (minimum(_root)); }
+
+			iterator				end(void) { return (maximum(_root)); }
+			const_iterator			end(void) const { return (maximum(_root)); }
 
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};

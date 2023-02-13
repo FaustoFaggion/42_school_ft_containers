@@ -81,6 +81,7 @@ namespace ft
 	
 		/*ITERATOR*/
 		iterator	begin(){ return (_tree.begin());};
+		iterator	end(){ return (_tree.end());};
 
 
 		/*CAPACITY*/
