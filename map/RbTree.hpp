@@ -252,9 +252,9 @@ namespace ft {
 				while (x != _nill)
 				{
 					y = x;
-					if (val.first < x->_node_value.first)
+					if (_comp(val.first, x->_node_value.first))
 						x = x->_left;
-					else if (val.first > x->_node_value.first)
+					else if (_comp(x->_node_value.first, val.first))
 						x = x->_right;
 					else
 						return(pair<iterator, bool>(iterator(y), false));
@@ -265,7 +265,7 @@ namespace ft {
 					_root = new_node;
 				else
 				{ 
-					if (new_node->_node_value.first < y->_node_value.first) 
+					if (_comp(new_node->_node_value.first, y->_node_value.first)) 
 						y->_left = new_node;
 					else
 					y->_right = new_node;
