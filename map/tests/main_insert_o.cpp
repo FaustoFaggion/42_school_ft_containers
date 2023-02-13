@@ -22,34 +22,38 @@ int main(void) {
 	std::pair<std::map<int, std::string>::iterator, bool>	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val1);
-	 std::cout << "it value: " << it.first->second << std::endl;
+	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 	
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val2);
-	 std::cout << "it value: " << it.first->second << std::endl;
+	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val3);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val4);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val5);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val6);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val7);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val8);
-	std::cout << "it value: " << it.first->second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val4);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 }

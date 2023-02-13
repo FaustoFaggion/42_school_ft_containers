@@ -241,6 +241,7 @@ namespace ft {
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};
 
+		/*MODIFIERS*/
 			pair<iterator, bool>	insert(const value_type& val)
 			{
 				node_ptr	x = _root;
@@ -273,7 +274,7 @@ namespace ft {
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
-			void	clear()
+			void					clear()
 			{
 				delete_tree(_root);
 				_root = NULL;

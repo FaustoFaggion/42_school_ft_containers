@@ -80,10 +80,11 @@ namespace ft
 			~map();
 	
 		/*ITERATOR*/
-		iterator	begin(){ return (_tree.begin());};
-		iterator	end(){ return (_tree.end());};
-
-
+		iterator		begin(){ return (_tree.begin());};
+		const_iterator	begin() const { return (_tree.begin());};
+		iterator		end(){ return (_tree.end());};
+		const_iterator	end() const { return (_tree.end());};
+		
 		/*CAPACITY*/
 		size_type	size();
 
