@@ -37,8 +37,8 @@ namespace ft {
 			typedef size_t								size_type;
 			typedef ptrdiff_t							difference_type;
 			typedef Alloc								allocator_type;
-			typedef RbTree_iterator<node_ptr>			iterator;
-			typedef RbTree_iterator<const_node_ptr>		const_iterator;
+			typedef RbTree_iterator<value_type>			iterator;
+			typedef RbTree_iterator<const_pointer>		const_iterator;
 
 		node_ptr				_nill;
 		node_ptr				_root;

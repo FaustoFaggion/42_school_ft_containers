@@ -10,30 +10,36 @@
 namespace ft {
 
 	template<typename iT>
-	class RbTree_iterator {
+	class RbTree_iterator : public iterator<std::bidirectional_iterator_tag, iT> {
 
 		private:
 
-			typedef iT												iterator_type;
-			typedef typename iterator_traits<iT>::value_type		value_type;
-			typedef typename iterator_traits<iT>::difference_type	difference_type;
-			typedef typename iterator_traits<iT>::pointer			pointer;
-			typedef typename iterator_traits<iT>::reference			reference;
-			typedef typename iterator_traits<iT>::iterator_category	iterator_category;
+			typedef node_tree<iT>										node;
+			typedef node*												node_ptr;
+			typedef const node*											const_node_ptr;
+
+			typedef iT													iterator_type;
+			typedef typename iterator_traits<iT*>::value_type			value_type;
+			typedef typename iterator_traits<iT*>::difference_type		difference_type;
+			typedef typename iterator_traits<iT*>::pointer				pointer;
+			typedef typename iterator_traits<iT*>::reference			reference;
+			typedef typename iterator_traits<iT*>::iterator_category	iterator_category;
+			typedef RbTree_iterator										self;
 		
-		protected:
+		public:
 		
-			iterator_type	_current;
+			node_ptr	_current;
 
 		public:
 
-		RbTree_iterator(void) : _current(NULL) { };
-			explicit RbTree_iterator(const iterator_type &rsc) : _current(rsc) { };
+			RbTree_iterator(void) : _current(NULL) { };
+			explicit RbTree_iterator(node_ptr rsc) : _current(rsc) { };
+
 
 		/*OPERATORS*/
 
-			reference	operator*(void) { return (*_current);};
-			pointer		operator->(void) { return (_current);};// &(*_current)
+			reference	operator*(void) { return (_current->_node_value);};
+			pointer		operator->(void) { return &(_current->_node_value);};// &(*_current)
 	};
 };
 
