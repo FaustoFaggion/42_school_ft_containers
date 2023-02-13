@@ -47,4 +47,8 @@ int main(void) {
 	it = ft_map.end();
 	std::cout << "end: " << it->second << std::endl;
 
+	std::cout << "operator []: " << ft_map[12] << std::endl;
+
+	ft_map[12] = "twelve";
+	std::cout << "operator []: " << ft_map[12] << std::endl;
 }

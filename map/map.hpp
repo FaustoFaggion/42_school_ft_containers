@@ -84,9 +84,20 @@ namespace ft
 		const_iterator	begin() const { return (_tree.begin());};
 		iterator		end(){ return (_tree.end());};
 		const_iterator	end() const { return (_tree.end());};
-		
+
 		/*CAPACITY*/
 		size_type	size();
+
+		/*ACCESS ELEMENT*/
+		mapped_type& operator[](const key_type& k)
+		{
+			ft::pair<iterator, bool>	it;
+
+			it = this->insert(ft::make_pair(k, mapped_type()));
+
+			return (it.first->second);
+		}
+
 
 		/*MODIFIER*/
 		pair<iterator, bool>	insert(const value_type& val) { return (_tree.insert(val));};
