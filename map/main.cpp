@@ -51,4 +51,11 @@ int main(void) {
 
 	ft_map[12] = "twelve";
 	std::cout << "operator []: " << ft_map[12] << std::endl;
+	
+	std::cout << "at: " << (ft_map.at(12))->second << std::endl;
+
+	for (it = ft_map.begin(); it < ft_map.end(); it++)
+	{
+
+	}
 }

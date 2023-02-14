@@ -86,10 +86,10 @@ namespace ft
 		const_iterator	end() const { return (_tree.end());};
 
 		/*CAPACITY*/
-		size_type	size();
+		size_type		size();
 
 		/*ACCESS ELEMENT*/
-		mapped_type& operator[](const key_type& k)
+		mapped_type&	operator[](const key_type& k)
 		{
 			ft::pair<iterator, bool>	it;
 
@@ -98,7 +98,11 @@ namespace ft
 			return (it.first->second);
 		}
 
-
+		iterator		at(key_type k)
+		{
+			return (_tree.at(k));
+		}
+		
 		/*MODIFIER*/
 		pair<iterator, bool>	insert(const value_type& val) { return (_tree.insert(val));};
 	};

@@ -22,30 +22,32 @@ namespace ft {
 																node_allocator;
 
 		protected:
-
-			typedef node_tree<Val>						node;
-			typedef node*								node_ptr;
-			typedef const node*							const_node_ptr;
+			
+			typedef node_tree<Val>								node;
+			typedef node*										node_ptr;
+			typedef const node*									const_node_ptr;
 
 		public:
-			typedef Key									key_type;
-			typedef Val									value_type;
-			typedef value_type*							pointer;
-			typedef const value_type*					const_pointer;
-			typedef value_type&							reference;
-			typedef const value_type&					const_reference;
-			typedef size_t								size_type;
-			typedef ptrdiff_t							difference_type;
-			typedef Alloc								allocator_type;
-			typedef RbTree_iterator<value_type>			iterator;
-			typedef RbTree_iterator<const_pointer>		const_iterator;
 
-		node_ptr				_nill;
-		node_ptr				_root;
-		node_allocator			_node_alloc;
-		Alloc					_alloc;
-		size_type				_size;
-		Compare					_comp;
+			typedef RbTree										self;
+			typedef Key											key_type;
+			typedef Val											value_type;
+			typedef value_type*									pointer;
+			typedef const value_type*							const_pointer;
+			typedef value_type&									reference;
+			typedef const value_type&							const_reference;
+			typedef size_t										size_type;
+			typedef ptrdiff_t									difference_type;
+			typedef Alloc										allocator_type;
+			typedef RbTree_iterator<pointer, self>				iterator;
+			typedef RbTree_iterator<const_pointer, self>		const_iterator;
+
+			node_ptr				_nill;
+			node_ptr				_root;
+			node_allocator			_node_alloc;
+			Alloc					_alloc;
+			size_type				_size;
+			Compare					_comp;
 
 		/*UTILS*/
 		public:
@@ -202,6 +204,36 @@ namespace ft {
 					ref_root = ref_root->_right;
 				return (iterator(ref_root));
 			}
+			
+			iterator	tree_search(const key_type k)
+			{
+				node_ptr	tmp = _root;
+
+				while (tmp != _nill && k != tmp->_node_value.first)
+				{
+					if (_comp(k, tmp->_node_value.first))
+						tmp = tmp->_left;
+					else
+						tmp = tmp->_right;
+				}
+				return (iterator(tmp));
+			}
+
+			node_ptr	tree_sucessor(node_ptr next)
+			{
+				if (next->_right != _nill)
+					return (minimum(next->_right));
+				else
+				{
+					node_ptr i = next->_p;
+					while (i != _nill && next == i->_right)
+					{
+						next = i;
+						i = i->_p;
+					}
+					return (i);
+				}
+			}
 
 		public:
 
@@ -240,6 +272,14 @@ namespace ft {
 
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};
+
+		/*ELEMENT ACCESS*/
+			iterator	at(key_type k)
+			{
+				if (tree_search(k) != iterator(_nill))
+					return (tree_search(k));
+				return (tree_search(k));
+			}
 
 		/*MODIFIERS*/
 			pair<iterator, bool>	insert(const value_type& val)
