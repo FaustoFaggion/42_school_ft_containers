@@ -68,16 +68,18 @@ namespace ft
 			map() : _tree(Compare(), allocator_type()) { };
 			
 			explicit map(const key_compare& comp,
-				const allocator_type& alloc = allocator_type());
+				const allocator_type& alloc = allocator_type()) :
+														_tree(comp, alloc) { };
 			
 			template<typename InputIterator>
 			map(InputIterator first, InputIterator last,
 				const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type());
+				const allocator_type& alloc = allocator_type()) :
+														_tree(comp, alloc) { };
 
 			map(const map& rsc);
 
-			~map();
+			~map(void) { };
 	
 		/*ITERATOR*/
 		iterator		begin(){ return (_tree.begin());};
@@ -86,7 +88,7 @@ namespace ft
 		const_iterator	end() const { return (_tree.end());};
 
 		/*CAPACITY*/
-		size_type		size();
+		size_type		size() {return(_tree.size());};
 
 		/*ACCESS ELEMENT*/
 		mapped_type&	operator[](const key_type& k)
@@ -106,20 +108,6 @@ namespace ft
 		/*MODIFIER*/
 		pair<iterator, bool>	insert(const value_type& val) { return (_tree.insert(val));};
 	};
-	
-	/*CONSTRUCTORS*/
-	template<typename Key, typename T, class Compare, class Alloc>
-	map<Key, T, Compare, Alloc>::map(const key_compare& comp,
-				const allocator_type& alloc) : _tree(comp, alloc) { };
-
-	template<typename Key, typename T, class Compare, class Alloc>
-	map<Key, T, Compare, Alloc>::~map(void) { };
-
-	/*CAPACITY*/
-	template<typename Key, typename T, class Compare, class Alloc>
-	typename map<Key, T, Compare, Alloc>::size_type	map<Key, T, Compare, Alloc>::size(void) {return(_tree.size());};
-
-	/*ITERATOR*/
 };
 
 #endif
