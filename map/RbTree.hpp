@@ -268,8 +268,8 @@ namespace ft {
 			iterator				begin(void) { return (iterator(minimum(_root))); }
 			const_iterator			begin(void) const { return (const_iterator(minimum(_root))); }
 
-			iterator				end(void) { return (iterator(maximum(_root))); }
-			const_iterator			end(void) const { return (const_iterator(maximum(_root))); }
+			iterator				end(void){ return (iterator(_nill)); }
+			const_iterator			end(void) const { return (const_iterator(_nill)); }
 
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};

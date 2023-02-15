@@ -1,11 +1,10 @@
 #include "../map.hpp"
-#include <map>
 #include "../RbTree.hpp"
 #include "../node_base.hpp"
 
 int main(void) {
 
-		ft::map<int, std::string> ft_map;
+	ft::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
 
@@ -20,39 +19,29 @@ int main(void) {
 	ft::pair<int, std::string>	val9(9, "nine");
 	
 
+	ft_map.insert(val1);
+	ft_map.insert(val2);
+	ft_map.insert(val3);
 	ft_map.insert(val4);
 	ft_map.insert(val5);
 	ft_map.insert(val6);
 	ft_map.insert(val7);
 	ft_map.insert(val8);
 	ft_map.insert(val9);
-	ft::map<int, std::string>::iterator	it;
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
-	std::cout << "\n\n";
-
-	ft_map.insert(val3);
-	std::cout << "\n---------------------------\n";
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
-
-	ft_map.insert(val2);
-	std::cout << "\n---------------------------\n";
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
 	
-	ft_map.insert(val1);
-	std::cout << "\n---------------------------\n";
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
-
+	ft::map<int, std::string>::iterator	it;
 	for (it = ft_map.begin(); it != ft_map.end(); it++)
 	{
 		std::cout << it->second << std::endl;
 	}
-
+	std::cout << "\n---------------------------\n";
+	std::cout << "operator [1]: " << ft_map[1] << std::endl;
+	std::cout << "operator [2]: " << ft_map[2] << std::endl;
+	ft_map[10] = "dez";
+	std::cout << "operator [10]: " << ft_map[10] << std::endl;
+	std::cout << "\n---------------------------\n";
+	for (it = ft_map.begin(); it != ft_map.end(); it++)
+	{
+		std::cout << it->second << std::endl;
+	}
 }

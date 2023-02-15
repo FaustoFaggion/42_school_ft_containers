@@ -1,0 +1,27 @@
+size map: 0
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+
+---------------------------
+operator [1]: one
+operator [2]: two
+operator [10]: dez
+
+---------------------------
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+dez

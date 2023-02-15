@@ -54,7 +54,7 @@ int main(void) {
 	
 	std::cout << "at: " << (ft_map.at(12))->second << std::endl;
 
-	for (it = ft_map.begin(); it < ft_map.end(); it++)
+	for (it = ft_map.begin(); it != ft_map.end(); it++)
 	{
 		std::cout << it->second << std::endl;
 	}
