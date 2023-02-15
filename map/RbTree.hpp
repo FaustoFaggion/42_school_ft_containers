@@ -75,7 +75,7 @@ namespace ft {
 
 			}
 
-		private:
+		public:
 
 			node_ptr	node_create(value_type val) {
 
@@ -191,18 +191,18 @@ namespace ft {
 				_root->_color = BLACK;
 			}
 
-			iterator	minimum(node_ptr ref_root)
+			static node_ptr	minimum(node_ptr ref_root)
 			{
-				while(ref_root->_left != _nill)
+				while(ref_root->_left->_nill == false)
 					ref_root = ref_root->_left;
-				return (iterator(ref_root));
+				return (ref_root);
 			}
 
-			iterator	maximum(node_ptr ref_root)
+			static node_ptr	maximum(node_ptr ref_root)
 			{
-				while(ref_root->_right != _nill)
+				while(ref_root->_right->_nill == false)
 					ref_root = ref_root->_right;
-				return (iterator(ref_root));
+				return (ref_root);
 			}
 			
 			iterator	tree_search(const key_type k)
@@ -219,14 +219,14 @@ namespace ft {
 				return (iterator(tmp));
 			}
 
-			node_ptr	tree_sucessor(node_ptr next)
+			static node_ptr	tree_sucessor(node_ptr next)
 			{
-				if (next->_right != _nill)
+				if (next->_right->_nill == false)
 					return (minimum(next->_right));
 				else
 				{
 					node_ptr i = next->_p;
-					while (i != _nill && next == i->_right)
+					while (i->_nill == false && next == i->_right)
 					{
 						next = i;
 						i = i->_p;
@@ -251,6 +251,7 @@ namespace ft {
 				_nill->_p =	_nill;
 				_nill->_left = _nill;
 				_nill->_right = _nill;
+				_nill->_nill = true;
 				_root = _nill;
 			};
 
@@ -264,11 +265,11 @@ namespace ft {
 
 		/*ITERATORS*/
 
-			iterator				begin(void) { return (minimum(_root)); }
-			const_iterator			begin(void) const { return (minimum(_root)); }
+			iterator				begin(void) { return (iterator(minimum(_root))); }
+			const_iterator			begin(void) const { return (const_iterator(minimum(_root))); }
 
-			iterator				end(void) { return (maximum(_root)); }
-			const_iterator			end(void) const { return (maximum(_root)); }
+			iterator				end(void) { return (iterator(maximum(_root))); }
+			const_iterator			end(void) const { return (const_iterator(maximum(_root))); }
 
 		/*CAPACITY*/
 			size_type	size(void) {return(_size);};

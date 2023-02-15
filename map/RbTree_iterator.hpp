@@ -57,6 +57,14 @@ namespace ft {
 				_current = rb_tree::tree_sucessor(_current);
 				return (*this);
 			};
+
+			self		operator++(int)
+			{
+				self	tmp = *this;
+
+				_current = rb_tree::tree_sucessor(_current);
+				return (tmp);
+			}
 	};
 };
 
