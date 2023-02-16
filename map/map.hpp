@@ -18,15 +18,21 @@ namespace ft
 	class map {
 
 		private:
+
 			typedef	map<Key, T, Compare, Alloc>		map_type;
+			
 		public:
+		
 			typedef Key								key_type;
 			typedef T								mapped_type;
 			typedef ft::pair<const Key, T>			value_type;
 			typedef Compare							key_compare;
 
-			
-			class value_compare : public std::binary_function<value_type, value_type, bool> {
+			typedef RbTree <key_type, value_type, std::_Select1st<value_type>,
+								key_compare, Alloc>				Tree_struct;
+
+			class value_compare : public std::binary_function<value_type,
+															value_type, bool> {
 
 				friend class map<Key, T, Compare, Alloc>;
 
@@ -35,15 +41,15 @@ namespace ft
 					value_compare(Compare c) : comp(c) {};
 
 				public:
-					bool operator()(const value_type& lhs, const value_type& rhs) const {
+					bool operator()(const value_type& lhs,
+												const value_type& rhs) const
+					{
 						return (comp(lhs.first, rhs.first));
 					}
 			};
+
 		private:
 
-			typedef RbTree <key_type, value_type, std::_Select1st<value_type>,
-								key_compare, Alloc>				Tree_struct;
-			
 			Tree_struct	_tree;
 
 		public:
@@ -62,7 +68,8 @@ namespace ft
 		public:
 
 		/*UTILS*/
-		void	print_map() { return (_tree.print_tree(_tree._root, 0));}
+		
+		// void	print_map() { return (_tree.print_tree(_tree._root, 0));}
 
 		/*CONSTRUCTORS*/
 			map() : _tree(Compare(), allocator_type()) { };
@@ -100,9 +107,9 @@ namespace ft
 			return (it.first->second);
 		}
 
-		iterator		at(key_type k)
+		mapped_type&	at(const key_type& k)
 		{
-			return (_tree.at(k));
+			return (_tree.at(k).second);
 		}
 		
 		/*MODIFIER*/

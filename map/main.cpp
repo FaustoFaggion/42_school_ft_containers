@@ -26,7 +26,7 @@ int main(void) {
 	ft_map.insert(val5);
 	ft_map.insert(val6);
 	ft_map.insert(val7);
-	ft_map.print_map();
+
 	ft::map<int, std::string>::iterator	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.begin();
@@ -39,7 +39,6 @@ int main(void) {
 	ft_map.insert(val1);
 	ft_map.insert(val8);
 	ft_map.insert(val9);
-	ft_map.print_map();
 	std::cout << "\n---------------------------\n";
 	it = ft_map.begin();
 	std::cout << "begin: " << it->second << std::endl;
@@ -52,7 +51,15 @@ int main(void) {
 	ft_map[12] = "twelve";
 	std::cout << "operator []: " << ft_map[12] << std::endl;
 	
-	std::cout << "at: " << (ft_map.at(12))->second << std::endl;
+	std::cout << "at: " << (ft_map.at(12)) << std::endl;
+	try 
+	{
+		std::cout << "at: " << (ft_map.at(14)) << std::endl;
+	}
+	catch (std::out_of_range& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 	for (it = ft_map.begin(); it != ft_map.end(); it++)
 	{

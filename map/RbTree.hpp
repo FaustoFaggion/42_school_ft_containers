@@ -42,6 +42,8 @@ namespace ft {
 			typedef RbTree_iterator<pointer, self>				iterator;
 			typedef RbTree_iterator<const_pointer, self>		const_iterator;
 
+		private: 
+		
 			node_ptr				_nill;
 			node_ptr				_root;
 			node_allocator			_node_alloc;
@@ -205,7 +207,7 @@ namespace ft {
 				return (ref_root);
 			}
 			
-			iterator	tree_search(const key_type k)
+			node_ptr	tree_search(const key_type k)
 			{
 				node_ptr	tmp = _root;
 
@@ -216,7 +218,7 @@ namespace ft {
 					else
 						tmp = tmp->_right;
 				}
-				return (iterator(tmp));
+				return (tmp);
 			}
 
 			static node_ptr	tree_sucessor(node_ptr next)
@@ -275,11 +277,13 @@ namespace ft {
 			size_type	size(void) {return(_size);};
 
 		/*ELEMENT ACCESS*/
-			iterator	at(key_type k)
+			value_type&	at(key_type k)
 			{
-				if (tree_search(k) != iterator(_nill))
-					return (tree_search(k));
-				return (tree_search(k));
+				node_ptr	val = tree_search(k);
+
+				if (val != _nill)
+					return (val->_node_value);
+				throw std::out_of_range("map::at");
 			}
 
 		/*MODIFIERS*/

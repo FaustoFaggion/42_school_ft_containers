@@ -10,7 +10,7 @@ namespace	ft {
 			typedef T1			first_type;
 			typedef T2			second_type;
 		
-	//	private:
+		// private:
 			T1	first;
 			T2	second;
 		
