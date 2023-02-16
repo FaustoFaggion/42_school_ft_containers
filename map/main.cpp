@@ -20,49 +20,49 @@ int main(void) {
 	ft::pair<int, std::string>	val9(9, "nine");
 	
 
+	ft_map.insert(val1);
 	ft_map.insert(val2);
 	ft_map.insert(val3);
 	ft_map.insert(val4);
 	ft_map.insert(val5);
 	ft_map.insert(val6);
 	ft_map.insert(val7);
-
-	ft::map<int, std::string>::iterator	it;
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
-	std::cout << "\n\n";
-	it = ft_map.end();
-	std::cout << "end: " << it->second << std::endl;
-
-	std::cout << "\n---------------------------\n";
-	ft_map.insert(val1);
 	ft_map.insert(val8);
 	ft_map.insert(val9);
-	std::cout << "\n---------------------------\n";
-	it = ft_map.begin();
-	std::cout << "begin: " << it->second << std::endl;
-	std::cout << "\n\n";
-	it = ft_map.end();
-	std::cout << "end: " << it->second << std::endl;
 
-	std::cout << "operator []: " << ft_map[12] << std::endl;
-
-	ft_map[12] = "twelve";
-	std::cout << "operator []: " << ft_map[12] << std::endl;
+	ft::map<int, std::string>::iterator	it;
 	
-	std::cout << "at: " << (ft_map.at(12)) << std::endl;
-	try 
+	for (it = ft_map.begin(); it != ft_map.end(); it++)
 	{
-		std::cout << "at: " << (ft_map.at(14)) << std::endl;
+		std::cout << it->second << std::endl;
 	}
-	catch (std::out_of_range& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+
+	std::cout << "size map: " << ft_map.size() << std::endl;
+
+	ft_map.clear();
+
+	std::cout << "size map: " << ft_map.size() << std::endl;
+
+	std::cout << "\n--------------------\n";
+	
+	ft_map.insert(val1);
+	ft_map.insert(val2);
+	ft_map.insert(val3);
+	ft_map.insert(val4);
+	ft_map.insert(val5);
+	ft_map.insert(val6);
+	ft_map.insert(val7);
+	ft_map.insert(val8);
+	ft_map.insert(val9);
 
 	for (it = ft_map.begin(); it != ft_map.end(); it++)
 	{
 		std::cout << it->second << std::endl;
 	}
+
+	std::cout << "size map: " << ft_map.size() << std::endl;
+
+	ft_map.clear();
+
+	std::cout << "size map: " << ft_map.size() << std::endl;
 }

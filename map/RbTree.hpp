@@ -267,24 +267,38 @@ namespace ft {
 
 		/*ITERATORS*/
 
-			iterator				begin(void) { return (iterator(minimum(_root))); }
-			const_iterator			begin(void) const { return (const_iterator(minimum(_root))); }
+			iterator				begin(void)
+			{ 
+				return (iterator(minimum(_root)));
+			}
 
-			iterator				end(void){ return (iterator(_nill)); }
-			const_iterator			end(void) const { return (const_iterator(_nill)); }
+			const_iterator			begin(void) const
+			{
+				return (const_iterator(minimum(_root)));
+			}
+
+			iterator				end(void)
+			{
+				return (iterator(_nill));
+			}
+
+			const_iterator			end(void) const
+			{
+				return (const_iterator(_nill));
+			}
 
 		/*CAPACITY*/
-			size_type	size(void) {return(_size);};
-
-		/*ELEMENT ACCESS*/
-			value_type&	at(key_type k)
+			size_type				size(void) {return(_size);}
+			
+			bool					empty() const
 			{
-				node_ptr	val = tree_search(k);
-
-				if (val != _nill)
-					return (val->_node_value);
-				throw std::out_of_range("map::at");
+				if (_root == _nill)
+					return (true);
+				return (false);
 			}
+	
+		/*ELEMENT ACCESS*/
+
 
 		/*MODIFIERS*/
 			pair<iterator, bool>	insert(const value_type& val)
@@ -316,13 +330,15 @@ namespace ft {
 					y->_right = new_node;
 				}
 				tree_balance(new_node);
+				_size++;
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
 			void					clear()
 			{
 				delete_tree(_root);
-				_root = NULL;
+				_root = _nill;
+				_size = 0;
 			}
 	};
 };

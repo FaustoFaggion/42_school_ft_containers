@@ -1,0 +1,25 @@
+size map: 0
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+size map: 9
+size map: 0
+
+--------------------
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+size map: 9
+size map: 0

@@ -28,8 +28,9 @@ namespace ft
 			typedef ft::pair<const Key, T>			value_type;
 			typedef Compare							key_compare;
 
-			typedef RbTree <key_type, value_type, std::_Select1st<value_type>,
-								key_compare, Alloc>				Tree_struct;
+			typedef RbTree <key_type, value_type,
+					std::_Select1st<value_type>,
+					key_compare, Alloc>				Tree_struct;
 
 			class value_compare : public std::binary_function<value_type,
 															value_type, bool> {
@@ -80,8 +81,8 @@ namespace ft
 			
 			template<typename InputIterator>
 			map(InputIterator first, InputIterator last,
-				const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type()) :
+					const key_compare& comp = key_compare(),
+						const allocator_type& alloc = allocator_type()) :
 														_tree(comp, alloc) { };
 
 			map(const map& rsc);
@@ -89,31 +90,58 @@ namespace ft
 			~map(void) { };
 	
 		/*ITERATOR*/
-		iterator		begin(){ return (_tree.begin());};
-		const_iterator	begin() const { return (_tree.begin());};
-		iterator		end(){ return (_tree.end());};
-		const_iterator	end() const { return (_tree.end());};
+
+			iterator			begin()
+			{
+				return (_tree.begin());
+			}
+
+			const_iterator		begin() const
+			{
+				return (_tree.begin());
+			}
+			
+			iterator			end()
+			{
+				return (_tree.end());
+			}
+			
+			const_iterator		end() const
+			{
+				return (_tree.end());
+			}
 
 		/*CAPACITY*/
-		size_type		size() {return(_tree.size());};
+			size_type			size()
+			{
+				return(_tree.size());
+			}
+			
+			bool 				empty() const
+			{
+				return(_tree.empty());
+			}
+
 
 		/*ACCESS ELEMENT*/
-		mapped_type&	operator[](const key_type& k)
+			mapped_type&		operator[](const key_type& k)
 		{
 			ft::pair<iterator, bool>	it;
 
 			it = this->insert(ft::make_pair(k, mapped_type()));
-
 			return (it.first->second);
 		}
 
-		mapped_type&	at(const key_type& k)
-		{
-			return (_tree.at(k).second);
-		}
-		
 		/*MODIFIER*/
-		pair<iterator, bool>	insert(const value_type& val) { return (_tree.insert(val));};
+			pair<iterator, bool>	insert(const value_type& val)
+		{
+			return (_tree.insert(val));
+		}
+
+			void					clear()
+			{
+				return (_tree.clear());
+			}
 	};
 };
 
