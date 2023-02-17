@@ -299,7 +299,7 @@ namespace ft {
 	
 			size_type				max_size() const
 			{
-				return (_node_alloc.maxsize());
+				return (_node_alloc.max_size());
 			}
 
 		/*ELEMENT ACCESS*/
@@ -340,7 +340,7 @@ namespace ft {
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
-			
+
 
 			void					clear()
 			{

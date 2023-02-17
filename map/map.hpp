@@ -88,10 +88,17 @@ namespace ft
 				insert(first, last);
 			}
 
-			map(const map& rsc);
+			map(const map& rsc) { *this = rsc;}
 
 			~map(void) { };
-	
+
+		/*OPERATOR*/
+
+			map	&operator=(map const &rsc)
+			{
+				_tree = rsc._tree;
+			}
+
 		/*ITERATOR*/
 
 			iterator			begin()
@@ -146,7 +153,7 @@ namespace ft
 		}
 
 			template <class InputIterator>
-			void insert (InputIterator first, InputIterator last)
+			void 				insert(InputIterator first, InputIterator last)
 			{
 				for (; first != last; first++)
 				{
@@ -158,6 +165,7 @@ namespace ft
 			{
 				return (_tree.clear());
 			}
+
 	};
 };
 
