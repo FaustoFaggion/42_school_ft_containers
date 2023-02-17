@@ -297,6 +297,11 @@ namespace ft {
 				return (false);
 			}
 	
+			size_type				max_size() const
+			{
+				return (_node_alloc.maxsize());
+			}
+
 		/*ELEMENT ACCESS*/
 
 
@@ -318,6 +323,7 @@ namespace ft {
 					else
 						return(pair<iterator, bool>(iterator(y), false));
 				}
+
 				new_node = node_create(val);
 				new_node->_p = y;
 				if (y == _nill)
@@ -333,6 +339,8 @@ namespace ft {
 				_size++;
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
+
+			
 
 			void					clear()
 			{

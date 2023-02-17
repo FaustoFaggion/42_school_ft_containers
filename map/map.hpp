@@ -81,9 +81,12 @@ namespace ft
 			
 			template<typename InputIterator>
 			map(InputIterator first, InputIterator last,
-					const key_compare& comp = key_compare(),
-						const allocator_type& alloc = allocator_type()) :
-														_tree(comp, alloc) { };
+				const key_compare& comp = key_compare(),
+					const allocator_type& alloc = allocator_type()) :
+															_tree(comp, alloc)
+			{
+				insert(first, last);
+			}
 
 			map(const map& rsc);
 
@@ -122,21 +125,34 @@ namespace ft
 				return(_tree.empty());
 			}
 
+			size_type max_size() const
+			{
+				return(_tree.max_size());
+			}
 
 		/*ACCESS ELEMENT*/
 			mapped_type&		operator[](const key_type& k)
-		{
-			ft::pair<iterator, bool>	it;
+			{
+				ft::pair<iterator, bool>	it;
 
-			it = this->insert(ft::make_pair(k, mapped_type()));
-			return (it.first->second);
-		}
+				it = this->insert(ft::make_pair(k, mapped_type()));
+				return (it.first->second);
+			}
 
 		/*MODIFIER*/
 			pair<iterator, bool>	insert(const value_type& val)
 		{
 			return (_tree.insert(val));
 		}
+
+			template <class InputIterator>
+			void insert (InputIterator first, InputIterator last)
+			{
+				for (; first != last; first++)
+				{
+					insert(*first);
+				}
+			}
 
 			void					clear()
 			{

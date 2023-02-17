@@ -26,3 +26,13 @@ it value: eight bool: 1
 
 ---------------------------
 it value: four bool: 0
+
+---------Insert Range----------
+one
+two
+three
+four
+five
+six
+seven
+eight

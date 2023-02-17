@@ -1,8 +1,8 @@
 #ifndef INTEGRAL_TYPE_TRAITS_HPP
 #define INTEGRAL_TYPE_TRAITS_HPP
 
-namespace ft {
-
+namespace ft
+{
 //	enable_if
 
 	template< bool Condition, class T = void >

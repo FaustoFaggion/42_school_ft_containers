@@ -17,52 +17,55 @@ int main(void) {
 	ft::pair<int, std::string>	val6(6, "six");
 	ft::pair<int, std::string>	val7(7, "seven");
 	ft::pair<int, std::string>	val8(8, "eight");
-	ft::pair<int, std::string>	val9(9, "nine");
 	
 
-	ft_map.insert(val1);
-	ft_map.insert(val2);
-	ft_map.insert(val3);
-	ft_map.insert(val4);
-	ft_map.insert(val5);
-	ft_map.insert(val6);
-	ft_map.insert(val7);
-	ft_map.insert(val8);
-	ft_map.insert(val9);
-
-	ft::map<int, std::string>::iterator	it;
+	ft::pair<ft::map<int, std::string>::iterator, bool>	it;
+	std::cout << "\n---------------------------\n";
+	it = ft_map.insert(val1);
+	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 	
-	for (it = ft_map.begin(); it != ft_map.end(); it++)
+	std::cout << "\n---------------------------\n";
+	it = ft_map.insert(val2);
+	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val3);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val4);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val5);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val6);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val7);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val8);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------------------------\n";
+	it =  ft_map.insert(val4);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	std::cout << "\n---------Insert Range----------\n";
+	
+	ft::map<int, std::string>::iterator	it2;
+	ft::map<int, std::string> ft_map2;
+	ft_map2.insert(ft_map.begin(), ft_map.end());
+
+	for (it2 = ft_map2.begin(); it2 != ft_map2.end(); it2++)
 	{
-		std::cout << it->second << std::endl;
+		std::cout << it2->second << std::endl;
 	}
 
-	std::cout << "size map: " << ft_map.size() << std::endl;
 
-	ft_map.clear();
-
-	std::cout << "size map: " << ft_map.size() << std::endl;
-
-	std::cout << "\n--------------------\n";
-	
-	ft_map.insert(val1);
-	ft_map.insert(val2);
-	ft_map.insert(val3);
-	ft_map.insert(val4);
-	ft_map.insert(val5);
-	ft_map.insert(val6);
-	ft_map.insert(val7);
-	ft_map.insert(val8);
-	ft_map.insert(val9);
-
-	for (it = ft_map.begin(); it != ft_map.end(); it++)
-	{
-		std::cout << it->second << std::endl;
-	}
-
-	std::cout << "size map: " << ft_map.size() << std::endl;
-
-	ft_map.clear();
-
-	std::cout << "size map: " << ft_map.size() << std::endl;
 }
