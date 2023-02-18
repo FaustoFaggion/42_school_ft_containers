@@ -1,14 +1,12 @@
-#include "map.hpp"
-#include <map>
-#include "RbTree.hpp"
-#include "node_base.hpp"
+#include "../map.hpp"
+#include "../RbTree.hpp"
+#include "../node_base.hpp"
 
 int main(void) {
 
 	ft::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
-	std::cout << "size map: " << ft_map.max_size() << std::endl;
 
 	ft::pair<int, std::string>	val1(1, "one");
 	ft::pair<int, std::string>	val2(2, "two");
@@ -23,7 +21,7 @@ int main(void) {
 	ft::pair<ft::map<int, std::string>::iterator, bool>	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val1);
-	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 	
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val2);

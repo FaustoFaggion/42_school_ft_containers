@@ -1,26 +1,24 @@
-#include "map.hpp"
 #include <map>
-#include "RbTree.hpp"
-#include "node_base.hpp"
+#include <iostream>
+#include <cstring>
 
 int main(void) {
 
-	ft::map<int, std::string> ft_map;
+	std::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
-	std::cout << "size map: " << ft_map.max_size() << std::endl;
 
-	ft::pair<int, std::string>	val1(1, "one");
-	ft::pair<int, std::string>	val2(2, "two");
-	ft::pair<int, std::string>	val3(3, "three");
-	ft::pair<int, std::string>	val4(4, "four");
-	ft::pair<int, std::string>	val5(5, "five");
-	ft::pair<int, std::string>	val6(6, "six");
-	ft::pair<int, std::string>	val7(7, "seven");
-	ft::pair<int, std::string>	val8(8, "eight");
+	std::pair<int, std::string>	val1(1, "one");
+	std::pair<int, std::string>	val2(2, "two");
+	std::pair<int, std::string>	val3(3, "three");
+	std::pair<int, std::string>	val4(4, "four");
+	std::pair<int, std::string>	val5(5, "five");
+	std::pair<int, std::string>	val6(6, "six");
+	std::pair<int, std::string>	val7(7, "seven");
+	std::pair<int, std::string>	val8(8, "eight");
 	
 
-	ft::pair<ft::map<int, std::string>::iterator, bool>	it;
+	std::pair<std::map<int, std::string>::iterator, bool>	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val1);
 	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
@@ -59,7 +57,7 @@ int main(void) {
 
 	std::cout << "\n---------Find----------\n";
 
-	ft::map<int, std::string>::iterator	it2;
+	std::map<int, std::string>::iterator	it2;
 
 	it2 = ft_map.find(3);
 	std::cout << it2->second << std::endl;

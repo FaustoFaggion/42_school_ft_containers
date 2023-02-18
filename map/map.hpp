@@ -176,6 +176,16 @@ namespace ft
 				return (_tree.clear());
 			}
 
+		/*OPERATIONS*/
+			iterator find (const key_type& k)
+			{
+				return (_tree.find(k));
+			}
+
+			const_iterator find (const key_type& k) const
+			{
+				return (_tree.find());
+			}
 	};
 };
 

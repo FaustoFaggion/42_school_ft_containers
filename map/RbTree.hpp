@@ -209,16 +209,20 @@ namespace ft {
 			
 			node_ptr	tree_search(const key_type k)
 			{
-				node_ptr	tmp = _root;
+				node_ptr	x = _root;
+				node_ptr	y = _nill;
 
-				while (tmp != _nill && k != tmp->_node_value.first)
+				while (x != _nill)
 				{
-					if (_comp(k, tmp->_node_value.first))
-						tmp = tmp->_left;
+					y = x;
+					if (_comp(k, x->_node_value.first))
+						x = x->_left;
+					else if (_comp(x->_node_value.first, k))
+						x = x->_right;
 					else
-						tmp = tmp->_right;
+						return(y);
 				}
-				return (tmp);
+				return (_nill);
 			}
 
 			static node_ptr	tree_sucessor(node_ptr next)
@@ -380,6 +384,27 @@ namespace ft {
 				delete_tree(_root);
 				_root = _nill;
 				_size = 0;
+			}
+	
+		/*OPERATORS*/
+			iterator find (const key_type& k)
+			{
+				iterator	_find;
+
+				_find = iterator(this->tree_search(k));
+				if (_find->first == k)
+					return (_find);
+				return (this->end());
+			}
+
+			const_iterator find (const key_type& k) const
+			{
+				iterator	_find;
+
+				_find = iterator(this->tree_search(k));
+				if (_find->first == k)
+					return (_find);
+				return (this->end());
 			}
 	};
 };
