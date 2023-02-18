@@ -1,0 +1,58 @@
+size map: 0
+
+---------------------------
+it value: one bool: 1
+
+---------------------------
+it value: two bool: 1
+
+---------------------------
+it value: three bool: 1
+
+---------------------------
+it value: four bool: 1
+
+---------------------------
+it value: five bool: 1
+
+---------------------------
+it value: six bool: 1
+
+---------------------------
+it value: seven bool: 1
+
+---------------------------
+it value: eight bool: 1
+
+---------------------------
+it value: four bool: 0
+
+---------Range Constructor----------
+one
+two
+three
+four
+five
+six
+seven
+eight
+
+---------Copy Constructor----------
+one
+two
+three
+four
+five
+six
+seven
+eight
+
+---------Operator = ----------
+one
+two
+three
+four
+five
+six
+seven
+eight

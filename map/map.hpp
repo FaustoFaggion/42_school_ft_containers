@@ -73,11 +73,17 @@ namespace ft
 		// void	print_map() { return (_tree.print_tree(_tree._root, 0));}
 
 		/*CONSTRUCTORS*/
-			map() : _tree(Compare(), allocator_type()) { };
+			map() : _tree(Compare(), allocator_type()) 
+			{
+				// std::cout << "Map default constructor called" << std::endl;
+			};
 			
 			explicit map(const key_compare& comp,
 				const allocator_type& alloc = allocator_type()) :
-														_tree(comp, alloc) { };
+														_tree(comp, alloc)
+			{
+				// std::cout << "Map paramter constructor called" << std::endl;
+			};
 			
 			template<typename InputIterator>
 			map(InputIterator first, InputIterator last,
@@ -85,10 +91,15 @@ namespace ft
 					const allocator_type& alloc = allocator_type()) :
 															_tree(comp, alloc)
 			{
+				// std::cout << "Map range constructor called" << std::endl;
 				insert(first, last);
 			}
 
-			map(const map& rsc) { *this = rsc;}
+			map(const map& rsc)
+			{
+				// std::cout << "Map copy constructor called" << std::endl;
+				*this = rsc;
+			}
 
 			~map(void) { };
 
@@ -96,7 +107,9 @@ namespace ft
 
 			map	&operator=(map const &rsc)
 			{
+				// std::cout << "Map operator = called" << std::endl;
 				_tree = rsc._tree;
+				return (*this);
 			}
 
 		/*ITERATOR*/
@@ -132,7 +145,7 @@ namespace ft
 				return(_tree.empty());
 			}
 
-			size_type max_size() const
+			size_type 			max_size() const
 			{
 				return(_tree.max_size());
 			}
@@ -148,17 +161,14 @@ namespace ft
 
 		/*MODIFIER*/
 			pair<iterator, bool>	insert(const value_type& val)
-		{
-			return (_tree.insert(val));
-		}
+			{
+				return (_tree.insert(val));
+			}
 
 			template <class InputIterator>
 			void 				insert(InputIterator first, InputIterator last)
 			{
-				for (; first != last; first++)
-				{
-					insert(*first);
-				}
+				return (_tree.insert(first, last));
 			}
 
 			void					clear()

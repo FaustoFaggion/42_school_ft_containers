@@ -1,26 +1,24 @@
-#include "map.hpp"
+#include <iostream>
+#include <cstring>
 #include <map>
-#include "RbTree.hpp"
-#include "node_base.hpp"
 
 int main(void) {
 
-	ft::map<int, std::string> ft_map;
+	std::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
-	std::cout << "size map: " << ft_map.max_size() << std::endl;
 
-	ft::pair<int, std::string>	val1(1, "one");
-	ft::pair<int, std::string>	val2(2, "two");
-	ft::pair<int, std::string>	val3(3, "three");
-	ft::pair<int, std::string>	val4(4, "four");
-	ft::pair<int, std::string>	val5(5, "five");
-	ft::pair<int, std::string>	val6(6, "six");
-	ft::pair<int, std::string>	val7(7, "seven");
-	ft::pair<int, std::string>	val8(8, "eight");
+	std::pair<int, std::string>	val1(1, "one");
+	std::pair<int, std::string>	val2(2, "two");
+	std::pair<int, std::string>	val3(3, "three");
+	std::pair<int, std::string>	val4(4, "four");
+	std::pair<int, std::string>	val5(5, "five");
+	std::pair<int, std::string>	val6(6, "six");
+	std::pair<int, std::string>	val7(7, "seven");
+	std::pair<int, std::string>	val8(8, "eight");
 	
 
-	ft::pair<ft::map<int, std::string>::iterator, bool>	it;
+	std::pair<std::map<int, std::string>::iterator, bool>	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val1);
 	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
@@ -57,11 +55,10 @@ int main(void) {
 	it =  ft_map.insert(val4);
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
-	std::cout << "\n---------Insert Range----------\n";
+	std::cout << "\n---------Range Constructor----------\n";
 	
-	ft::map<int, std::string>::iterator	it2;
-	ft::map<int, std::string> ft_map2;
-	ft_map2.insert(ft_map.begin(), ft_map.end());
+	std::map<int, std::string>::iterator	it2;
+	std::map<int, std::string> ft_map2(ft_map.begin(), ft_map.end());
 
 	for (it2 = ft_map2.begin(); it2 != ft_map2.end(); it2++)
 	{
@@ -70,9 +67,9 @@ int main(void) {
 
 	std::cout << "\n---------Copy Constructor----------\n";
 
-	ft::map<int, std::string>	ft_map3(ft_map2);
+	std::map<int, std::string>	ft_map3(ft_map2);
 
-	ft::map<int, std::string>::iterator	it3;
+	std::map<int, std::string>::iterator	it3;
 
 	for (it3 = ft_map3.begin(); it3 != ft_map3.end(); it3++)
 	{
@@ -81,9 +78,9 @@ int main(void) {
 
 	std::cout << "\n---------Operator = ----------\n";
 
-	ft::map<int, std::string>	ft_map4;
+	std::map<int, std::string>	ft_map4;
 
-	ft::map<int, std::string>::iterator	it4;
+	std::map<int, std::string>::iterator	it4;
 
 	ft_map4 = ft_map2;
 

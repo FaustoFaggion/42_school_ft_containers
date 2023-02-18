@@ -42,7 +42,7 @@ namespace ft {
 			typedef RbTree_iterator<pointer, self>				iterator;
 			typedef RbTree_iterator<const_pointer, self>		const_iterator;
 
-		private: 
+		public: 
 		
 			node_ptr				_nill;
 			node_ptr				_root;
@@ -240,7 +240,9 @@ namespace ft {
 		public:
 
 		/*CONSTRUCTORS*/
-			RbTree(const Compare& comp = Compare(),
+			// RbTree(void) { };
+			
+			explicit RbTree(const Compare& comp = Compare(),
 								const allocator_type& alloc = allocator_type())
 			{
 				// std::cout << "RbTree default constructor called" << std::endl;
@@ -257,6 +259,12 @@ namespace ft {
 				_root = _nill;
 			};
 
+			RbTree(RbTree const &rsc)
+			{
+				// std::cout << "RbTree copy constructor called" << std::endl;
+				*this = rsc;
+			}
+
 			~RbTree(void)
 			{
 				// std::cout << "RbTree destructor called" << std::endl;
@@ -264,6 +272,24 @@ namespace ft {
 				_node_alloc.destroy(_nill);
 				_node_alloc.deallocate(_nill, sizeof(_nill));
 			};
+
+			RbTree	&operator=(RbTree const &rsc)
+			{
+				// std::cout << "RbTree operator = called" << std::endl;
+				this->clear();
+				_alloc = rsc._alloc;
+				_comp = rsc._comp;
+				_node_alloc = rsc._node_alloc;
+				this->insert(rsc.begin(), rsc.end());
+
+				return (*this);
+			}
+
+		/*ALLOCATOR*/
+			allocator_type get_allocator() const
+			{
+				return (this->_node_alloc);
+			}
 
 		/*ITERATORS*/
 
@@ -340,7 +366,14 @@ namespace ft {
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
-
+			template <class InputIterator>
+			void 					insert(InputIterator first, InputIterator last)
+			{
+				for (; first != last; first++)
+				{
+					insert(*first);
+				}
+			}
 
 			void					clear()
 			{
