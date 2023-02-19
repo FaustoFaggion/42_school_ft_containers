@@ -71,6 +71,19 @@ namespace ft {
 				return (tmp);
 			}
 
+			self		operator--(void)
+			{
+				_current = rb_tree::tree_predecessor(_current);
+				return (*this);
+			};
+
+			self		operator--(int)
+			{
+				self	tmp = *this;
+
+				_current = rb_tree::tree_predecessor(_current);
+				return (tmp);
+			}
 	};
 };
 

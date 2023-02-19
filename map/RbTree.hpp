@@ -46,6 +46,8 @@ namespace ft {
 		
 			node_ptr				_nill;
 			node_ptr				_root;
+			node_ptr				_left_most;
+			node_ptr				_right_most;
 			node_allocator			_node_alloc;
 			Alloc					_alloc;
 			size_type				_size;
@@ -241,6 +243,22 @@ namespace ft {
 				}
 			}
 
+			static node_ptr	tree_predecessor(node_ptr next)
+			{
+				if (next->_left->_nill == false)
+					return (maximum(next->_left));
+				else
+				{
+					node_ptr i = next->_p;
+					while (i->_nill == false && next == i->_left)
+					{
+						next = i;
+						i = i->_p;
+					}
+					return (i);
+				}
+			}
+
 			void			tree_transplant(node_ptr u, node_ptr v)
 			{
 				if (u->_p == _nill)
@@ -287,6 +305,7 @@ namespace ft {
 				_alloc = alloc;
 				_comp = comp;
 				_size = 0;
+				
 				_nill = _node_alloc.allocate(1);
 				_node_alloc.construct(_nill, node_tree<value_type>());
 				_nill->_color = BLACK;
@@ -294,7 +313,10 @@ namespace ft {
 				_nill->_left = _nill;
 				_nill->_right = _nill;
 				_nill->_nill = true;
+				
 				_root = _nill;
+				_left_most = _nill;
+				_right_most = _nill;
 			};
 
 			RbTree(RbTree const &rsc)
@@ -332,22 +354,26 @@ namespace ft {
 		/*ITERATORS*/
 
 			iterator				begin(void)
-			{ 
+			{
+				_left_most = minimum(_root);
 				return (iterator(minimum(_root)));
 			}
 
 			const_iterator			begin(void) const
 			{
+				_left_most = minimum(_root);
 				return (const_iterator(minimum(_root)));
 			}
 
 			iterator				end(void)
 			{
+				_right_most = maximum(_root);
 				return (iterator(_nill));
 			}
 
 			const_iterator			end(void) const
 			{
+				_right_most = maximum(_root);
 				return (const_iterator(_nill));
 			}
 
@@ -402,6 +428,18 @@ namespace ft {
 				tree_balance(new_node);
 				_size++;
 				return (pair<iterator, bool>(iterator(new_node), true));
+			}
+
+			iterator insert (iterator position, const value_type& val)
+			{
+				if (position == iterator(_nill) || position == iterator(_right_most))
+				{
+					std::cout << "aaaaaaaaaaaaaaaaa\n" << val.first << "\n";
+				}
+				else
+					std::cout << "bbbbbbbbbbbbbbbbbb\n";
+				
+				return (iterator(_nill));
 			}
 
 			template <class InputIterator>

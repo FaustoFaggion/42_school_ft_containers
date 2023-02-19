@@ -73,4 +73,8 @@ int main(void) {
 	ft_map.erase(6);
 	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
 		std::cout << it2->first << " : " << it2->second << std::endl;
+
+	it2 = (ft_map.end());
+	it2--;
+	ft_map.insert(it2, val1);
 }
