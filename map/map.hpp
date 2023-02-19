@@ -171,6 +171,11 @@ namespace ft
 				return (_tree.insert(first, last));
 			}
 
+			size_type erase (const key_type& k)
+			{
+				return (_tree.erase(k));
+			}
+
 			void					clear()
 			{
 				return (_tree.clear());

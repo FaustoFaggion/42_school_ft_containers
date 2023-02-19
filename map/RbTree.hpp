@@ -79,7 +79,7 @@ namespace ft {
 
 		public:
 
-			node_ptr	node_create(value_type val) {
+			node_ptr		node_create(value_type val) {
 
 				node_ptr	_new;
 
@@ -91,7 +91,7 @@ namespace ft {
 				return (_new);
 			}
 
-			void	delete_tree(node_ptr& node)
+			void			delete_tree(node_ptr& node)
 			{
 				if (node == _nill)
 					return;
@@ -101,7 +101,7 @@ namespace ft {
 				_node_alloc.deallocate(node, sizeof(node));
 			}
 
-			void	left_rotate(node_ptr new_node)
+			void			left_rotate(node_ptr new_node)
 			{
 				node_ptr	y = new_node->_right;
 
@@ -119,7 +119,7 @@ namespace ft {
 				new_node->_p = y;
 			}
 
-			void	right_rotate(node_ptr new_node)
+			void			right_rotate(node_ptr new_node)
 			{
 				node_ptr	y = new_node->_left;
 
@@ -137,7 +137,7 @@ namespace ft {
 				new_node->_p = y;
 			}
 
-			void	tree_balance(node_ptr new_node)
+			void			tree_balance(node_ptr new_node)
 			{
 				node_ptr	y;
 				int i = 0;
@@ -207,7 +207,7 @@ namespace ft {
 				return (ref_root);
 			}
 			
-			node_ptr	tree_search(const key_type k)
+			node_ptr		tree_search(const key_type k)
 			{
 				node_ptr	x = _root;
 				node_ptr	y = _nill;
@@ -241,6 +241,40 @@ namespace ft {
 				}
 			}
 
+			void			tree_transplant(node_ptr u, node_ptr v)
+			{
+				if (u->_p == _nill)
+					_root = v;
+				else if (u == u->_p->_left)
+					u->_p->_left = v;
+				else
+					u->_p->_right = v;
+				if (v != _nill)
+					v->_p = u->_p;
+			}
+
+			void			tree_delete(node_ptr z)
+			{
+				node_ptr	y = _nill;
+
+				if (z->_left == _nill)
+					tree_transplant(z, z->_right);	//replace z by its right child
+				else if (z->_right == _nill)
+					tree_transplant(z, z->_left);	//replace z by its left child
+				else
+					y = minimum(z->_right);			// y is z's successor
+				if (y != _nill)						//is y father down the tree?
+				{
+					tree_transplant(y, y->_right);	//replace y by its right child
+					y->_right = z->_right;			//z's right child becomes y's right child
+					y->_right->_p = y;
+				}
+				tree_transplant(z, y);				//replace z by it's successor y
+				y->_left = z->_left;				//z's left child to y
+				y->_left->_p = y;
+
+
+			}
 		public:
 
 		/*CONSTRUCTORS*/
@@ -386,8 +420,20 @@ namespace ft {
 				_size = 0;
 			}
 	
+			size_type 				erase (const key_type& k)
+			{
+				node_ptr	tmp;
+
+				tmp = tree_search(k);
+				if (tmp != _nill)
+					tree_delete(tmp);
+				delete tmp;
+				return (1);
+			}
+
+
 		/*OPERATORS*/
-			iterator find (const key_type& k)
+			iterator 				find (const key_type& k)
 			{
 				iterator	_find;
 
@@ -397,7 +443,7 @@ namespace ft {
 				return (this->end());
 			}
 
-			const_iterator find (const key_type& k) const
+			const_iterator 			find (const key_type& k) const
 			{
 				iterator	_find;
 

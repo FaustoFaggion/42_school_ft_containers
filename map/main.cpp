@@ -57,18 +57,20 @@ int main(void) {
 	it =  ft_map.insert(val4);
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
-	std::cout << "\n---------Find----------\n";
-
+	std::cout << "\n---------------------------\n";
 	ft::map<int, std::string>::iterator	it2;
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
 
-	it2 = ft_map.find(3);
-	std::cout << it2->second << std::endl;
-	it2 = ft_map.find(7);
-	std::cout << it2->second << std::endl;
-	it2 = ft_map.find(8);
-	std::cout << it2->second << std::endl;
+	std::cout << "\n---------ERASE----------\n";
+
+	std::cout << "\n---------ERASE 2----------\n";
+	ft_map.erase(3);
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
 	
-	it2 = ft_map.find(33);
-	if (it2 == ft_map.end())
-		std::cout << "correct" << std::endl;
+	std::cout << "\n---------ERASE 5----------\n";
+	ft_map.erase(6);
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
 }
