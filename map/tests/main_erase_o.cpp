@@ -3,12 +3,12 @@
 #include <map>
 
 
-int main(void) {
-
+int main(void)
+{
 	std::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
-	
+
 	std::pair<int, std::string>	val1(1, "one");
 	std::pair<int, std::string>	val2(2, "two");
 	std::pair<int, std::string>	val3(3, "three");
@@ -22,7 +22,7 @@ int main(void) {
 	std::pair<std::map<int, std::string>::iterator, bool>	it;
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val1);
-	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 	
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val2);
@@ -57,19 +57,40 @@ int main(void) {
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
+	
+	std::cout << "\n---------MAP TREE----------\n";
+	
 	std::map<int, std::string>::iterator	it2;
 	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
 		std::cout << it2->first << " : " << it2->second << std::endl;
 
-	std::cout << "\n---------ERASE----------\n";
 
 	std::cout << "\n---------ERASE 2----------\n";
-	ft_map.erase(2);
+	ft_map.erase(1);
 	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
 		std::cout << it2->first << " : " << it2->second << std::endl;
 	
 	std::cout << "\n---------ERASE 5----------\n";
 	ft_map.erase(5);
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
+
+	std::cout << "\n---------ERASE begin()----------\n";
+	ft_map.erase(ft_map.begin());
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
+	
+	std::cout << "\n---------ERASE begin() 2----------\n";
+	ft_map.erase(ft_map.begin());
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+		std::cout << it2->first << " : " << it2->second << std::endl;
+
+	std::cout << "\n---------ERASE Range----------\n";
+	it2 = ft_map.begin();
+	it2++;
+	it2++;
+	ft_map.erase(ft_map.begin(), it2);
+
 	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
 		std::cout << it2->first << " : " << it2->second << std::endl;
 

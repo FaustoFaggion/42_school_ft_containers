@@ -56,28 +56,28 @@ namespace ft {
 		/*UTILS*/
 		public:
 
-			// void	print_tree(node_ptr node, int space)
-			// {
-			// 	/*Base case*/
-			// 	if (node == _nill)
-			// 		return;
+			void	print_tree(node_ptr node, int space)
+			{
+				/*Base case*/
+				if (node == _nill)
+					return;
 
-			// 	/*Increase distance between levels*/
-			// 	space += 10;
+				/*Increase distance between levels*/
+				space += 10;
 				
-			// 	/*Right child first*/
-			// 	print_tree(node->_right, space);
+				/*Right child first*/
+				print_tree(node->_right, space);
 				
-			// 	/*Print current node after space count*/
-			// 	std::cout << "\n";
-			// 	for (int i = 10; i < space; i++)
-			// 		std::cout << " ";
-			// 	std::cout << node->_node_value.second << ":" << node->_color;
+				/*Print current node after space count*/
+				std::cout << "\n";
+				for (int i = 10; i < space; i++)
+					std::cout << " ";
+				std::cout << node->_node_value.second << ":" << node->_color;
 
-			// 	/*Process left child*/
-			// 	print_tree(node->_left, space);
+				/*Process left child*/
+				print_tree(node->_left, space);
 
-			// }
+			}
 
 		public:
 
@@ -197,6 +197,8 @@ namespace ft {
 
 			static node_ptr	tree_minimum(node_ptr ref_root)
 			{
+				if (ref_root->_nill == true)
+					return (ref_root);
 				while(ref_root->_left->_nill == false)
 					ref_root = ref_root->_left;
 				return (ref_root);
@@ -204,6 +206,8 @@ namespace ft {
 
 			static node_ptr	tree_maximum(node_ptr ref_root)
 			{
+				if (ref_root->_nill == true)
+					return (ref_root);
 				while(ref_root->_right->_nill == false)
 					ref_root = ref_root->_right;
 				return (ref_root);
@@ -229,6 +233,8 @@ namespace ft {
 
 			static node_ptr	tree_sucessor(node_ptr next)
 			{
+				if (next->_nill == true)
+					return (next);
 				if (next->_right->_nill == false)
 					return (tree_minimum(next->_right));
 				else
@@ -449,7 +455,6 @@ namespace ft {
 
 			iterator				begin(void)
 			{
-				_left_most = tree_minimum(_root);
 				return (iterator(tree_minimum(_root)));
 			}
 
@@ -460,7 +465,6 @@ namespace ft {
 
 			iterator				end(void)
 			{
-				_right_most = tree_maximum(_root);
 				return (iterator(_nill));
 			}
 
@@ -520,6 +524,9 @@ namespace ft {
 				tree_balance(new_node);
 				_size++;
 				return (pair<iterator, bool>(iterator(new_node), true));
+
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
 			}
 
 			iterator 				insert (iterator position, const value_type& val)
@@ -532,6 +539,9 @@ namespace ft {
 				else
 					std::cout << "bbbbbbbbbbbbbbbbbb\n";
 				
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
+
 				return (iterator(_nill));
 			}
 
@@ -542,6 +552,8 @@ namespace ft {
 				{
 					insert(*first);
 				}
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
 			}
 
 			void					clear()
@@ -560,10 +572,13 @@ namespace ft {
 					tree_node_delete(tmp);
 				
 				delete tmp;
+
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
 				return (1);
 			}
 
-			void erase (iterator position)
+			void 					erase (iterator position)
 			{
 				node_ptr	tmp;
 				key_type	key;
@@ -573,7 +588,27 @@ namespace ft {
 				if (tmp != _nill)
 					tree_node_delete(tmp);
 				delete tmp;
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
 			}
+
+			void 					erase (iterator first, iterator last)
+			{
+				if (first.getCurrent()->_nill == true)
+					return;
+				iterator	next = first;
+				next++;
+				for (; next != last; next++)
+				{
+					this->erase(first.getCurrent()->_node_value.first);
+					first = next;
+				}
+				this->erase(first.getCurrent()->_node_value.first);
+
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
+			}
+
 
 		/*OPERATORS*/
 			iterator 				find (const key_type& k)
