@@ -181,6 +181,11 @@ namespace ft
 				return (_tree.erase(k));
 			}
 
+			void 		erase (iterator position)
+			{
+				return (_tree.erase(position));
+			}
+
 			void					clear()
 			{
 				return (_tree.clear());

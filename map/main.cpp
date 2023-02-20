@@ -64,13 +64,18 @@ int main(void) {
 
 	std::cout << "\n---------ERASE----------\n";
 
-	std::cout << "\n---------ERASE 2----------\n";
-	ft_map.erase(2);
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
+	// std::cout << "\n---------ERASE 2----------\n";
+	// ft_map.erase(1);
+	// for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+	// 	std::cout << it2->first << " : " << it2->second << std::endl;
 	
-	std::cout << "\n---------ERASE 5----------\n";
-	ft_map.erase(5);
+	// std::cout << "\n---------ERASE 5----------\n";
+	// ft_map.erase(5);
+	// for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+	// 	std::cout << it2->first << " : " << it2->second << std::endl;
+
+	std::cout << "\n---------ERASE begin()----------\n";
+	ft_map.erase(ft_map.begin());
 	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
 		std::cout << it2->first << " : " << it2->second << std::endl;
 

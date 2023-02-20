@@ -37,9 +37,9 @@ namespace ft {
 				return (_current);
 			}
 
-			RbTree_iterator(void) : _current(NULL) { };
+			RbTree_iterator(void) : _current() { };
 			
-			explicit RbTree_iterator(node_ptr rsc) : _current(rsc) { };
+			explicit RbTree_iterator(const node_ptr &rsc) : _current(rsc) { };
 
 			RbTree_iterator(const self &rsc) {*this = rsc;};
 

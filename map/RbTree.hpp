@@ -93,17 +93,17 @@ namespace ft {
 				return (_new);
 			}
 
-			void			delete_tree(node_ptr& node)
+			void			tree_delete(node_ptr& node)
 			{
 				if (node == _nill)
 					return;
-				delete_tree(node->_left);
-				delete_tree(node->_right);
+				tree_delete(node->_left);
+				tree_delete(node->_right);
 				_node_alloc.destroy(node);
 				_node_alloc.deallocate(node, sizeof(node));
 			}
 
-			void			left_rotate(node_ptr new_node)
+			void			tree_left_rotate(node_ptr new_node)
 			{
 				node_ptr	y = new_node->_right;
 
@@ -121,7 +121,7 @@ namespace ft {
 				new_node->_p = y;
 			}
 
-			void			right_rotate(node_ptr new_node)
+			void			tree_right_rotate(node_ptr new_node)
 			{
 				node_ptr	y = new_node->_left;
 
@@ -162,11 +162,11 @@ namespace ft {
 							if (new_node == new_node->_p->_right)
 							{
 								new_node = new_node->_p;
-								left_rotate(new_node);
+								tree_left_rotate(new_node);
 							}
 							new_node->_p->_color = BLACK;
 							new_node->_p->_p->_color = RED;
-							right_rotate(new_node->_p->_p);
+							tree_right_rotate(new_node->_p->_p);
 						}
 					}
 					else
@@ -184,26 +184,25 @@ namespace ft {
 							if (new_node == new_node->_p->_left)
 							{
 								new_node = new_node->_p;
-								right_rotate(new_node);
+								tree_right_rotate(new_node);
 							}
 							new_node->_p->_color = BLACK;
 							new_node->_p->_p->_color = RED;
-							left_rotate(new_node->_p->_p);
+							tree_left_rotate(new_node->_p->_p);
 						}
 					}
 				}
 				_root->_color = BLACK;
 			}
 
-
-			static node_ptr	minimum(node_ptr ref_root)
+			static node_ptr	tree_minimum(node_ptr ref_root)
 			{
 				while(ref_root->_left->_nill == false)
 					ref_root = ref_root->_left;
 				return (ref_root);
 			}
 
-			static node_ptr	maximum(node_ptr ref_root)
+			static node_ptr	tree_maximum(node_ptr ref_root)
 			{
 				while(ref_root->_right->_nill == false)
 					ref_root = ref_root->_right;
@@ -231,7 +230,7 @@ namespace ft {
 			static node_ptr	tree_sucessor(node_ptr next)
 			{
 				if (next->_right->_nill == false)
-					return (minimum(next->_right));
+					return (tree_minimum(next->_right));
 				else
 				{
 					node_ptr i = next->_p;
@@ -292,7 +291,7 @@ namespace ft {
 				}
 				else
 				{
-					y = minimum(z->_right);			// y is z's successor
+					y = tree_minimum(z->_right);			// y is z's successor
 					c = y->_color;
 					x = y->_right;
 					if (y != z->_right)						//is y father down the tree?
@@ -328,7 +327,7 @@ namespace ft {
 						{
 							w->_color = BLACK;
 							x->_p->_color = RED;
-							left_rotate(x->_p);
+							tree_left_rotate(x->_p);
 							w = x->_p->_right;
 						}
 						if (w->_left->_color == BLACK && w->_right->_color == BLACK)
@@ -342,13 +341,13 @@ namespace ft {
 							{
 								w->_left->_color = BLACK;
 								w->_color = RED;
-								right_rotate(w);
+								tree_right_rotate(w);
 								w = x->_p->_right;
 							}
 							w->_color = x->_p->_color;
 							x->_p->_color = BLACK;
 							w->_right->_color = BLACK;
-							left_rotate(x->_p);
+							tree_left_rotate(x->_p);
 							x = _root;
 						}
 					}
@@ -359,7 +358,7 @@ namespace ft {
 						{
 							w->_color = BLACK;
 							x->_p->_color = RED;
-							right_rotate(x->_p);
+							tree_right_rotate(x->_p);
 							w = x->_p->_left;
 						}
 						if (w->_right->_color == BLACK && w->_left->_color == BLACK)
@@ -373,13 +372,13 @@ namespace ft {
 							{
 								w->_right->_color = BLACK;
 								w->_color = RED;
-								left_rotate(w);
+								tree_left_rotate(w);
 								w = x->_p->_left;
 							}
 							w->_color = x->_p->_color;
 							x->_p->_color = BLACK;
 							w->_left->_color = BLACK;
-							right_rotate(x->_p);
+							tree_right_rotate(x->_p);
 							x = _root;
 						}
 					}
@@ -409,6 +408,7 @@ namespace ft {
 				_nill->_nill = true;
 				
 				_root = _nill;
+	//			_root->_p = _nill;
 				_left_most = _nill;
 				_right_most = _nill;
 			};
@@ -449,18 +449,18 @@ namespace ft {
 
 			iterator				begin(void)
 			{
-				_left_most = minimum(_root);
-				return (iterator(minimum(_root)));
+				_left_most = tree_minimum(_root);
+				return (iterator(tree_minimum(_root)));
 			}
 
 			const_iterator			begin(void) const
 			{
-				return (const_iterator(minimum(_root)));
+				return (const_iterator(tree_minimum(_root)));
 			}
 
 			iterator				end(void)
 			{
-				_right_most = maximum(_root);
+				_right_most = tree_maximum(_root);
 				return (iterator(_nill));
 			}
 
@@ -522,7 +522,7 @@ namespace ft {
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
-			iterator insert (iterator position, const value_type& val)
+			iterator 				insert (iterator position, const value_type& val)
 			{
 				if (position == iterator(_nill) || position == iterator(_right_most))
 				{
@@ -546,7 +546,7 @@ namespace ft {
 
 			void					clear()
 			{
-				delete_tree(_root);
+				tree_delete(_root);
 				_root = _nill;
 				_size = 0;
 			}
@@ -563,6 +563,20 @@ namespace ft {
 				return (1);
 			}
 
+			void erase (iterator position)
+			{
+				node_ptr	tmp;
+				key_type	key;
+				
+				key = position->first;
+				std::cout << "position: " << key << std::endl;
+				tmp = tree_search(key);
+				std::cout << "tmp: " << tmp->_node_value.second << std::endl;
+				if (tmp != _nill)
+					tree_node_delete(tmp);
+				
+				delete tmp;
+			}
 
 		/*OPERATORS*/
 			iterator 				find (const key_type& k)
