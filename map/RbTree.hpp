@@ -42,7 +42,7 @@ namespace ft {
 			typedef RbTree_iterator<pointer, self>				iterator;
 			typedef RbTree_iterator<const_pointer, self>		const_iterator;
 
-		public: 
+		private: 
 		
 			node_ptr				_nill;
 			node_ptr				_root;
@@ -56,28 +56,28 @@ namespace ft {
 		/*UTILS*/
 		public:
 
-			void	print_tree(node_ptr node, int space)
-			{
-				/*Base case*/
-				if (node == _nill)
-					return;
+			// void	print_tree(node_ptr node, int space)
+			// {
+			// 	/*Base case*/
+			// 	if (node == _nill)
+			// 		return;
 
-				/*Increase distance between levels*/
-				space += 10;
+			// 	/*Increase distance between levels*/
+			// 	space += 10;
 				
-				/*Right child first*/
-				print_tree(node->_right, space);
+			// 	/*Right child first*/
+			// 	print_tree(node->_right, space);
 				
-				/*Print current node after space count*/
-				std::cout << "\n";
-				for (int i = 10; i < space; i++)
-					std::cout << " ";
-				std::cout << node->_node_value.second << ":" << node->_color;
+			// 	/*Print current node after space count*/
+			// 	std::cout << "\n";
+			// 	for (int i = 10; i < space; i++)
+			// 		std::cout << " ";
+			// 	std::cout << node->_node_value.second << ":" << node->_color;
 
-				/*Process left child*/
-				print_tree(node->_left, space);
+			// 	/*Process left child*/
+			// 	print_tree(node->_left, space);
 
-			}
+			// }
 
 		public:
 
@@ -569,12 +569,9 @@ namespace ft {
 				key_type	key;
 				
 				key = position->first;
-				std::cout << "position: " << key << std::endl;
 				tmp = tree_search(key);
-				std::cout << "tmp: " << tmp->_node_value.second << std::endl;
 				if (tmp != _nill)
 					tree_node_delete(tmp);
-				
 				delete tmp;
 			}
 
