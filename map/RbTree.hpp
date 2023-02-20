@@ -195,6 +195,7 @@ namespace ft {
 				_root->_color = BLACK;
 			}
 
+
 			static node_ptr	minimum(node_ptr ref_root)
 			{
 				while(ref_root->_left->_nill == false)
@@ -271,28 +272,121 @@ namespace ft {
 					v->_p = u->_p;
 			}
 
-			void			tree_delete(node_ptr z)
+			void			tree_node_delete(node_ptr z)
 			{
-				node_ptr	y = _nill;
-
+				node_ptr	y;
+				node_ptr	x;
+				node_color	c;
+				
+				y = z;
+				c = y->_color;
 				if (z->_left == _nill)
-					tree_transplant(z, z->_right);	//replace z by its right child
-				else if (z->_right == _nill)
-					tree_transplant(z, z->_left);	//replace z by its left child
-				else
-					y = minimum(z->_right);			// y is z's successor
-				if (y != _nill)						//is y father down the tree?
 				{
-					tree_transplant(y, y->_right);	//replace y by its right child
-					y->_right = z->_right;			//z's right child becomes y's right child
-					y->_right->_p = y;
+					x = z->_right;
+					tree_transplant(z, z->_right);	//replace z by its right child
 				}
-				tree_transplant(z, y);				//replace z by it's successor y
-				y->_left = z->_left;				//z's left child to y
-				y->_left->_p = y;
-
+				else if (z->_right == _nill)
+				{
+					x = z->_left;
+					tree_transplant(z, z->_left);	//replace z by its left child
+				}
+				else
+				{
+					y = minimum(z->_right);			// y is z's successor
+					c = y->_color;
+					x = y->_right;
+					if (y != z->_right)						//is y father down the tree?
+					{
+						tree_transplant(y, y->_right);	//replace y by its right child
+						y->_right = z->_right;			//z's right child becomes y's right child
+						y->_right->_p = y;
+					}
+					else
+					{
+						x->_p = y;
+					}
+					tree_transplant(z, y);				//replace z by it's successor y
+					y->_left = z->_left;				//z's left child to y
+					y->_left->_p = y;
+					y->_color = z->_color;
+				}
+				if (c == BLACK)
+					tree_delete_balance(x);
 
 			}
+
+			void		tree_delete_balance(node_ptr x)
+			{
+				while ( x != _root && x->_color == BLACK)
+				{
+					node_ptr	w;
+
+					if (x == x->_p->_left)
+					{
+						w = x->_p->_right;
+						if (w->_color == RED)
+						{
+							w->_color = BLACK;
+							x->_p->_color = RED;
+							left_rotate(x->_p);
+							w = x->_p->_right;
+						}
+						if (w->_left->_color == BLACK && w->_right->_color == BLACK)
+						{
+							w->_color = RED;
+							x = x->_p;
+						}
+						else
+						{
+							if (w->_right->_color == BLACK)
+							{
+								w->_left->_color = BLACK;
+								w->_color = RED;
+								right_rotate(w);
+								w = x->_p->_right;
+							}
+							w->_color = x->_p->_color;
+							x->_p->_color = BLACK;
+							w->_right->_color = BLACK;
+							left_rotate(x->_p);
+							x = _root;
+						}
+					}
+					else
+					{
+						w = x->_p->_left;
+						if (w->_color == RED)
+						{
+							w->_color = BLACK;
+							x->_p->_color = RED;
+							right_rotate(x->_p);
+							w = x->_p->_left;
+						}
+						if (w->_right->_color == BLACK && w->_left->_color == BLACK)
+						{
+							w->_color = RED;
+							x = x->_p;
+						}
+						else
+						{
+							if (w->_left->_color == BLACK)
+							{
+								w->_right->_color = BLACK;
+								w->_color = RED;
+								left_rotate(w);
+								w = x->_p->_left;
+							}
+							w->_color = x->_p->_color;
+							x->_p->_color = BLACK;
+							w->_left->_color = BLACK;
+							right_rotate(x->_p);
+							x = _root;
+						}
+					}
+				}
+				x->_color = BLACK;
+			}
+
 		public:
 
 		/*CONSTRUCTORS*/
@@ -361,7 +455,6 @@ namespace ft {
 
 			const_iterator			begin(void) const
 			{
-				_left_most = minimum(_root);
 				return (const_iterator(minimum(_root)));
 			}
 
@@ -373,7 +466,6 @@ namespace ft {
 
 			const_iterator			end(void) const
 			{
-				_right_most = maximum(_root);
 				return (const_iterator(_nill));
 			}
 
@@ -434,6 +526,7 @@ namespace ft {
 			{
 				if (position == iterator(_nill) || position == iterator(_right_most))
 				{
+					if (this->_size > 0 && _comp(_right_most->_node_value.first, val.first))
 					std::cout << "aaaaaaaaaaaaaaaaa\n" << val.first << "\n";
 				}
 				else
@@ -464,7 +557,8 @@ namespace ft {
 
 				tmp = tree_search(k);
 				if (tmp != _nill)
-					tree_delete(tmp);
+					tree_node_delete(tmp);
+				
 				delete tmp;
 				return (1);
 			}
