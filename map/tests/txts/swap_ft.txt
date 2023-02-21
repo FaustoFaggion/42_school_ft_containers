@@ -1,0 +1,74 @@
+size map: 0
+
+---------------------------
+it value: one bool: 1
+
+---------------------------
+it value: two bool: 1
+
+---------------------------
+it value: three bool: 1
+
+---------------------------
+it value: four bool: 1
+
+---------------------------
+it value: five bool: 1
+
+---------------------------
+it value: six bool: 1
+
+---------------------------
+it value: seven bool: 1
+
+---------------------------
+it value: eight bool: 1
+
+---------------------------
+it value: four bool: 0
+
+---------------------------
+
+---------MAP TREE----------
+1 : one
+2 : two
+3 : three
+4 : four
+5 : five
+6 : six
+7 : seven
+8 : eight
+
+---------ERASE 2----------
+2 : two
+3 : three
+4 : four
+5 : five
+6 : six
+7 : seven
+8 : eight
+
+---------ERASE 5----------
+2 : two
+3 : three
+4 : four
+6 : six
+7 : seven
+8 : eight
+
+---------ERASE begin()----------
+3 : three
+4 : four
+6 : six
+7 : seven
+8 : eight
+
+---------ERASE begin() 2----------
+4 : four
+6 : six
+7 : seven
+8 : eight
+
+---------ERASE Range----------
+7 : seven
+8 : eight
