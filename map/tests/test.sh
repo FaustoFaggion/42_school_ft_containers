@@ -39,3 +39,8 @@ echo "SWAP" >> map_dif.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_erase_o.cpp && ./a.out > ./txts/swap_o.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_erase_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/swap_ft.txt
 diff ./txts/swap_o.txt ./txts/swap_ft.txt >> map_dif.txt
+
+echo "COUNT" >> map_dif.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_count_o.cpp && ./a.out > ./txts/count_o.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_count_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/count_ft.txt
+diff ./txts/count_o.txt ./txts/count_ft.txt >> map_dif.txt

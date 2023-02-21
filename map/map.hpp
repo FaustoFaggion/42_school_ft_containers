@@ -33,15 +33,16 @@ namespace ft
 					key_compare, Alloc>				Tree_struct;
 
 			class value_compare : public std::binary_function<value_type,
-															value_type, bool> {
-
+															value_type, bool>
+			{
 				friend class map<Key, T, Compare, Alloc>;
 
 				protected:
 					Compare	comp;
-					value_compare(Compare c) : comp(c) {};
 
 				public:
+					value_compare(Compare c) : comp(c) {};
+					
 					bool operator()(const value_type& lhs,
 												const value_type& rhs) const
 					{
@@ -51,7 +52,7 @@ namespace ft
 
 		private:
 
-			Tree_struct	_tree;
+			Tree_struct		_tree;
 
 		public:
 			typedef typename Alloc::pointer							pointer;
@@ -114,44 +115,44 @@ namespace ft
 
 		/*ITERATOR*/
 
-			iterator			begin()
+			iterator				begin()
 			{
 				return (_tree.begin());
 			}
 
-			const_iterator		begin() const
+			const_iterator			begin() const
 			{
 				return (_tree.begin());
 			}
 			
-			iterator			end()
+			iterator				end()
 			{
 				return (_tree.end());
 			}
 			
-			const_iterator		end() const
+			const_iterator			end() const
 			{
 				return (_tree.end());
 			}
 
 		/*CAPACITY*/
-			size_type			size()
+			size_type				size()
 			{
 				return(_tree.size());
 			}
 			
-			bool 				empty() const
+			bool 					empty() const
 			{
 				return(_tree.empty());
 			}
 
-			size_type 			max_size() const
+			size_type 				max_size() const
 			{
 				return(_tree.max_size());
 			}
 
 		/*ACCESS ELEMENT*/
-			mapped_type&		operator[](const key_type& k)
+			mapped_type&			operator[](const key_type& k)
 			{
 				ft::pair<iterator, bool>	it;
 
@@ -165,28 +166,28 @@ namespace ft
 				return (_tree.insert(val));
 			}
 
-			iterator insert (iterator position, const value_type& val)
+			iterator 				insert (iterator position, const value_type& val)
 			{
 				return (_tree.insert(position, val));
 			}
 
 			template <class InputIterator>
-			void 				insert(InputIterator first, InputIterator last)
+			void 					insert(InputIterator first, InputIterator last)
 			{
 				return (_tree.insert(first, last));
 			}
 
-			size_type erase (const key_type& k)
+			size_type 				erase (const key_type& k)
 			{
 				return (_tree.erase(k));
 			}
 
-			void 		erase (iterator position)
+			void 					erase (iterator position)
 			{
 				return (_tree.erase(position));
 			}
 
-			void erase (iterator first, iterator last)
+			void 					erase (iterator first, iterator last)
 			{
 				return (_tree.erase(first, last));
 			}
@@ -202,16 +203,35 @@ namespace ft
 				return (_tree.clear());
 			}
 
+		/*OBSERVERS*/
+			// key_compare				key_compare() const
+			// {
+			// 	return (key_compare());
+			// }
+
+			// value_compare			value_comp() const
+			// {
+			// 	return (value_compare(key_compare()));
+			// }
+
+
+
 		/*OPERATIONS*/
-			iterator find (const key_type& k)
+			iterator 				find (const key_type& k)
 			{
 				return (_tree.find(k));
 			}
 
-			const_iterator find (const key_type& k) const
+			const_iterator 			find (const key_type& k) const
 			{
 				return (_tree.find());
 			}
+	
+			size_type 				count (const key_type& k) const
+			{
+				return (_tree.count(k));
+			}
+	
 	};
 };
 

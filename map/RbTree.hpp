@@ -212,7 +212,7 @@ namespace ft {
 				return (ref_root);
 			}
 			
-			node_ptr		tree_search(const key_type k)
+			node_ptr		tree_search(const key_type k) const
 			{
 				node_ptr	x = _root;
 				node_ptr	y = _nill;
@@ -640,6 +640,17 @@ namespace ft {
 					return (_find);
 				return (this->end());
 			}
+	
+			size_type count (const key_type& k) const
+			{
+				node_ptr	tmp;
+				
+				tmp = tree_search(k);
+				if (tmp == _nill)
+					return (0);
+				return (1);
+			}
+
 	};
 };
 
