@@ -8,7 +8,6 @@ int main(void) {
 	ft::map<int, std::string> ft_map;
 
 	std::cout << "size map: " << ft_map.size() << std::endl;
-	std::cout << "size map: " << ft_map.max_size() << std::endl;
 
 	ft::pair<int, std::string>	val1(1, "one");
 	ft::pair<int, std::string>	val2(2, "two");
@@ -57,42 +56,14 @@ int main(void) {
 	it =  ft_map.insert(val4);
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
-	std::cout << "\n---------------------------\n";
-	
-	std::cout << "\n---------MAP TREE----------\n";
+	std::cout << "\n---------Swap----------\n";
 	
 	ft::map<int, std::string>::iterator	it2;
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
+	ft::map<int, std::string> ft_map2;
+	ft_map2.swap(ft_map);
 
-
-	std::cout << "\n---------ERASE 2----------\n";
-	ft_map.erase(1);
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
-	
-	std::cout << "\n---------ERASE 5----------\n";
-	ft_map.erase(5);
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
-
-	std::cout << "\n---------ERASE begin()----------\n";
-	ft_map.erase(ft_map.begin());
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
-	
-	std::cout << "\n---------ERASE begin() 2----------\n";
-	ft_map.erase(ft_map.begin());
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
-
-	std::cout << "\n---------ERASE Range----------\n";
-	it2 = ft_map.begin();
-	it2++;
-	it2++;
-	ft_map.erase(ft_map.begin(), it2);
-
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-		std::cout << it2->first << " : " << it2->second << std::endl;
-
+	for (it2 = ft_map2.begin(); it2 != ft_map2.end(); it2++)
+	{
+		std::cout << it2->second << std::endl;
+	}
 }

@@ -191,6 +191,12 @@ namespace ft
 				return (_tree.erase(first, last));
 			}
 
+			void 					swap (map& x)
+			{
+				_tree.clear();
+				_tree.swap(x.begin(), x.end());
+			}
+
 			void					clear()
 			{
 				return (_tree.clear());

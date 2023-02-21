@@ -90,6 +90,7 @@ namespace ft {
 				_new->_left = _nill;
 				_new->_right = _nill;
 				_new->_p =	_nill;
+				_new->_nill = false;
 				return (_new);
 			}
 
@@ -197,8 +198,7 @@ namespace ft {
 
 			static node_ptr	tree_minimum(node_ptr ref_root)
 			{
-				if (ref_root->_nill == true)
-					return (ref_root);
+				// std::cout << "RbTree minimum called" << std::endl;
 				while(ref_root->_left->_nill == false)
 					ref_root = ref_root->_left;
 				return (ref_root);
@@ -206,8 +206,7 @@ namespace ft {
 
 			static node_ptr	tree_maximum(node_ptr ref_root)
 			{
-				if (ref_root->_nill == true)
-					return (ref_root);
+				// std::cout << "RbTree maximum called" << std::endl;
 				while(ref_root->_right->_nill == false)
 					ref_root = ref_root->_right;
 				return (ref_root);
@@ -233,8 +232,7 @@ namespace ft {
 
 			static node_ptr	tree_sucessor(node_ptr next)
 			{
-				if (next->_nill == true)
-					return (next);
+				// std::cout << "RbTree sucessor called" << std::endl;
 				if (next->_right->_nill == false)
 					return (tree_minimum(next->_right));
 				else
@@ -251,8 +249,9 @@ namespace ft {
 
 			static node_ptr	tree_predecessor(node_ptr next)
 			{
+				// std::cout << "RbTree predecessor called" << std::endl;
 				if (next->_left->_nill == false)
-					return (maximum(next->_left));
+					return (tree_maximum(next->_left));
 				else
 				{
 					node_ptr i = next->_p;
@@ -414,7 +413,7 @@ namespace ft {
 				_nill->_nill = true;
 				
 				_root = _nill;
-	//			_root->_p = _nill;
+				_root->_p = _nill;
 				_left_most = _nill;
 				_right_most = _nill;
 			};
@@ -455,21 +454,25 @@ namespace ft {
 
 			iterator				begin(void)
 			{
+				// std::cout << "RbTree begin called" << std::endl;
 				return (iterator(tree_minimum(_root)));
 			}
 
 			const_iterator			begin(void) const
 			{
+				// std::cout << "RbTree const begin called" << std::endl;
 				return (const_iterator(tree_minimum(_root)));
 			}
 
 			iterator				end(void)
 			{
+				// std::cout << "RbTree end called" << std::endl;
 				return (iterator(_nill));
 			}
 
 			const_iterator			end(void) const
 			{
+				// std::cout << "RbTree const end called" << std::endl;
 				return (const_iterator(_nill));
 			}
 
@@ -494,6 +497,7 @@ namespace ft {
 		/*MODIFIERS*/
 			pair<iterator, bool>	insert(const value_type& val)
 			{
+				// std::cout << "RbTree standart insert called" << std::endl;
 				node_ptr	x = _root;
 				node_ptr	y = _nill;
 				node_ptr	new_node;
@@ -523,31 +527,33 @@ namespace ft {
 				}
 				tree_balance(new_node);
 				_size++;
-				return (pair<iterator, bool>(iterator(new_node), true));
 
 				_left_most = tree_minimum(_root);
 				_right_most = tree_maximum(_root);
-			}
-
-			iterator 				insert (iterator position, const value_type& val)
-			{
-				if (position == iterator(_nill) || position == iterator(_right_most))
-				{
-					if (this->_size > 0 && _comp(_right_most->_node_value.first, val.first))
-					std::cout << "aaaaaaaaaaaaaaaaa\n" << val.first << "\n";
-				}
-				else
-					std::cout << "bbbbbbbbbbbbbbbbbb\n";
 				
-				_left_most = tree_minimum(_root);
-				_right_most = tree_maximum(_root);
-
-				return (iterator(_nill));
+				return (pair<iterator, bool>(iterator(new_node), true));
 			}
+
+			// iterator 				insert (iterator position, const value_type& val)
+			// {
+			// 	if (position == iterator(_nill) || position == iterator(_right_most))
+			// 	{
+			// 		if (this->_size > 0 && _comp(_right_most->_node_value.first, val.first))
+			// 		std::cout << "aaaaaaaaaaaaaaaaa\n" << val.first << "\n";
+			// 	}
+			// 	else
+			// 		std::cout << "bbbbbbbbbbbbbbbbbb\n";
+				
+			// 	// _left_most = tree_minimum(_root);
+			// 	// _right_most = tree_maximum(_root);
+
+			// 	return (iterator(_nill));
+			// }
 
 			template <class InputIterator>
 			void 					insert(InputIterator first, InputIterator last)
 			{
+				
 				for (; first != last; first++)
 				{
 					insert(*first);
@@ -609,7 +615,11 @@ namespace ft {
 				_right_most = tree_maximum(_root);
 			}
 
-
+			void 					swap (iterator first, iterator last)
+			{
+				this->clear();
+				this->insert(first, last);
+			}
 		/*OPERATORS*/
 			iterator 				find (const key_type& k)
 			{
