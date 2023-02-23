@@ -212,9 +212,9 @@ namespace ft {
 				return (ref_root);
 			}
 			
-			node_ptr		tree_search(const key_type k) const
+			node_ptr		tree_search(node_ptr sub_tree, const key_type k) const
 			{
-				node_ptr	x = _root;
+				node_ptr	x = sub_tree;
 				node_ptr	y = _nill;
 
 				while (x != _nill)
@@ -573,7 +573,7 @@ namespace ft {
 			{
 				node_ptr	tmp;
 
-				tmp = tree_search(k);
+				tmp = tree_search(_root, k);
 				if (tmp != _nill)
 					tree_node_delete(tmp);
 				
@@ -590,7 +590,7 @@ namespace ft {
 				key_type	key;
 				
 				key = position->first;
-				tmp = tree_search(key);
+				tmp = tree_search(_root, key);
 				if (tmp != _nill)
 					tree_node_delete(tmp);
 				delete tmp;
@@ -645,7 +645,7 @@ namespace ft {
 			{
 				node_ptr	tmp;
 				
-				tmp = tree_search(k);
+				tmp = tree_search(_root, k);
 				if (tmp == _nill)
 					return (0);
 				return (1);
