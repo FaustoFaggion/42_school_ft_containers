@@ -83,7 +83,7 @@ namespace ft {
 
 			self		operator--(void)
 			{
-				std::cout << "operator-- called" << std::endl;
+			//	std::cout << "operator-- called" << std::endl;
 				_current = rb_tree::tree_predecessor(_current);
 				return (*this);
 			};
@@ -92,7 +92,7 @@ namespace ft {
 			{
 				self	tmp = *this;
 
-				std::cout << "operator-- (INT) called" << std::endl;
+			//	std::cout << "operator-- (INT) called" << std::endl;
 				_current = rb_tree::tree_predecessor(_current);
 				return (tmp);
 			}

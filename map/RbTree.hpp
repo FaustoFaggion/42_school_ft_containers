@@ -199,7 +199,6 @@ namespace ft {
 				while (_root->_p != _nill)
 					_root = _root->_p;
 				_nill->_root_ref = _root;
-				std::cout << _root->_node_value.second << "\n";
 				_root->_color = BLACK;
 			}
 
@@ -256,10 +255,10 @@ namespace ft {
 
 			static node_ptr	tree_predecessor(node_ptr next)
 			{
-				std::cout << "RbTree predecessor called" << std::endl;
+			//	std::cout << "RbTree predecessor called" << std::endl;
 				if (next->_nill == true)
 				{
-					std::cout << "predecessor called\n";
+			//		std::cout << "predecessor called\n";
 					return (tree_maximum(next->_root_ref));
 				}
 				if (next->_left->_nill == false)
@@ -439,7 +438,7 @@ namespace ft {
 
 			~RbTree(void)
 			{
-				std::cout << "RbTree destructor called" << std::endl;
+				//std::cout << "RbTree destructor called" << std::endl;
 				tree_delete(_root);
 				 _node_alloc.destroy(_nill);
 				 _node_alloc.deallocate(_nill, sizeof(_nill));
@@ -645,7 +644,7 @@ namespace ft {
 			{
 				iterator	_find;
 
-				_find = iterator(this->tree_search(k));
+				_find = iterator(this->tree_search(_root, k));
 				if (_find->first == k)
 					return (_find);
 				return (this->end());
@@ -655,7 +654,7 @@ namespace ft {
 			{
 				iterator	_find;
 
-				_find = iterator(this->tree_search(k));
+				_find = iterator(this->tree_search(_root, k));
 				if (_find->first == k)
 					return (_find);
 				return (this->end());
