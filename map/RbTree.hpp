@@ -94,6 +94,44 @@ namespace ft {
 				return (_new);
 			}
 
+			pair<iterator, bool>	tree_insert(node_ptr _root_ref, const value_type& val)
+			{
+				// std::cout << "RbTree standart insert called" << std::endl;
+				node_ptr	x = _root_ref;
+				node_ptr	y = _nill;
+				node_ptr	new_node;
+
+
+				while (x != _nill)
+				{
+					y = x;
+					if (_comp(val.first, x->_node_value.first))
+						x = x->_left;
+					else if (_comp(x->_node_value.first, val.first))
+						x = x->_right;
+					else
+						return(pair<iterator, bool>(iterator(y), false));
+				}
+
+				new_node = node_create(val);
+				new_node->_p = y;
+				if (y == _nill)
+					_root = new_node;
+				else
+				{ 
+					if (_comp(new_node->_node_value.first, y->_node_value.first)) 
+						y->_left = new_node;
+					else
+					y->_right = new_node;
+				}
+				tree_balance(new_node);
+				_size++;
+				_left_most = tree_minimum(_root);
+				_right_most = tree_maximum(_root);
+				
+				return (pair<iterator, bool>(iterator(new_node), true));
+			}
+
 			void			tree_delete(node_ptr& node)
 			{
 				if (node == _nill)
@@ -509,64 +547,26 @@ namespace ft {
 		/*MODIFIERS*/
 			pair<iterator, bool>	insert(const value_type& val)
 			{
-				// std::cout << "RbTree standart insert called" << std::endl;
-				node_ptr	x = _root;
-				node_ptr	y = _nill;
-				node_ptr	new_node;
-
-
-				while (x != _nill)
-				{
-					y = x;
-					if (_comp(val.first, x->_node_value.first))
-						x = x->_left;
-					else if (_comp(x->_node_value.first, val.first))
-						x = x->_right;
-					else
-						return(pair<iterator, bool>(iterator(y), false));
-				}
-
-				new_node = node_create(val);
-				new_node->_p = y;
-				if (y == _nill)
-					_root = new_node;
-				else
-				{ 
-					if (_comp(new_node->_node_value.first, y->_node_value.first)) 
-						y->_left = new_node;
-					else
-					y->_right = new_node;
-				}
-				tree_balance(new_node);
-				_size++;
-				_left_most = tree_minimum(_root);
-				_right_most = tree_maximum(_root);
-				
-				return (pair<iterator, bool>(iterator(new_node), true));
+				return (tree_insert(_root, val));
 			}
 
-			iterator 				insert (iterator position, const value_type& val)
+			iterator				insert (iterator position, const value_type& val)
 			{
-							iterator	it = position++;
-				
-				if (position == iterator(_nill))
-					return (position);
-				if ((*position).first == val.first)
-					return (position);
+				iterator				last;
+				pair<iterator, bool>	tmp;
 
-				if (_comp((*position).first, val.first))
+				
+				if (position == end() || position == iterator(_right_most))
 				{
-					if (it == iterator(_nill))
-						std::cout << "aaaaa\n";
-					else
+					if (size() > 0 && _comp(_right_most->_node_value.first, val.first))
 					{
-						if (_comp(val.first, (*it).first))
-							std::cout << "bbbbbbb\n";
-						else
-							std::cout << "ccccccccc\n";
+						tmp = tree_insert(position->getCurrent(), val);
+						return (tmp.first);
 					}
+					else
+						return (insert(val));
 				}
-		 		return (iterator(position));
+				return (iterator(position));
 			}
 
 			template <class InputIterator>
@@ -639,7 +639,7 @@ namespace ft {
 				this->insert(first, last);
 			}
 
-		/*OPERATORS*/
+		/*OPERATIONS*/
 			iterator 				find (const key_type& k)
 			{
 				iterator	_find;
@@ -660,7 +660,7 @@ namespace ft {
 				return (this->end());
 			}
 	
-			size_type count (const key_type& k) const
+			size_type				count (const key_type& k) const
 			{
 				node_ptr	tmp;
 				
@@ -670,6 +670,45 @@ namespace ft {
 				return (1);
 			}
 
+			iterator lower_bound (const key_type& k)
+			{
+				iterator it = begin();
+				iterator ite = end();
+
+				for (; it != ite && _comp(it->first, k); it++)
+					continue;
+				return it;
+			}
+
+			const_iterator lower_bound (const key_type& k) const
+			{
+				const_iterator it = begin();
+				const_iterator ite = end();
+
+				for (; it != ite && _comp(it->first, k); it++)
+					continue;
+				return it;
+			}
+
+			iterator upper_bound (const key_type& k)
+			{
+				iterator it = begin();
+				iterator ite = end();
+				
+				for (; it != ite && !_comp(k, it->first); ++it)
+					continue;
+				return it;
+			}
+
+			const_iterator upper_bound (const key_type& k) const
+			{
+				const_iterator it = begin();
+				const_iterator ite = end();
+				
+				for (; it != ite && !_comp(k, it->first); ++it)
+					continue;
+				return it;
+			}
 	};
 };
 

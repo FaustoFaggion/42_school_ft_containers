@@ -48,9 +48,9 @@ int main(void) {
 	it =  ft_map.insert(val7);
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
-	std::cout << "\n---------------------------\n";
-	it =  ft_map.insert(val8);
-	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+	// std::cout << "\n---------------------------\n";
+	// it =  ft_map.insert(val8);
+	// std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val4);
@@ -61,9 +61,13 @@ int main(void) {
 	ft::map<int, std::string>::iterator it2;
 	it2 = ft_map.end();
 	
-	std::cout << "it value: " << (*it2).second << std::endl;
-	it2++;
-	std::cout << "it value: " << (*it2).second << std::endl;
-	it2++;
-	std::cout << "it value: " << (*it2).second << std::endl;
+	it2--;
+	//it2--;
+	ft_map.insert(it2, val8);
+
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+	{
+		std::cout << it2->second << std::endl;
+	}
+
 }

@@ -44,3 +44,13 @@ echo "COUNT" >> map_dif.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_count_o.cpp && ./a.out > ./txts/count_o.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_count_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/count_ft.txt
 diff ./txts/count_o.txt ./txts/count_ft.txt >> map_dif.txt
+
+echo "LOWER_BOUND" >> map_dif.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_lower_bound_o.cpp && ./a.out > ./txts/lower_bound_o.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_lower_bound_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/lower_bound_ft.txt
+diff ./txts/lower_bound_o.txt ./txts/lower_bound_ft.txt >> map_dif.txt
+
+echo "UPPER_BOUND" >> map_dif.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_upper_bound_o.cpp && ./a.out > ./txts/upper_bound_o.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_upper_bound_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/upper_bound_ft.txt
+diff ./txts/upper_bound_o.txt ./txts/upper_bound_ft.txt >> map_dif.txt

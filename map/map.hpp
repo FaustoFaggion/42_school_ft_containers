@@ -204,6 +204,17 @@ namespace ft
 			}
 
 		/*OBSERVERS*/
+
+			iterator lower_bound (const key_type& k)
+			{
+				return (_tree.lower_bound(k));
+			}
+
+			iterator upper_bound (const key_type& k)
+			{
+				return (_tree.upper_bound(k));
+			}
+
 			// key_compare				key_compare() const
 			// {
 			// 	return (key_compare());
