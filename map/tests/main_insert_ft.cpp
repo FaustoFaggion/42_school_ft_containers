@@ -11,7 +11,6 @@ int main(void) {
 
 	ft::pair<int, std::string>	val1(1, "one");
 	ft::pair<int, std::string>	val2(2, "two");
-	ft::pair<int, std::string>	val3(3, "three");
 	ft::pair<int, std::string>	val4(4, "four");
 	ft::pair<int, std::string>	val5(5, "five");
 	ft::pair<int, std::string>	val6(6, "six");
@@ -27,10 +26,6 @@ int main(void) {
 	std::cout << "\n---------------------------\n";
 	it = ft_map.insert(val2);
 	 std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
-
-	std::cout << "\n---------------------------\n";
-	it =  ft_map.insert(val3);
-	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n---------------------------\n";
 	it =  ft_map.insert(val4);
@@ -67,5 +62,37 @@ int main(void) {
 		std::cout << it2->second << std::endl;
 	}
 
+	std::cout << "\n------------INSERT HINT---------------\n";
+
+	ft::pair<int, std::string>	val3(3, "three");
+	ft::pair<int, std::string>	val9(9, "nine");
+	
+	it =  ft_map.insert(val3);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+	
+	it =  ft_map.insert(val9);
+	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
+
+	it2 = ft_map.end();
+
+	ft_map.insert(it2, val8);
+
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+	{
+		std::cout << it2->second << std::endl;
+	}
+
+	std::cout << "\n";
+	it2 = ft_map.begin();
+	it2++;
+
+	std::cout << "it2: " << it2->second << "\n";
+
+	ft_map.insert(it2, val3);
+
+	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
+	{
+		std::cout << it2->second << std::endl;
+	}
 
 }

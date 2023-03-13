@@ -7,9 +7,6 @@ it value: one bool: 1
 it value: two bool: 1
 
 ---------------------------
-it value: three bool: 1
-
----------------------------
 it value: four bool: 1
 
 ---------------------------
@@ -30,9 +27,32 @@ it value: four bool: 0
 ---------Insert Range----------
 one
 two
+four
+five
+six
+seven
+eight
+
+------------INSERT HINT---------------
+it value: three bool: 1
+it value: nine bool: 1
+one
+two
 three
 four
 five
 six
 seven
 eight
+nine
+
+it2: two
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine

@@ -552,19 +552,40 @@ namespace ft {
 
 			iterator				insert (iterator position, const value_type& val)
 			{
-				iterator				last;
+				iterator				next;
 				pair<iterator, bool>	tmp;
 
-				
-				if (position == end() || position == iterator(_right_most))
+				next = position;
+				next++;
+
+				if (*position == val)
+					return (position);
+				if (position == end() || position.getCurrent() == _right_most)
 				{
 					if (size() > 0 && _comp(_right_most->_node_value.first, val.first))
 					{
-						tmp = tree_insert(position->getCurrent(), val);
+						tmp = tree_insert(position.getCurrent(), val);
 						return (tmp.first);
 					}
 					else
-						return (insert(val));
+					{
+						tmp = insert(val);
+						return (tmp.first);
+					}
+				}
+				else
+				{
+					if (_comp((*position).first, val.first) && _comp(val.first, (*next).first))
+					{
+						tmp = tree_insert(position.getCurrent(), val);
+						return (tmp.first);
+					}
+					else
+					{
+						tmp = insert(val);
+						return (tmp.first);
+					}
+
 				}
 				return (iterator(position));
 			}
