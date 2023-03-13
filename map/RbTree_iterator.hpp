@@ -59,6 +59,11 @@ namespace ft {
 			
 			self		operator++(void)
 			{
+				if (_current->_nill == true)
+				{
+					_current = rb_tree::tree_predecessor(_current);
+					return (*this);
+				}
 				_current = rb_tree::tree_sucessor(_current);
 				return (*this);
 			};
@@ -67,12 +72,18 @@ namespace ft {
 			{
 				self	tmp = *this;
 
+				if (_current->_nill == true)
+				{
+					_current = rb_tree::tree_predecessor(_current);
+					return (*this);
+				}
 				_current = rb_tree::tree_sucessor(_current);
 				return (tmp);
 			}
 
 			self		operator--(void)
 			{
+				std::cout << "operator-- called" << std::endl;
 				_current = rb_tree::tree_predecessor(_current);
 				return (*this);
 			};
@@ -81,6 +92,7 @@ namespace ft {
 			{
 				self	tmp = *this;
 
+				std::cout << "operator-- (INT) called" << std::endl;
 				_current = rb_tree::tree_predecessor(_current);
 				return (tmp);
 			}

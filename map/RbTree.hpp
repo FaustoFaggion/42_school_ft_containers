@@ -97,7 +97,10 @@ namespace ft {
 			void			tree_delete(node_ptr& node)
 			{
 				if (node == _nill)
+				{
+					//_root = _nill;
 					return;
+				}
 				tree_delete(node->_left);
 				tree_delete(node->_right);
 				_node_alloc.destroy(node);
@@ -193,6 +196,10 @@ namespace ft {
 						}
 					}
 				}
+				while (_root->_p != _nill)
+					_root = _root->_p;
+				_nill->_root_ref = _root;
+				std::cout << _root->_node_value.second << "\n";
 				_root->_color = BLACK;
 			}
 
@@ -249,7 +256,12 @@ namespace ft {
 
 			static node_ptr	tree_predecessor(node_ptr next)
 			{
-				// std::cout << "RbTree predecessor called" << std::endl;
+				std::cout << "RbTree predecessor called" << std::endl;
+				if (next->_nill == true)
+				{
+					std::cout << "predecessor called\n";
+					return (tree_maximum(next->_root_ref));
+				}
 				if (next->_left->_nill == false)
 					return (tree_maximum(next->_left));
 				else
@@ -411,6 +423,7 @@ namespace ft {
 				_nill->_left = _nill;
 				_nill->_right = _nill;
 				_nill->_nill = true;
+				_nill->_root_ref = _nill;
 				
 				_root = _nill;
 				_root->_p = _nill;
@@ -426,10 +439,10 @@ namespace ft {
 
 			~RbTree(void)
 			{
-				// std::cout << "RbTree destructor called" << std::endl;
-				clear();
-				_node_alloc.destroy(_nill);
-				_node_alloc.deallocate(_nill, sizeof(_nill));
+				std::cout << "RbTree destructor called" << std::endl;
+				tree_delete(_root);
+				 _node_alloc.destroy(_nill);
+				 _node_alloc.deallocate(_nill, sizeof(_nill));
 			};
 
 			RbTree	&operator=(RbTree const &rsc)
@@ -527,28 +540,35 @@ namespace ft {
 				}
 				tree_balance(new_node);
 				_size++;
-
 				_left_most = tree_minimum(_root);
 				_right_most = tree_maximum(_root);
 				
 				return (pair<iterator, bool>(iterator(new_node), true));
 			}
 
-			// iterator 				insert (iterator position, const value_type& val)
-			// {
-			// 	if (position == iterator(_nill) || position == iterator(_right_most))
-			// 	{
-			// 		if (this->_size > 0 && _comp(_right_most->_node_value.first, val.first))
-			// 		std::cout << "aaaaaaaaaaaaaaaaa\n" << val.first << "\n";
-			// 	}
-			// 	else
-			// 		std::cout << "bbbbbbbbbbbbbbbbbb\n";
+			iterator 				insert (iterator position, const value_type& val)
+			{
+							iterator	it = position++;
 				
-			// 	// _left_most = tree_minimum(_root);
-			// 	// _right_most = tree_maximum(_root);
+				if (position == iterator(_nill))
+					return (position);
+				if ((*position).first == val.first)
+					return (position);
 
-			// 	return (iterator(_nill));
-			// }
+				if (_comp((*position).first, val.first))
+				{
+					if (it == iterator(_nill))
+						std::cout << "aaaaa\n";
+					else
+					{
+						if (_comp(val.first, (*it).first))
+							std::cout << "bbbbbbb\n";
+						else
+							std::cout << "ccccccccc\n";
+					}
+				}
+		 		return (iterator(position));
+			}
 
 			template <class InputIterator>
 			void 					insert(InputIterator first, InputIterator last)
@@ -578,7 +598,6 @@ namespace ft {
 					tree_node_delete(tmp);
 				
 				delete tmp;
-
 				_left_most = tree_minimum(_root);
 				_right_most = tree_maximum(_root);
 				return (1);
@@ -620,6 +639,7 @@ namespace ft {
 				this->clear();
 				this->insert(first, last);
 			}
+
 		/*OPERATORS*/
 			iterator 				find (const key_type& k)
 			{

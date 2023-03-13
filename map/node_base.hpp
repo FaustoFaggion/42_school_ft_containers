@@ -19,6 +19,7 @@ namespace ft {
 		node_ptr	_p;
 		Val			_node_value;
 		bool		_nill;
+		node_ptr	_root_ref;
 
 		
 		node_tree() : _node_value(Val())
@@ -29,6 +30,7 @@ namespace ft {
 			_right = NULL;
 			_p = NULL;
 			_nill = false;
+			_root_ref = NULL;
 		}
 
 		explicit node_tree(Val value) : _node_value(value)
@@ -39,6 +41,7 @@ namespace ft {
 			_right = NULL;
 			_p = NULL;
 			_nill = false;
+			_root_ref = NULL;
 		}
 	};
 };

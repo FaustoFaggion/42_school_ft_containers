@@ -57,10 +57,13 @@ int main(void) {
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
 	std::cout << "\n------------COUNT---------------\n";
-
-	int	i = ft_map.count(2);
-	std::cout << "map.count(2): " << i << std::endl;
-
-	i = ft_map.count(9);
-	std::cout << "map.count(9): " << i << std::endl;
+	
+	ft::map<int, std::string>::iterator it2;
+	it2 = ft_map.end();
+	
+	std::cout << "it value: " << (*it2).second << std::endl;
+	it2++;
+	std::cout << "it value: " << (*it2).second << std::endl;
+	it2++;
+	std::cout << "it value: " << (*it2).second << std::endl;
 }
