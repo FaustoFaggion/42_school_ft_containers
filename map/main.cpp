@@ -56,32 +56,15 @@ int main(void) {
 	it =  ft_map.insert(val4);
 	std::cout << "it value: " << it.first->second << " bool: " <<it.second << std::endl;
 
-	std::cout << "\n------------INSERT HINT---------------\n";
+	std::cout << "\n------------EQUAL RANGE---------------\n";
 	
-	ft::map<int, std::string>::iterator it2;
-	it2 = ft_map.end();
+	ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator>	p;
 	
-	it2--;
-	ft_map.insert(it2, val8);
+	p = ft_map.equal_range(val2.first);
 
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-	{
-		std::cout << it2->second << std::endl;
-	}
+	std::cout << "range: " << (*p.first).second << " : " << (*p.second).second << "\n";
 
-	std::cout << "\n";
+	p = ft_map.equal_range(val6.first);
 
-	it2--;
-	it2--;
-	it2--;
-
-	std::cout << "it2: " << it2->second << "\n";
-
-	ft_map.insert(it2, val6);
-
-	for (it2 = ft_map.begin(); it2 != ft_map.end(); it2++)
-	{
-		std::cout << it2->second << std::endl;
-	}
-
+	std::cout << "range: " << (*p.first).second << " : " << (*p.second).second << "\n";
 }

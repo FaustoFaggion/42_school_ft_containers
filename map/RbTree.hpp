@@ -691,7 +691,7 @@ namespace ft {
 				return (1);
 			}
 
-			iterator lower_bound (const key_type& k)
+			iterator 				lower_bound (const key_type& k)
 			{
 				iterator it = begin();
 				iterator ite = end();
@@ -701,7 +701,7 @@ namespace ft {
 				return it;
 			}
 
-			const_iterator lower_bound (const key_type& k) const
+			const_iterator 			lower_bound (const key_type& k) const
 			{
 				const_iterator it = begin();
 				const_iterator ite = end();
@@ -711,7 +711,7 @@ namespace ft {
 				return it;
 			}
 
-			iterator upper_bound (const key_type& k)
+			iterator 				upper_bound (const key_type& k)
 			{
 				iterator it = begin();
 				iterator ite = end();
@@ -721,7 +721,7 @@ namespace ft {
 				return it;
 			}
 
-			const_iterator upper_bound (const key_type& k) const
+			const_iterator 			upper_bound (const key_type& k) const
 			{
 				const_iterator it = begin();
 				const_iterator ite = end();
@@ -729,6 +729,16 @@ namespace ft {
 				for (; it != ite && !_comp(k, it->first); ++it)
 					continue;
 				return it;
+			}
+
+			pair<iterator,iterator>	equal_range (const key_type& k)
+			{
+				return ft::make_pair(lower_bound(k), upper_bound(k));
+			}
+
+			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				return ft::make_pair(lower_bound(k), upper_bound(k));
 			}
 	};
 };

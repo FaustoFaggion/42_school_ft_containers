@@ -243,6 +243,16 @@ namespace ft
 				return (_tree.count(k));
 			}
 	
+			pair<iterator,iterator>	equal_range (const key_type& k)
+			{
+				return (_tree.equal_range(k));
+			}
+
+			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				return (_tree.equal_range(k));
+			}
+			
 	};
 };
 

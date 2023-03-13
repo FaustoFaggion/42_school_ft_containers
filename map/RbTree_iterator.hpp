@@ -97,6 +97,18 @@ namespace ft {
 				return (tmp);
 			}
 	};
+
+	template<typename Val, typename Tr>
+	bool	operator== (const RbTree_iterator<Val, Tr>& lhs, const RbTree_iterator<Val, Tr>& rhs)
+	{
+		return (lhs.getCurrent() == rhs.getCurrent());
+	}
+
+	template<typename Val, typename Tr>
+	bool	operator!= (const RbTree_iterator<Val, Tr>& lhs, const RbTree_iterator<Val, Tr>& rhs)
+	{
+		return (lhs.getCurrent() != rhs.getCurrent());
+	}
 };
 
 
