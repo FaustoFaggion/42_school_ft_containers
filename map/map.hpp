@@ -21,7 +21,7 @@ namespace ft
 
 			typedef	map<Key, T, Compare, Alloc>		map_type;
 			
-		public:
+		// public:
 		
 			typedef Key								key_type;
 			typedef T								mapped_type;
@@ -64,8 +64,8 @@ namespace ft
 			typedef typename Tree_struct::difference_type			difference_type;
 			typedef typename Tree_struct::iterator					iterator;
 			typedef typename Tree_struct::const_iterator			const_iterator;
-//			typedef typename Tree_struct::reverse_iterator			reverse_iterator;
-//			typedef typename Tree_struct::const_reverse_iterator	const_reverse_iterator;
+			typedef typename Tree_struct::reverse_iterator			reverse_iterator;
+			typedef typename Tree_struct::const_reverse_iterator	const_reverse_iterator;
 
 		public:
 
@@ -205,50 +205,49 @@ namespace ft
 
 		/*OBSERVERS*/
 
-			iterator lower_bound (const key_type& k)
+			key_compare				key_comp() const
 			{
-				return (_tree.lower_bound(k));
+				return (key_compare());
 			}
 
-			iterator upper_bound (const key_type& k)
+			value_compare			value_comp() const
 			{
-				return (_tree.upper_bound(k));
+				return (value_compare(key_compare()));
 			}
-
-			// key_compare				key_compare() const
-			// {
-			// 	return (key_compare());
-			// }
-
-			// value_compare			value_comp() const
-			// {
-			// 	return (value_compare(key_compare()));
-			// }
-
-
 
 		/*OPERATIONS*/
-			iterator 				find (const key_type& k)
+
+			iterator				find (const key_type& k)
 			{
 				return (_tree.find(k));
 			}
 
-			const_iterator 			find (const key_type& k) const
+			const_iterator			find (const key_type& k) const
 			{
 				return (_tree.find());
 			}
 	
-			size_type 				count (const key_type& k) const
+			size_type				count (const key_type& k) const
 			{
 				return (_tree.count(k));
 			}
 	
+			iterator				lower_bound (const key_type& k)
+			{
+				return (_tree.lower_bound(k));
+			}
+
+			iterator				upper_bound (const key_type& k)
+			{
+				return (_tree.upper_bound(k));
+			}
+
 			pair<iterator,iterator>	equal_range (const key_type& k)
 			{
 				return (_tree.equal_range(k));
 			}
 
-			pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			pair<const_iterator,const_iterator>	equal_range (const key_type& k) const
 			{
 				return (_tree.equal_range(k));
 			}

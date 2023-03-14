@@ -54,3 +54,13 @@ echo "UPPER_BOUND" >> map_dif.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_upper_bound_o.cpp && ./a.out > ./txts/upper_bound_o.txt
 c++ -Wall -Wextra -Werror -std=c++98 ./main_upper_bound_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/upper_bound_ft.txt
 diff ./txts/upper_bound_o.txt ./txts/upper_bound_ft.txt >> map_dif.txt
+
+echo "EQUAL RANGE" >> map_dif.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_equal_range_o.cpp && ./a.out > ./txts/equal_range_o.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_equal_range_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/equal_range_ft.txt
+diff ./txts/equal_range_o.txt ./txts/equal_range_ft.txt >> map_dif.txt
+
+echo "VALUE_COMP" >> map_dif.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_value_comp_o.cpp && ./a.out > ./txts/value_comp_o.txt
+c++ -Wall -Wextra -Werror -std=c++98 ./main_value_comp_ft.cpp && valgrind --leak-check=full --show-leak-kinds=all ./a.out > ./txts/value_comp_ft.txt
+diff ./txts/value_comp_o.txt ./txts/value_comp_ft.txt >> map_dif.txt

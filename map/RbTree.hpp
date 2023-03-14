@@ -41,6 +41,8 @@ namespace ft {
 			typedef Alloc										allocator_type;
 			typedef RbTree_iterator<pointer, self>				iterator;
 			typedef RbTree_iterator<const_pointer, self>		const_iterator;
+			typedef RbTree_reverse_iterator<iterator>			reverse_iterator;
+			typedef RbTree_reverse_iterator<const_iterator>		const_reverse_iterator;
 
 		private: 
 		
@@ -525,6 +527,23 @@ namespace ft {
 				// std::cout << "RbTree const end called" << std::endl;
 				return (const_iterator(_nill));
 			}
+
+			reverse_iterator		rbegin()
+			{
+				return (reverse_iterator(tree_maximum(_root)));
+			}
+			
+			const_reverse_iterator	rbegin() const
+			{
+				return (const_reverse_iterator(tree_maximum(_root)));
+			}
+
+			reverse_iterator rend()
+			{
+				
+			}
+
+			const_reverse_iterator rend() const;
 
 		/*CAPACITY*/
 			size_type				size(void) {return(_size);}

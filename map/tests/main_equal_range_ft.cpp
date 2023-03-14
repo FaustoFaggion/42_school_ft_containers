@@ -1,7 +1,6 @@
-#include "map.hpp"
-#include <map>
-#include "RbTree.hpp"
-#include "node_base.hpp"
+#include "../map.hpp"
+#include "../RbTree.hpp"
+#include "../node_base.hpp"
 
 int main(void) {
 
@@ -58,17 +57,13 @@ int main(void) {
 
 	std::cout << "\n------------EQUAL RANGE---------------\n";
 	
-	ft::map<int, std::string>::iterator	it2;
-	ft::map<int, std::string>::iterator	it3;
+	ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator>	p;
+	
+	p = ft_map.equal_range(val2.first);
 
-	it2 = ft_map.begin();
-	it3 = ft_map.end();
-	it3--;
-	it3--;
+	std::cout << "range: " << (*p.first).second << " : " << (*p.second).second << "\n";
 
-	while (ft_map.value_comp()(*it2, (*it3)))
-	{
-		std::cout << it2->first << " : " << it2->second << std::endl;
-		it2++;
-	}
+	p = ft_map.equal_range(val6.first);
+
+	std::cout << "range: " << (*p.first).second << " : " << (*p.second).second << "\n";
 }
