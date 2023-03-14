@@ -135,6 +135,26 @@ namespace ft
 				return (_tree.end());
 			}
 
+			reverse_iterator		rbegin()
+			{
+				return (_tree.rbegin());
+			}
+
+			const_reverse_iterator	rbegin()
+			{
+				return (_tree.rbegin());
+			}
+
+			reverse_iterator		rend()
+			{
+				return (_tree.rend());
+			}
+
+			const_reverse_iterator	rend()
+			{
+				return (_tree.rend());
+			}
+
 		/*CAPACITY*/
 			size_type				size()
 			{
